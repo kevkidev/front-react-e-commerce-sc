@@ -5,6 +5,9 @@ module.exports = {
     jest: true,
     es2021: true
   },
+  globals: {
+    document: false
+  },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
