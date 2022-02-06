@@ -1,12 +1,15 @@
 module.exports = {
   env: {
-    browser: false,
+    browser: true,
     node: true,
     jest: true,
     es2021: true
   },
   globals: {
-    document: false
+    document: false,
+    jsdom: true,
+    JSX: true,
+    React: true,
   },
   extends: [
     'eslint:recommended',
