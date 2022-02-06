@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/front-react-social-network/static/css/main.76cb95f5.css",
-    "main.js": "/front-react-social-network/static/js/main.c9980eb8.js",
+    "main.css": "/front-react-social-network/static/css/main.402d2c3c.css",
+    "main.js": "/front-react-social-network/static/js/main.6cd660e0.js",
     "static/js/787.3001b58a.chunk.js": "/front-react-social-network/static/js/787.3001b58a.chunk.js",
     "index.html": "/front-react-social-network/index.html",
-    "main.76cb95f5.css.map": "/front-react-social-network/static/css/main.76cb95f5.css.map",
-    "main.c9980eb8.js.map": "/front-react-social-network/static/js/main.c9980eb8.js.map",
+    "main.402d2c3c.css.map": "/front-react-social-network/static/css/main.402d2c3c.css.map",
+    "main.6cd660e0.js.map": "/front-react-social-network/static/js/main.6cd660e0.js.map",
     "787.3001b58a.chunk.js.map": "/front-react-social-network/static/js/787.3001b58a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.76cb95f5.css",
-    "static/js/main.c9980eb8.js"
+    "static/css/main.402d2c3c.css",
+    "static/js/main.6cd660e0.js"
   ]
 }
