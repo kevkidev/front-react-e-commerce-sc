@@ -1,187 +1,114 @@
-import $ from "jquery";
-import React from "react";
-import Form from "./Form";
-import FormInputGroup from "./FormInputGroup";
-import "./SignUpModal.scss";
+import React, { useState } from "react";
+import { Button, Modal } from "react-bootstrap";
+import AuthForm from "./AuthFrom";
+import "./AuthPage.scss";
+import { createFormResponse, FormResponse, resetFormResponse } from "./Form";
 
 export default function SignUpModal() {
-  function generateNumbers(min: number, max: number) {
-    const options = [];
-    for (let i = max; i >= min; i--) {
-      options.push(
-        <option key={i} value={i}>
-          {i}
-        </option>
-      );
-    }
-    return options;
-  }
+  const [show, setShow] = useState(false);
+  const [formResponse, setFormResponse] = useState<FormResponse>(
+    resetFormResponse()
+  );
+  const [submitButtonDisplay, setSubmitButtonDisplay] = useState<
+    "block" | "none"
+  >("block");
 
-  const _closeModal = () => {
-    ($("#exampleModal") as any).modal("hide");
+  const handleShow = () => {
+    setShow(true);
+    setSubmitButtonDisplay("block");
   };
 
-  return (
-    <div className="singup-modal">
-      <button
-        type="button"
-        className="btn btn-success"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-        Create an account
-      </button>
+  const handleClose = () => {
+    setFormResponse(resetFormResponse());
+    setShow(false);
+  };
 
-      {/* <!-- Modal-- > */}
-      <div
-        className="modal fade"
-        id="exampleModal"
-        tabIndex={-1}
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
+  const handleSubmit = (email: string, hashedPassword: string) => {
+    fetch(process.env.REACT_APP_SERVER_AUTH + "/signUp", {
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        password: hashedPassword,
+      }),
+      headers: {
+        Authorization: "Basic " + hashedPassword,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        return { json: response.json(), status: response.status };
+      })
+      .then((result) => {
+        result.json.then((data) => {
+          window.localStorage.setItem("user", data.data.user);
+          let formMessage = resetFormResponse();
+
+          if (result.status != 200) {
+            formMessage = createFormResponse(
+              "Oops! You already have an account with this email. Go to login or reset your password please."
+            );
+            console.error(data.message);
+          } else {
+            formMessage = createFormResponse(
+              data.message + "You can close this modal",
+              "success"
+            );
+            setSubmitButtonDisplay("none");
+          }
+
+          setFormResponse(formMessage);
+        });
+      })
+      .catch((error) => {
+        setFormResponse(
+          createFormResponse(
+            "We are sorry! Something wong. Check your internet connection. Otherwise contact our support team please."
+          )
+        );
+        console.error(error);
+      });
+  };
+
+  const formId = "sign-up-form";
+  return (
+    <div className="sign-up-modal">
+      <Button variant="success" onClick={handleShow}>
+        Create an account
+      </Button>
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        centered
       >
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
-                Create your account
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">
-              <p className="info-text">
-                <i className="bi bi-info-circle-fill"></i> This form is not
-                plugged to a serveur such use the &quot;Use API Connect/Sign
-                up&quot; to create en account please.
-              </p>
-              <Form id="signup-form">
-                <FormInputGroup
-                  id="signup-firstname"
-                  label="Firstname"
-                  name="firstname"
-                  type="text"
-                  placeholder="Firstname please"
-                  required={true}
-                />
-                <div className="valid-feedback">Looks good!</div>
-                <FormInputGroup
-                  id="signup-lasstname"
-                  label="Lastname"
-                  name="lastname"
-                  type="text"
-                  placeholder="Firstname please"
-                  required={true}
-                />
-                <FormInputGroup
-                  id="signup-email"
-                  label="Email"
-                  name="email"
-                  type="email"
-                  placeholder="Your email please"
-                  required={true}
-                />
-                <FormInputGroup
-                  id="signup-paswword"
-                  label="Password"
-                  name="password"
-                  type="password"
-                  placeholder="Your password please"
-                  required={true}
-                />
-                <label className="form-label" htmlFor="signup-birthdate">
-                  Birthdate
-                </label>
-                <div className="select-group">
-                  <select name="day" id="signup-bithdate-day" required>
-                    {generateNumbers(1, 31).map((e) => e)}
-                  </select>
-                  <select name="month" id="signup-bithdate-month" required>
-                    {generateNumbers(1, 12).map((e) => e)}
-                  </select>
-                  <select name="year" id="signup-bithdate-year" required>
-                    {generateNumbers(
-                      new Date().getFullYear() - 150,
-                      new Date().getFullYear() - 18
-                    ).map((e) => e)}
-                  </select>
-                </div>
-                <fieldset>
-                  <legend>Gender</legend>
-                  <div className="radio-group form-check">
-                    <div className="form-check">
-                      <label
-                        className="form-check-label"
-                        htmlFor="signup-gender-male"
-                      >
-                        Male
-                      </label>
-                      <input
-                        id="signup-gender-male"
-                        className="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        required
-                      />
-                    </div>
-                    <div className="form-check">
-                      <label
-                        className="form-check-label"
-                        htmlFor="signup-gender-female"
-                      >
-                        Female
-                      </label>
-                      <input
-                        id="signup-gender-female"
-                        className="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        required
-                      />
-                    </div>
-                    <div className="form-check">
-                      <label
-                        className="form-check-label"
-                        htmlFor="signup-gender-other"
-                      >
-                        Other
-                      </label>
-                      <input
-                        id="signup-gender-other"
-                        className="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        required
-                      />
-                    </div>
-                    <div className="invalid-feedback">
-                      You must agree before submitting.
-                    </div>
-                  </div>
-                </fieldset>
-              </Form>
-              <p>By clicking Start, you agree to our Terms.</p>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="submit"
-                className="btn btn-primary"
-                form="signup-form"
-                onClick={_closeModal}
-              >
-                {" "}
-                Start
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+        <Modal.Header closeButton>
+          <Modal.Title>Create your account</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <AuthForm
+            onSubmit={handleSubmit}
+            fromResponse={formResponse}
+            hasPasswordConfirm={true}
+            formId={formId}
+          />
+          <p>By clicking Start, you agree to our Terms.</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button
+            variant="primary"
+            type="submit"
+            form={formId}
+            style={{ display: submitButtonDisplay }}
+          >
+            Start
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

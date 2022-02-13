@@ -1,21 +1,41 @@
-import { Auth0Provider } from "@auth0/auth0-react";
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
+import AuthPage from "./AuthPage";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import ResetPasswordPage from "./ResetPasswordPage";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Auth0Provider
+    {/* <Auth0Provider
       domain={process.env.REACT_APP_AUTH0_DOMAIN as string}
       clientId={process.env.REACT_APP_AUTH0_CLIENT_ID as string}
       redirectUri={
         window.location.origin + "/" + process.env.REACT_APP_APP_NAME
       }
-    >
+      >
       <App />
-    </Auth0Provider>
+    </Auth0Provider> */}
+
+    <BrowserRouter>
+      <Routes>
+        <Route path={"/front-react-social-network/"} element={<App />}>
+          <Route index element={<AuthPage />} />
+          <Route path="login" element={<AuthPage />} />
+          <Route path="reset-password" element={<ResetPasswordPage />} />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>There&apos;s nothing here!</p>
+              </main>
+            }
+          />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
