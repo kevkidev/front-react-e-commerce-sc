@@ -1,14 +1,81 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import React from "react";
+import { useState } from "react";
+import AuthForm from "./AuthFrom";
 import "./AuthPage.scss";
-import Form from "./Form";
-import FormInputGroup from "./FormInputGroup";
+import { FormResponse, resetFormResponse } from "./Form";
 import SignUpModal from "./SignUpModal";
 
 export default function AuthPage() {
-  const { loginWithRedirect } = useAuth0();
-  const { logout } = useAuth0();
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const handleSubmit = () => {
+    sendRequestToken();
+  };
+
+  function sendRequestToken() {
+    fetch(process.env.REACT_APP_SERVER_AUTH + "/login", {
+      method: "POST",
+      body: JSON.stringify({
+        username: "kev",
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        document.cookie = `accessToken=${data.accessToken}`;
+        document.cookie = `refreshToken=${data.refreshToken}`;
+        alert("Welcome ");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  const [fromResponse, setFromResponse] = useState<FormResponse>(
+    resetFormResponse()
+  );
+  // const handleSignUpSubmit = (form: FormData) => {
+  //   const email = form.get("email");
+  //   if (!email) throw "Oops! Email is not defined!";
+
+  //   fetch(process.env.REACT_APP_SERVER_AUTH + "/signup", {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       email,
+  //     }),
+  //     headers: {
+  //       "Content-type": "application/json; charset=UTF-8",
+  //     },
+  //   })
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       document.cookie = `accessToken=${data.accessToken}`;
+  //       document.cookie = `refreshToken=${data.refreshToken}`;
+  //       console.log(data[0].message);
+  //       // _showToast();
+  //       window.localStorage.setItem(
+  //         "emailForSignIn",
+  //         data[0].data.emailForSignIn
+  //       );
+  //       setSignupResponse({
+  //         message: data[0].message,
+  //         level: "success",
+  //         display: { display: "block" },
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       setSignupResponse({
+  //         message: "Sorry! The service is not able to treat your email.",
+  //         level: "success",
+  //         display: { display: "block" },
+  //       });
+  //       console.error(error);
+  //     });
+  // };
 
   return (
     <div className="auth-page">
@@ -54,74 +121,11 @@ export default function AuthPage() {
             <i className="bi bi-info-circle-fill"></i> This form is not plugged
             to a serveur such use the &quot;Use API login&quot;.
           </p>
-          <Form id="connection-form">
-            <FormInputGroup
-              id="connection-email"
-              label="Email"
-              name="email"
-              type="email"
-              placeholder="Your email please"
-              required={true}
-              invalidFeedBack="Enter your email please."
-            />
-            <FormInputGroup
-              id="connection-paswword"
-              label="Password"
-              name="password"
-              type="password"
-              placeholder="Your password please"
-              required={true}
-              invalidFeedBack="Please check your password"
-            />
-            <div className="form-item-self">
-              <a href="">What is my password ?</a>
-            </div>
-          </Form>
-          <div className="button-group">
-            <button
-              // className="btn btn-primary g-recaptcha"
-              className="btn btn-primary"
-              form="connection-form"
-              // data-sitekey={process.env.REACT_APP_RECAPTCHA_CLIENT_KEY}
-              // data-callback="onSubmit"
-              // data-action="submit"
-            >
-              Enter
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={() => loginWithRedirect()}
-            >
-              Use API Log In/Sign Up
-            </button>
-          </div>
+          <AuthForm onSubmit={handleSubmit} fromResponse={fromResponse} />
           <hr />
           <SignUpModal />
         </section>
       </main>
-
-      {isLoading && <div>Loading ...</div>}
-      {!isLoading && isAuthenticated && user && (
-        <div>
-          <img src={user.picture} alt={user.name} />
-          <h2>{user.name}</h2>
-          <p>{user.email}</p>
-        </div>
-      )}
-
-      <button
-        onClick={() =>
-          logout({
-            returnTo:
-              window.location.origin + "/" + process.env.REACT_APP_APP_NAME,
-          })
-        }
-      >
-        Log Out
-      </button>
-      <a href="https://icons8.com/icon/rQhegPBWudLy/human">
-        Human icon by Icons8
-      </a>
     </div>
   );
 }
