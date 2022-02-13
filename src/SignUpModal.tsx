@@ -87,7 +87,7 @@ export default function SignUpModal() {
           <Modal.Title>Create your account</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <AuthForm
+          <AuthForm.Component
             onSubmit={handleSubmit}
             fromResponse={formResponse}
             hasPasswordConfirm={true}
