@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { PasswordContext } from "./AuthFrom";
+import AuthForm from "./AuthFrom";
 import "./FormInputGroup.scss";
 
 export const DEFAULT_VALID_FEEDBACK = "Nice. It looks good :)";
@@ -47,7 +47,7 @@ export default function FormInputGroup({
   },
 }: Props) {
   // Use context
-  const passwordContext = useContext(PasswordContext);
+  const passwordContext = useContext(AuthForm.PasswordContext);
 
   // Use state
   const [inputValue, setInputValue] = useState<string>(defaultValue);
