@@ -1,38 +1,72 @@
-import React from "react";
-import "./AuthPage.scss";
+// declare const grecaptcha: any;
+type FormResponseLevel = "danger" | "success";
+type FormResponseDisplay = "none" | "block";
+export type FormResponse = {
+  message: string;
+  level: FormResponseLevel;
+  display: FormResponseDisplay;
+};
 
-declare const grecaptcha: any;
+export const resetFormResponse = (): FormResponse => {
+  return createFormResponse("", "danger", "none");
+};
+
+export const createFormResponse = (
+  message: string,
+  level = "danger" as FormResponseLevel,
+  display = "block" as FormResponseDisplay
+): FormResponse => {
+  return {
+    message,
+    level,
+    display,
+  };
+};
 
 type Props = {
   id: string;
-  children: any;
+  children: React.ReactNode;
+  onSubmit: Function;
+  formResponse?: FormResponse;
 };
 
-export default function AuthPage({ id, children }: Props) {
+export function Form({
+  id,
+  children,
+  onSubmit,
+  formResponse = resetFormResponse(),
+}: Props) {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     event.stopPropagation();
-    const form = event.target;
+    const form = event.target as HTMLFormElement;
+
     if (form.checkValidity()) {
-      _sendReCaptcha();
-      alert(
-        "Sorry this a demo log in/sign in form. Click on 'Use API to login'!"
-      );
+      // _sendReCaptcha();
+      const formData = new FormData();
+      const formItems = form.getElementsByClassName("form-item");
+
+      for (let i = 0; i < formItems.length; i++) {
+        const item = formItems[i];
+        const input = item.getElementsByTagName("input")[0] as HTMLInputElement;
+        formData.set(input.name, input.value);
+      }
+      onSubmit(formData);
     }
     form.classList.add("was-validated");
   };
 
-  const _sendReCaptcha = () => {
-    grecaptcha.ready(function () {
-      const key = process.env.REACT_APP_RECAPTCHA_CLIENT_KEY;
-      grecaptcha
-        .execute(key, { action: "submit" })
-        .then(function (token: string) {
-          // Add your logic to submit to your backend server here.
-          alert("reCaptcha Token has send to server!:" + token);
-        });
-    });
-  };
+  // const _sendReCaptcha = () => {
+  //   grecaptcha.ready(function () {
+  //     const key = process.env.REACT_APP_RECAPTCHA_CLIENT_KEY;
+  //     grecaptcha
+  //       .execute(key, { action: "submit" })
+  //       .then(function (token: string) {
+  //         // Add your logic to submit to your backend server here.
+  //         alert("reCaptcha Token has send to server!:" + token);
+  //       });
+  //   });
+  // };
 
   return (
     <form
@@ -42,6 +76,13 @@ export default function AuthPage({ id, children }: Props) {
       noValidate
     >
       {children}
+      <div
+        className={`alert alert-${formResponse.level}`}
+        style={{ display: formResponse.display }}
+        role="alert"
+      >
+        {formResponse.message}
+      </div>
     </form>
   );
 }
