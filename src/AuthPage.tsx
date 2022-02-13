@@ -1,41 +1,72 @@
 import { useState } from "react";
-import AuthForm from "./AuthFrom";
+import { Button } from "react-bootstrap";
+import AuthFrom from "./AuthFrom";
 import "./AuthPage.scss";
-import { FormResponse, resetFormResponse } from "./Form";
+import { createFormResponse, FormResponse, resetFormResponse } from "./Form";
 import SignUpModal from "./SignUpModal";
 
 export default function AuthPage() {
-  const handleSubmit = () => {
-    sendRequestToken();
+  // eslint-disable-next-line no-unused-vars
+  const [formResponse, setFormResponse] = useState<FormResponse>(
+    resetFormResponse()
+  );
+
+  const handleSubmit = (email: string, hashedPassword: string) => {
+    sendRequestToken(email, hashedPassword);
   };
 
-  function sendRequestToken() {
+  function sendRequestToken(email: string, hashedPassword: string) {
     fetch(process.env.REACT_APP_SERVER_AUTH + "/login", {
       method: "POST",
       body: JSON.stringify({
-        username: "kev",
+        email: email,
+        password: hashedPassword,
       }),
       headers: {
-        "Content-type": "application/json; charset=UTF-8",
+        Authorization: "Basic " + hashedPassword,
+        "Content-Type": "application/json",
       },
     })
       .then((response) => {
-        return response.json();
+        return { json: response.json(), status: response.status };
       })
       .then((data) => {
-        document.cookie = `accessToken=${data.accessToken}`;
-        document.cookie = `refreshToken=${data.refreshToken}`;
+        console.log(data);
+
+        // result.json.then((data) => {
+        //   window.localStorage.setItem("user", data.data.user);
+        //   let formMessage = resetFormResponse();
+
+        //   if (result.status != 200) {
+        //     formMessage = createFormResponse(
+        //       "Oops! You already have an account with this email. Go to login or reset your password please."
+        //     );
+        //     console.error(data.message);
+        //   } else {
+        //     formMessage = createFormResponse(
+        //       data.message + "You can close this modal",
+        //       "success"
+        //     );
+        //     setSubmitButtonDisplay("none");
+        //   }
+
+        //   setFormResponse(formMessage);
+        // });
+
+        // document.cookie = `accessToken=${data.accessToken}`;
+        // document.cookie = `refreshToken=${data.refreshToken}`;
         alert("Welcome ");
       })
       .catch((error) => {
+        setFormResponse(
+          createFormResponse(
+            "We are sorry! Something wong. Check your internet connection. Otherwise contact our support team please."
+          )
+        );
         console.error(error);
       });
   }
 
-  // eslint-disable-next-line no-unused-vars
-  const [fromResponse, setFromResponse] = useState<FormResponse>(
-    resetFormResponse()
-  );
   // const handleSignUpSubmit = (form: FormData) => {
   //   const email = form.get("email");
   //   if (!email) throw "Oops! Email is not defined!";
@@ -121,7 +152,17 @@ export default function AuthPage() {
             <i className="bi bi-info-circle-fill"></i> This form is not plugged
             to a serveur such use the &quot;Use API login&quot;.
           </p>
-          <AuthForm onSubmit={handleSubmit} fromResponse={fromResponse} />
+          <AuthFrom.Component
+            onSubmit={handleSubmit}
+            fromResponse={formResponse}
+          />
+          <Button
+            variant="primary"
+            type="submit"
+            form={AuthFrom.DEFAULT_AUTH_FORM_ID}
+          >
+            Start
+          </Button>
           <hr />
           <SignUpModal />
         </section>
