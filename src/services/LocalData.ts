@@ -16,11 +16,13 @@ export namespace LocalData {
   }
 
   export function setAccessToken(token: string) {
-    document.cookie = `accessToken=${token}`;
+    // document.cookie = `accessToken=${token}`;
+    window.localStorage.setItem("accessToken", token);
   }
 
   export function setRefreshToken(token: string) {
-    document.cookie = `refreshToken=${token}`;
+    // document.cookie = `refreshToken=${token}`;
+    window.localStorage.setItem("refreshToken", token);
   }
 
   export function setUser(user: User) {
