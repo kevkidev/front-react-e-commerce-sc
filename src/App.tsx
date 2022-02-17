@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./App.scss";
+import LocalData from "./services/LocalData";
 // import Friends from "./Friends";
 
 function App() {
+  // clear local data
+  useEffect(() => {
+    LocalData.clearAll();
+  }, []);
   // get profiles list
   // useEffect(() => {
   //   fetch(process.env.REACT_APP_SERVER_DATA + "/profiles", {
@@ -58,7 +63,8 @@ function App() {
   return (
     <div className="app">
       <nav>
-        <Link to="/login">Login</Link> | <Link to="/logout">Logout</Link>
+        <Link to="login">Login</Link> | <Link to="logout">Logout</Link>{" "}
+        {LocalData.getUser() && <Link to="account">Account</Link>}
       </nav>
       <Outlet />
 

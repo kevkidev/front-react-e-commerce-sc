@@ -2,10 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
-import AuthPage from "./AuthPage";
+import ResetPasswordPage from "./components/ResetPasswordPage";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import ResetPasswordPage from "./ResetPasswordPage";
+import AccountPage from "./views/AccountPage";
+import AuthPage from "./views/AuthPage";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,6 +25,7 @@ ReactDOM.render(
         <Route path={"/front-react-social-network/"} element={<App />}>
           <Route index element={<AuthPage />} />
           <Route path="login" element={<AuthPage />} />
+          <Route path="account" element={<AccountPage />} />
           <Route path="reset-password" element={<ResetPasswordPage />} />
           <Route
             path="*"
