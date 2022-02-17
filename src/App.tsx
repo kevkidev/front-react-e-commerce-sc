@@ -1,8 +1,8 @@
+// import Friends from "./Friends";
 import React, { useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./App.scss";
 import LocalData from "./services/LocalData";
-// import Friends from "./Friends";
 
 function App() {
   // clear local data

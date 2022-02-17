@@ -5,28 +5,22 @@ import App from "./App";
 import ResetPasswordPage from "./components/ResetPasswordPage";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import { RoutesPath } from "./routes";
 import AccountPage from "./views/AccountPage";
 import AuthPage from "./views/AuthPage";
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Auth0Provider
-      domain={process.env.REACT_APP_AUTH0_DOMAIN as string}
-      clientId={process.env.REACT_APP_AUTH0_CLIENT_ID as string}
-      redirectUri={
-        window.location.origin + "/" + process.env.REACT_APP_APP_NAME
-      }
-      >
-      <App />
-    </Auth0Provider> */}
-
     <BrowserRouter>
       <Routes>
-        <Route path={"/front-react-social-network/"} element={<App />}>
+        <Route path={RoutesPath.ROOT} element={<App />}>
           <Route index element={<AuthPage />} />
-          <Route path="login" element={<AuthPage />} />
-          <Route path="account" element={<AccountPage />} />
-          <Route path="reset-password" element={<ResetPasswordPage />} />
+          <Route path={RoutesPath.LOGIN} element={<AuthPage />} />
+          <Route path={RoutesPath.ACCOUNT} element={<AccountPage />} />
+          <Route
+            path={RoutesPath.RESET_PASSWORD}
+            element={<ResetPasswordPage />}
+          />
           <Route
             path="*"
             element={

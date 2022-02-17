@@ -1,3 +1,4 @@
+import { UserCredential } from "firebase/auth";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +8,8 @@ import {
   FormResponse,
   resetFormResponse,
 } from "../components/Form";
-import LocalData from "../services/LocalData";
+import { RoutesPath } from "../routes";
+import { Firebase } from "../services/Firebase";
 import "./AuthPage.scss";
 import SignUpModal from "./SignUpModal";
 
@@ -33,92 +35,72 @@ export default function AuthPage() {
     resetFormResponse()
   );
 
-  const handleSubmit = (email: string, hashedPassword: string) => {
-    sendRequestToken(email, hashedPassword);
-  };
-
-  function sendRequestToken(email: string, hashedPassword: string) {
-    fetch(process.env.REACT_APP_SERVER_AUTH + "/login", {
-      method: "POST",
-      body: JSON.stringify({
-        email: email,
-        password: hashedPassword,
-      }),
-      headers: {
-        Authorization: "Basic " + hashedPassword,
-        "Content-Type": "application/json",
+  const handleSubmit = (email: string, secret: string) => {
+    const signInExecutor = {
+      resolve: (userCredential: UserCredential) => {
+        if (userCredential.user.emailVerified) {
+          navigate(RoutesPath.ACCOUNT);
+          setFormResponse(resetFormResponse());
+        } else {
+          setFormResponse(
+            createFormResponse(
+              "Before login you must use your email link to verify your email address."
+            )
+          );
+        }
       },
-    })
-      .then((response) => {
-        return { json: response.json(), status: response.status };
-      })
-      .then((result) => {
-        result.json.then((data) => {
-          let formMessage = resetFormResponse();
-
-          if (result.status != 200) {
-            formMessage = createFormResponse(data.message);
-          } else {
-            LocalData.setAccessToken(data.accessToken);
-            LocalData.setRefreshToken(data.refreshToken);
-            LocalData.setUser(data.user);
-            console.log("Logged :)");
-            navigate("account");
-          }
-
-          setFormResponse(formMessage);
-        });
-      })
-      .catch((error) => {
+      reject: () => {
         setFormResponse(
           createFormResponse(
             "We are sorry! Something wong. Check your internet connection. Otherwise contact our support team please."
           )
         );
-        console.error(error);
-      });
-  }
+      },
+    };
 
-  // const handleSignUpSubmit = (form: FormData) => {
-  //   const email = form.get("email");
-  //   if (!email) throw "Oops! Email is not defined!";
+    Firebase.signIn(email, secret, signInExecutor);
+  };
 
-  //   fetch(process.env.REACT_APP_SERVER_AUTH + "/signup", {
+  //   fetch(process.env.REACT_APP_SERVER_AUTH + "/login", {
   //     method: "POST",
   //     body: JSON.stringify({
-  //       email,
+  //       email: email,
+  //       password: hashedPassword,
   //     }),
   //     headers: {
-  //       "Content-type": "application/json; charset=UTF-8",
+  //       Authorization: "Basic " + hashedPassword,
+  //       "Content-Type": "application/json",
   //     },
   //   })
   //     .then((response) => {
-  //       return response.json();
+  //       return { json: response.json(), status: response.status };
   //     })
-  //     .then((data) => {
-  //       document.cookie = `accessToken=${data.accessToken}`;
-  //       document.cookie = `refreshToken=${data.refreshToken}`;
-  //       console.log(data[0].message);
-  //       // _showToast();
-  //       window.localStorage.setItem(
-  //         "emailForSignIn",
-  //         data[0].data.emailForSignIn
-  //       );
-  //       setSignupResponse({
-  //         message: data[0].message,
-  //         level: "success",
-  //         display: { display: "block" },
+  //     .then((result) => {
+  //       result.json.then((obj) => {
+  //         let formMessage = resetFormResponse();
+
+  //         if (result.status != 200) {
+  //           formMessage = createFormResponse(obj.message);
+  //         } else {
+  //           LocalData.setAccessToken(obj.data.accessToken);
+  //           LocalData.setRefreshToken(obj.data.refreshToken);
+  //           LocalData.setUser(obj.data.user);
+  //           console.log("Logged :)");
+  //           navigate(RoutesPath.ACCOUNT);
+  //         }
+
+  //         setFormResponse(formMessage);
   //       });
   //     })
   //     .catch((error) => {
-  //       setSignupResponse({
-  //         message: "Sorry! The service is not able to treat your email.",
-  //         level: "success",
-  //         display: { display: "block" },
-  //       });
+  //       setFormResponse(
+  //         createFormResponse(
+  //           "We are sorry! Something wong. Check your internet connection. Otherwise contact our support team please."
+  //         )
+  //       );
   //       console.error(error);
   //     });
-  // };
+  // }
 
   return (
     <div className="auth-page">
