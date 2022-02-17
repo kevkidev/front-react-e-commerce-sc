@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import React, { useEffect, useState } from "react";
-import "./AuthPage.scss";
+// import "./AuthPage.scss";
 import { Form, FormResponse } from "./Form";
 import FormInputGroup from "./FormInputGroup";
 
