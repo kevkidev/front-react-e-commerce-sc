@@ -1,7 +1,7 @@
 // import bcrypt from "bcryptjs";
 import React, { useState } from "react";
 // import React from "react";
-import "./AuthPage.scss";
+// import "./AuthPage.scss";
 import { Form, FormResponse } from "./Form";
 import FormInputGroup, { InputValidityChecker } from "./FormInputGroup";
 

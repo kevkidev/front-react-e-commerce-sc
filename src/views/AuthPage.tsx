@@ -1,11 +1,33 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import AuthFrom from "./AuthFrom";
+import { useNavigate } from "react-router-dom";
+import AuthFrom from "../components/AuthFrom";
+import {
+  createFormResponse,
+  FormResponse,
+  resetFormResponse,
+} from "../components/Form";
+import LocalData from "../services/LocalData";
 import "./AuthPage.scss";
-import { createFormResponse, FormResponse, resetFormResponse } from "./Form";
 import SignUpModal from "./SignUpModal";
 
+export type User = {
+  uid: "string";
+  email: "string";
+};
+
+// Contexts
+// export const UserContext = React.createContext({
+//   value: "",
+//   // eslint-disable-next-line no-unused-vars
+//   setValue: (user: User) => {},
+// });
+
 export default function AuthPage() {
+  // hooks
+  // eslint-disable-next-line no-unused-vars
+  // const [user, setUser] = useState<User>();
+  const navigate = useNavigate();
   // eslint-disable-next-line no-unused-vars
   const [formResponse, setFormResponse] = useState<FormResponse>(
     resetFormResponse()
@@ -30,32 +52,22 @@ export default function AuthPage() {
       .then((response) => {
         return { json: response.json(), status: response.status };
       })
-      .then((data) => {
-        console.log(data);
+      .then((result) => {
+        result.json.then((data) => {
+          let formMessage = resetFormResponse();
 
-        // result.json.then((data) => {
-        //   window.localStorage.setItem("user", data.data.user);
-        //   let formMessage = resetFormResponse();
+          if (result.status != 200) {
+            formMessage = createFormResponse(data.message);
+          } else {
+            LocalData.setAccessToken(data.accessToken);
+            LocalData.setRefreshToken(data.refreshToken);
+            LocalData.setUser(data.user);
+            console.log("Logged :)");
+            navigate("account");
+          }
 
-        //   if (result.status != 200) {
-        //     formMessage = createFormResponse(
-        //       "Oops! You already have an account with this email. Go to login or reset your password please."
-        //     );
-        //     console.error(data.message);
-        //   } else {
-        //     formMessage = createFormResponse(
-        //       data.message + "You can close this modal",
-        //       "success"
-        //     );
-        //     setSubmitButtonDisplay("none");
-        //   }
-
-        //   setFormResponse(formMessage);
-        // });
-
-        // document.cookie = `accessToken=${data.accessToken}`;
-        // document.cookie = `refreshToken=${data.refreshToken}`;
-        alert("Welcome ");
+          setFormResponse(formMessage);
+        });
       })
       .catch((error) => {
         setFormResponse(
