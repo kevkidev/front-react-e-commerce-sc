@@ -15,7 +15,7 @@ export type Props = {
   id: string;
   label: string;
   name: string;
-  type: "text" | "email" | "password" | "radio";
+  type: "text" | "email" | "password" | "radio" | "number";
   placeholder: string;
   required?: boolean;
   // validFeedBack?: string;

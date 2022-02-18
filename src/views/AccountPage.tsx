@@ -1,10 +1,9 @@
 // import "./AccountPage.scss";
-
-import { useContext } from "react";
+import { Nav } from "react-bootstrap";
 import { Auth } from "../components/AuthContainer";
+import ProductView from "./products/ProductView";
 
 export default function AccountPage() {
-  const logged = useContext(Auth.IsLoggedContext).logged;
   return (
     <Auth.Container>
       {/* <Auth.AnonymousContent>
@@ -13,13 +12,34 @@ export default function AccountPage() {
       <Auth.SignedContent>
         
       </Auth.SignedContent> */}
-      {logged ? (
-        <div>
-          <h1>My Account</h1>
-        </div>
-      ) : (
-        <p>Nothing to see for you</p>
-      )}
+      {/* {logged ? ( */}
+      <div>
+        <h1>My Account</h1>
+        <Nav
+          activeKey="/home"
+          onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
+        >
+          <Nav.Item>
+            <Nav.Link href="/home">Products</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="link-1">Catalogs</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="link-2">Orders</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="link-2">Notifications</Nav.Link>
+          </Nav.Item>
+          {/* <Nav.Item>
+              <Nav.Link eventKey="disabled" disabled>
+                Disabled
+              </Nav.Link>
+            </Nav.Item> */}
+        </Nav>
+        <hr />
+        <ProductView />
+      </div>
     </Auth.Container>
   );
 }
