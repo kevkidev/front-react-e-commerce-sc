@@ -4,6 +4,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  User,
   UserCredential,
 } from "firebase/auth";
 
@@ -49,17 +50,19 @@ export namespace Firebase {
     });
   }
 
-  export function checkAuth() {
+  export function checkAuth(executor: {
+    // eslint-disable-next-line no-unused-vars
+    resolve: (user: User) => void;
+    reject: () => void;
+  }) {
     getInstance().then(() => {
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
         if (user) {
           // const uid = user.uid;
-          console.log("already logged" + user.email);
-          return true;
+          executor.resolve(user);
         } else {
-          console.log("Not logged!");
-          return false;
+          executor.reject();
         }
       });
     });

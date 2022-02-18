@@ -1,7 +1,10 @@
 // import Friends from "./Friends";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
+import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
 import "./App.scss";
+import { Auth } from "./components/AuthContainer";
+import { RoutesPath } from "./routes";
 import LocalData from "./services/LocalData";
 
 function App() {
@@ -60,20 +63,82 @@ function App() {
   //     ?.split("=")[1];
   // }
 
-  return (
-    <div className="app">
-      <nav>
-        <Link to="login">Login</Link> | <Link to="logout">Logout</Link>{" "}
-        {LocalData.getUser() && <Link to="account">Account</Link>}
-      </nav>
-      <Outlet />
+  // à passer en back
+  // const categories = [
+  //   "categories",
+  //   "informatique et high tech",
+  //   "maison & cuisine",
+  //   "livres",
+  //   "bricolage",
+  //   "jouets & jeux",
+  //   "sport loisir",
+  //   "mode accesoires",
+  //   "beauté bien etre",
+  //   "bebe",
+  //   "jardin",
+  //   "jeux video",
+  //   "animalerie",
+  //   "divers",
+  // ];
 
-      <hr />
-      {/* <Friends /> */}
-      <p>
-        I used <a href="https://reqres.in/">https://reqres.in/</a>.
-      </p>
-    </div>
+  const logged = useContext(Auth.IsLoggedContext).logged;
+
+  return (
+    <Auth.Container>
+      <div className="app">
+        <nav>
+          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Container>
+              <Navbar.Brand href={RoutesPath.ROOT}>Demo</Navbar.Brand>
+              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+              <Navbar.Collapse id="responsive-navbar-nav">
+                <Nav className="me-auto">
+                  <Nav.Link href="#pricing">Articles</Nav.Link>
+                  <Nav.Link href="#pricing"></Nav.Link>
+                  <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+                    <NavDropdown.Item href="#action/3.1">
+                      Action
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">
+                      Another action
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.3">
+                      Something
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action/3.4">
+                      Separated link
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </Nav>
+                <Nav>
+                  {/* <Nav.Link href="#"> */}
+                  {logged ? (
+                    <span
+                      onClick={() => {
+                        alert("logout");
+                      }}
+                    >
+                      Sign Out
+                    </span>
+                  ) : (
+                    <Link to={RoutesPath.LOGIN}>Sign In</Link>
+                  )}
+                  {/* </Nav.Link> */}
+                  <Nav.Link eventKey={2} href="#">
+                    #{LocalData.getUser() && <Link to="account">Account</Link>}
+                  </Nav.Link>
+                </Nav>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+        </nav>
+        <Outlet />
+
+        <hr />
+        {/* <Friends /> */}
+      </div>
+    </Auth.Container>
   );
 }
 
