@@ -1,5 +1,3 @@
-import { User } from "../views/AuthPage";
-
 function deleteAllCookies() {
   const cookies = document.cookie.split(";");
   for (const cookie of cookies) {
@@ -25,9 +23,9 @@ export namespace LocalData {
     window.localStorage.setItem("refreshToken", token);
   }
 
-  export function setUser(user: User) {
-    window.localStorage.setItem("user", JSON.stringify(user));
-  }
+  // export function setUser(user: User) {
+  //   window.localStorage.setItem("user", JSON.stringify(user));
+  // }
 
   export function getUser() {
     const user = window.localStorage.getItem("user");

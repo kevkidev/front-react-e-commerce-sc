@@ -13,10 +13,10 @@ import { Firebase } from "../services/Firebase";
 import "./AuthPage.scss";
 import SignUpModal from "./SignUpModal";
 
-export type User = {
-  uid: "string";
-  email: "string";
-};
+// export type User = {
+//   uid: "string";
+//   email: "string";
+// };
 
 // Contexts
 // export const UserContext = React.createContext({
