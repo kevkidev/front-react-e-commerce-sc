@@ -25,6 +25,8 @@ export type Props = {
   disabled?: boolean;
   value?: string;
   // eslint-disable-next-line no-unused-vars
+  onInputChange?: (newValue: string) => void;
+
   validityChecker?: InputValidityChecker;
 };
 export default function FormInputGroup({
@@ -40,6 +42,8 @@ export default function FormInputGroup({
   regexp = ".*",
   disabled = false,
   value,
+  // eslint-disable-next-line no-unused-vars
+  onInputChange = (newValue: string) => {},
   validityChecker = {
     // eslint-disable-next-line no-unused-vars
     checker: (value: string) => true,
@@ -74,6 +78,7 @@ export default function FormInputGroup({
     } else {
       input.setCustomValidity("");
     }
+    onInputChange(value as string);
   };
 
   return (

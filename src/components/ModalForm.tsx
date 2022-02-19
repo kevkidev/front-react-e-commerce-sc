@@ -1,25 +1,27 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-// import "./AuthPage.scss";
+import "./ModalForm.scss";
 
 type Props = {
   formId: string;
   children: React.ReactNode;
-  buttonTitle: string;
+  triggerTitle: React.ReactNode;
   actionTitle?: string;
   title: string;
   onShow?: () => void;
   onClose?: () => void;
+  triggerAsContent?: boolean;
 };
 
 export default function ModalForm({
   formId,
   children,
-  buttonTitle,
+  triggerTitle,
   actionTitle = "Confirm",
   title,
   onShow = () => {},
   onClose = () => {},
+  triggerAsContent = false,
 }: Props) {
   const [show, setShow] = useState(false);
   const [submitButtonDisplay, setSubmitButtonDisplay] = useState<
@@ -37,11 +39,21 @@ export default function ModalForm({
     setShow(false);
   };
 
+  const triggerContent = (
+    <tr onClick={handleShow} className="modal-form-trigger">
+      {/* <div onClick={handleShow} className="trigger-container"> */}
+      {triggerTitle}
+      {/* </div> */}
+    </tr>
+  );
+  const triggerButton = (
+    <Button variant="success" onClick={handleShow}>
+      {triggerTitle}
+    </Button>
+  );
   return (
-    <div className="sign-up-modal">
-      <Button variant="success" onClick={handleShow}>
-        {buttonTitle}
-      </Button>
+    <Fragment>
+      {triggerAsContent ? triggerContent : triggerButton}
 
       <Modal
         show={show}
@@ -68,6 +80,6 @@ export default function ModalForm({
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </Fragment>
   );
 }
