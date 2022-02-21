@@ -1,71 +1,48 @@
 // import "./AccountPage.scss";
-import { useLayoutEffect, useState } from "react";
-import { Table } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
 import { Auth } from "../../components/AuthContainer";
+import { Model } from "../../models";
 import { RestService } from "../../services/RestService";
-import ProductBuilderModal from "./ProductBuilderModal";
+import ProductFormModal from "./ProductFormModal";
+import { ProductList } from "./ProductList";
 
 export default function ProductView() {
   // const [selectedProduct, selectProduct] = useState<Model.Product>();
-  const [value, setValue] = useState("init");
+  const [products, setProducts] = useState<Model.Product[]>([]);
 
-  useLayoutEffect(() => {
+  const handleCreate = (value: Model.Product) => {
     console.log(value);
-  }, [value]);
+    RestService.Product.add(value, handleProductUpdate);
+    console.log(RestService.Product.getAll());
+
+    // setProducts(RestService.Product.getAll());
+  };
+
+  const handleUpdate = (value: Model.Product) => {
+    console.log(value);
+    RestService.Product.update(value, handleProductUpdate);
+    // setProducts(RestService.Product.getAll());
+  };
+
+  const handleProductUpdate = (list: Model.Product[]) => {
+    console.log("handleProductUpdate");
+    setProducts(list);
+  };
+
+  useEffect(() => {
+    RestService.Product.refreshList(handleProductUpdate);
+  }, []);
 
   return (
     <Auth.Container>
-      <input
-        type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      />
       <h1>My Products</h1>
-      <ProductBuilderModal triggerTitle="New Product" />
+      <ProductFormModal
+        triggerContent="New Product"
+        title="Create a product"
+        onSave={handleCreate}
+      />
       <hr />
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          {RestService.products.map((p, i) => {
-            const row = (
-              <>
-                <td>{i}</td>
-                <td>
-                  {p.name}
-                  {/* <Link to={RoutesPath.PRODUCT + "/" + p.uid}>{p.name}</Link> */}
-                  {/* <a to={RoutesPath.PRODUCT + "/" + p.uid}>{p.name}</Link> */}
-                  {/* <ProductBuilderModal
-                    triggerTitle={p.name}
-                    productId={p.uid}
-                    triggerContent
-                  /> */}
-                </td>
-                <td>{p.quantity}</td>
-              </>
-            );
-            return (
-              <ProductBuilderModal
-                triggerAsContent
-                triggerTitle={row}
-                productId={p.uid}
-                key={i + p.uid}
-              />
-            );
-          })}
-        </tbody>
-      </Table>
-      {/* <ProductBuilderModal
-        triggerAsContent
-        triggerTitle={row}
-        productId={p.uid}
-        key={i + p.uid}
-      /> */}
+      <ProductList.Component onSave={handleUpdate} list={products} />
     </Auth.Container>
   );
 }

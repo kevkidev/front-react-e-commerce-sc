@@ -5,8 +5,9 @@ import "./ModalForm.scss";
 type Props = {
   formId: string;
   children: React.ReactNode;
-  triggerTitle: React.ReactNode;
+  triggerContent: React.ReactNode;
   actionTitle?: string;
+  closeTitle?: string;
   title: string;
   onShow?: () => void;
   onClose?: () => void;
@@ -16,8 +17,9 @@ type Props = {
 export default function ModalForm({
   formId,
   children,
-  triggerTitle,
+  triggerContent,
   actionTitle = "Confirm",
+  closeTitle = "Cancel",
   title,
   onShow = () => {},
   onClose = () => {},
@@ -39,21 +41,21 @@ export default function ModalForm({
     setShow(false);
   };
 
-  const triggerContent = (
+  const triggerTypeContent = (
     <tr onClick={handleShow} className="modal-form-trigger">
       {/* <div onClick={handleShow} className="trigger-container"> */}
-      {triggerTitle}
+      {triggerContent}
       {/* </div> */}
     </tr>
   );
-  const triggerButton = (
+  const triggerTypeButton = (
     <Button variant="success" onClick={handleShow}>
-      {triggerTitle}
+      {triggerContent}
     </Button>
   );
   return (
     <Fragment>
-      {triggerAsContent ? triggerContent : triggerButton}
+      {triggerAsContent ? triggerTypeContent : triggerTypeButton}
 
       <Modal
         show={show}
@@ -68,7 +70,7 @@ export default function ModalForm({
         <Modal.Body>{children}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            {closeTitle}
           </Button>
           <Button
             variant="primary"
