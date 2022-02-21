@@ -4,13 +4,19 @@ import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
 import "./App.scss";
 import { Auth } from "./components/AuthContainer";
+import { Model } from "./models";
 import { RoutesPath } from "./routes";
+import { Firebase } from "./services/Firebase";
 import LocalData from "./services/LocalData";
+import { products } from "./services/products.json";
 
 function App() {
   // clear local data
   useEffect(() => {
     LocalData.clearAll();
+    products.forEach((p: Model.Product) => {
+      Firebase.Database.createProduct(p);
+    });
   }, []);
   // get profiles list
   // useEffect(() => {

@@ -26,7 +26,7 @@ export namespace Auth {
         reject: () => setLogged(false),
       };
       Firebase.checkAuth(executor);
-      console.log(logged);
+      // console.log(logged);
     }, []);
 
     return (

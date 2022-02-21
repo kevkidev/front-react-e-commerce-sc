@@ -37,8 +37,8 @@ export function Form({
   formResponse = resetFormResponse(),
 }: Props) {
   const handleSubmit = (event: any) => {
+    // event.stopPropagation();
     event.preventDefault();
-    event.stopPropagation();
     const form = event.target as HTMLFormElement;
 
     if (form.checkValidity()) {
@@ -49,18 +49,23 @@ export function Form({
       for (let i = 0; i < formItems.length; i++) {
         const item = formItems[i];
         const input = item.getElementsByTagName("input")[0] as HTMLInputElement;
+
         if (input) {
           formData.set(input.name, input.value);
         } else {
           const select = item.getElementsByTagName(
             "select"
           )[0] as HTMLSelectElement;
-          const selectedOption = select[
-            select.selectedIndex
-          ] as HTMLOptionElement;
-          formData.set(select.name, selectedOption.value);
+
+          if (select) {
+            const selectedOption = select[
+              select.selectedIndex
+            ] as HTMLOptionElement;
+            formData.set(select.name, selectedOption.value);
+          }
         }
       }
+
       onSubmit(formData);
     }
     form.classList.add("was-validated");

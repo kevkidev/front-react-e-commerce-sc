@@ -43,7 +43,7 @@ export default function FormInputGroup({
   disabled = false,
   value,
   // eslint-disable-next-line no-unused-vars
-  onInputChange = (newValue: string) => {},
+  onInputChange,
   validityChecker = {
     // eslint-disable-next-line no-unused-vars
     checker: (value: string) => true,
@@ -78,7 +78,10 @@ export default function FormInputGroup({
     } else {
       input.setCustomValidity("");
     }
-    onInputChange(value as string);
+
+    if (onInputChange) {
+      onInputChange(value as string);
+    }
   };
 
   return (
