@@ -28,8 +28,8 @@ export namespace LocalData {
   // }
 
   export function getUser() {
-    const user = window.localStorage.getItem("user");
-    console.log(user);
+    // const user = window.localStorage.getItem("user");
+    // console.log(user);
     return undefined;
     // return user ? JSON.parse(user) : undefined;
   }

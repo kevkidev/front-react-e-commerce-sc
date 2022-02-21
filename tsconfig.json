@@ -14,7 +14,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    // Don't automatically include anything.
+    // Only include `@types` packages that we need to import.
+    "types": []
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["**/node_modules", "**/.*/"]
 }
