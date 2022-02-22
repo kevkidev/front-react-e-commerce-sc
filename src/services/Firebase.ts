@@ -7,6 +7,8 @@ import {
   User,
   UserCredential,
 } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
+import { Model } from "../models";
 
 let app: Promise<FirebaseApp> | undefined = undefined;
 
@@ -20,14 +22,14 @@ export namespace Firebase {
     // console.log("initApp");
 
     const app = initializeApp({
-      apiKey: "AIzaSyBJ99dSbyjuDkHDx-HDqc8y7Hq0GL2AQFk",
-      authDomain: "test-api-28176.firebaseapp.com",
+      apiKey: "AIzaSyCgJo0rhPdg_BcyBRIScaHeHLoOV_-S7e4",
+      authDomain: "fir-react-5db69.firebaseapp.com",
       databaseURL:
-        "https://test-api-28176-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "test-api-28176",
-      storageBucket: "test-api-28176.appspot.com",
-      messagingSenderId: "290198149242",
-      appId: "1:290198149242:web:dbe181708722a51c7443c3",
+        "https://fir-react-5db69-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "fir-react-5db69",
+      storageBucket: "fir-react-5db69.appspot.com",
+      messagingSenderId: "1052058791238",
+      appId: "1:1052058791238:web:9559b7832e8934c5c5c947",
     });
     // const resolve = () => app;
     // const reject = () => {};
@@ -86,5 +88,31 @@ export namespace Firebase {
           executor.reject();
         });
     });
+  }
+
+  export namespace Database {
+    export function test() {
+      // Get a reference to the database service
+      getInstance().then((app) => {
+        console.log(getDatabase(app));
+      });
+    }
+
+    export function createProduct(product: Model.Product) {
+      getInstance().then((app) => {
+        const db = getDatabase(app);
+        const { name, quantity, description, category, imageUrl, owner } =
+          product;
+        db &&
+          set(ref(db, "accounts/" + owner.uid + "/products/" + product.uid), {
+            name,
+            quantity,
+            description,
+            category: category.uid,
+            imageUrl,
+            owner: owner.uid,
+          }).then(() => console.log("Database: new product ok"));
+      });
+    }
   }
 }
