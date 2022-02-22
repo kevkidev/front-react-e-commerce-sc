@@ -14,7 +14,7 @@ export namespace ProductForm {
   export const FORM_ID = "product-form";
 
   const defaultValue = {
-    uid: "",
+    uid: "product-" + Date.now(),
     category: {
       name: "unknow",
       uid: "unknow",
@@ -31,7 +31,6 @@ export namespace ProductForm {
 
   type Props = {
     product?: Model.Product; // if exists => update product
-
     onSave: OnSaveFunction;
   };
 

@@ -1,5 +1,6 @@
 // import "./AccountPage.scss";
 import { Table } from "react-bootstrap";
+import { ModalForm } from "../../components/ModalForm";
 import { Model } from "../../models";
 import { ProductForm } from "./ProductForm";
 import ProductFormModal from "./ProductFormModal";
@@ -26,7 +27,7 @@ export namespace ProductList {
           {list &&
             list.map((p, i) => {
               const row = (
-                <>
+                <tr>
                   <td>{i}</td>
                   <td>
                     {p.name}
@@ -39,14 +40,14 @@ export namespace ProductList {
                   /> */}
                   </td>
                   <td>{p.quantity}</td>
-                </>
+                </tr>
               );
               return (
                 <ProductFormModal
-                  triggerAsContent
+                  key={p.uid}
+                  triggerAs={ModalForm.TRIGGER_TYPE_ROW}
                   triggerContent={row}
                   product={p}
-                  key={i + p.uid}
                   title="Update this product"
                   onSave={onSave}
                 />

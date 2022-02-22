@@ -17,7 +17,7 @@ function getInstance() {
 export namespace Firebase {
   // eslint-disable-next-line no-unused-vars
   export function createApp() {
-    console.log("initApp");
+    // console.log("initApp");
 
     const app = initializeApp({
       apiKey: "AIzaSyBJ99dSbyjuDkHDx-HDqc8y7Hq0GL2AQFk",

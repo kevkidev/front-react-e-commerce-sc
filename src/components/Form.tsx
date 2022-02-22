@@ -37,7 +37,7 @@ export function Form({
   formResponse = resetFormResponse(),
 }: Props) {
   const handleSubmit = (event: any) => {
-    event.stopPropagation();
+    // event.stopPropagation();
     event.preventDefault();
     const form = event.target as HTMLFormElement;
 

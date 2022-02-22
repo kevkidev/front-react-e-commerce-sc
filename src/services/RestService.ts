@@ -39,27 +39,27 @@ export namespace RestService {
   }
 
   export namespace Product {
-    export function refreshList(handleProductUpdate: Function): void {
-      handleProductUpdate(getAll());
+    export function loadList(handleProductUpdate: Function): void {
+      handleProductUpdate && handleProductUpdate(getAll());
     }
 
     export function add(
       value: Model.Product,
-      handleProductUpdate: Function
+      handleProductUpdate?: Function
     ): void {
       getAll().push(value);
-      handleProductUpdate(getAll());
+      handleProductUpdate && handleProductUpdate(getAll());
     }
 
     export function update(
       value: Model.Product,
-      handleProductUpdate: Function
+      handleProductUpdate?: Function
     ): void {
       let index = getAll().findIndex((p) => value.uid == p.uid);
       if (index > -1) {
         getAll().splice(index, 1, value);
       }
-      handleProductUpdate(getAll());
+      handleProductUpdate && handleProductUpdate(getAll());
     }
 
     export function getAll(): Model.Product[] {

@@ -1,12 +1,12 @@
 // import "./AccountPage.scss";
-import ModalForm from "../../components/ModalForm";
+import { ModalForm } from "../../components/ModalForm";
 import { Model } from "../../models";
 import { ProductForm } from "./ProductForm";
 
 type Props = {
   triggerContent: React.ReactNode;
   product?: Model.Product;
-  triggerAsContent?: boolean;
+  triggerAs: ModalForm.TriggerContentType;
   title: string;
   onSave: ProductForm.OnSaveFunction;
 };
@@ -14,18 +14,18 @@ type Props = {
 export default function ProductFormModal({
   triggerContent,
   product,
-  triggerAsContent = false,
+  triggerAs,
   title,
   onSave,
 }: Props) {
   return (
-    <ModalForm
+    <ModalForm.Component
       triggerContent={triggerContent}
       formId={ProductForm.FORM_ID}
       title={title}
-      triggerAsContent={triggerAsContent}
+      triggerAs={triggerAs}
     >
       <ProductForm.Component product={product} onSave={onSave} />
-    </ModalForm>
+    </ModalForm.Component>
   );
 }
