@@ -27,10 +27,10 @@ import SignUpModal from "./SignUpModal";
 
 export default function AuthPage() {
   // hooks
-  // eslint-disable-next-line no-unused-vars
+
   // const [user, setUser] = useState<User>();
   const navigate = useNavigate();
-  // eslint-disable-next-line no-unused-vars
+
   const [formResponse, setFormResponse] = useState<FormResponse>(
     resetFormResponse()
   );

@@ -37,37 +37,39 @@ export function Form({
   formResponse = resetFormResponse(),
 }: Props) {
   const handleSubmit = (event: any) => {
-    // event.stopPropagation();
+    event.stopPropagation();
     event.preventDefault();
     const form = event.target as HTMLFormElement;
 
-    if (form.checkValidity()) {
-      // _sendReCaptcha();
-      const formData = new FormData();
-      const formItems = form.getElementsByClassName("form-item");
+    if (!form.checkValidity()) return;
 
-      for (let i = 0; i < formItems.length; i++) {
-        const item = formItems[i];
-        const input = item.getElementsByTagName("input")[0] as HTMLInputElement;
+    // _sendReCaptcha();
+    const formData = new FormData();
+    const formItems = form.getElementsByClassName("form-item");
 
-        if (input) {
-          formData.set(input.name, input.value);
-        } else {
-          const select = item.getElementsByTagName(
-            "select"
-          )[0] as HTMLSelectElement;
+    for (let i = 0; i < formItems.length; i++) {
+      const item = formItems[i];
+      const input = item.getElementsByTagName("input")[0] as HTMLInputElement;
 
-          if (select) {
-            const selectedOption = select[
-              select.selectedIndex
-            ] as HTMLOptionElement;
-            formData.set(select.name, selectedOption.value);
-          }
-        }
+      if (input) {
+        formData.set(input.name, input.value);
+        continue;
       }
 
-      onSubmit(formData);
+      const selectTag = item.getElementsByTagName(
+        "select"
+      )[0] as HTMLSelectElement;
+
+      if (selectTag) {
+        const selectedOption = selectTag[
+          selectTag.selectedIndex
+        ] as HTMLOptionElement;
+        formData.set(selectTag.name, selectedOption.value);
+      }
     }
+
+    onSubmit(formData);
+
     form.classList.add("was-validated");
   };
 

@@ -21,7 +21,6 @@ const currentAccount = {
   },
 };
 
-// eslint-disable-next-line no-unused-vars
 export let products = [
   {
     uid: "1",

@@ -1,6 +1,8 @@
-.modal-form-trigger {
-  cursor: pointer;
-}
-.modal-form-trigger:hover {
-  background-color: aquamarine;
+.ModalForm {
+  .ModalForm__trigger {
+    cursor: pointer;
+  }
+  .ModalForm__trigger--hover:hover {
+    background-color: aquamarine;
+  }
 }

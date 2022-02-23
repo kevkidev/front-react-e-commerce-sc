@@ -6,8 +6,7 @@ export const DEFAULT_VALID_FEEDBACK = "Nice. It looks good :)";
 export const DEFAULT_INVALID_FEEDBACK = "Sorry. It is not correct :(";
 
 export type InputValidityChecker = {
-  // eslint-disable-next-line no-unused-vars
-  checker: (value: string, value2?: string) => boolean;
+  checker: (value?: string, value2?: string) => boolean;
   errorMessage: string;
 };
 
@@ -24,7 +23,7 @@ export type Props = {
   regexp?: string;
   disabled?: boolean;
   value?: string;
-  // eslint-disable-next-line no-unused-vars
+
   onInputChange?: (newValue: string) => void;
 
   validityChecker?: InputValidityChecker;
@@ -42,11 +41,10 @@ export default function FormInputGroup({
   regexp = ".*",
   disabled = false,
   value,
-  // eslint-disable-next-line no-unused-vars
+
   onInputChange,
   validityChecker = {
-    // eslint-disable-next-line no-unused-vars
-    checker: (value: string) => true,
+    checker: () => true,
     errorMessage: DEFAULT_INVALID_FEEDBACK,
   },
 }: Props) {

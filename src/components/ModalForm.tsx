@@ -1,4 +1,4 @@
-import React, { Fragment, ReactElement, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import "./ModalForm.scss";
 
@@ -28,8 +28,8 @@ export namespace ModalForm {
     actionTitle = "Confirm",
     closeTitle = "Cancel",
     title,
-    onShow = () => {},
-    onClose = () => {},
+    onShow,
+    onClose,
     triggerAs,
   }: Props) {
     const [show, setShow] = useState(false);
@@ -38,38 +38,28 @@ export namespace ModalForm {
     >("block");
 
     const handleShow = () => {
-      onShow();
+      onShow && onShow();
       setShow(true);
       setSubmitButtonDisplay("block");
     };
 
     const handleClose = () => {
-      onClose();
+      onClose && onClose();
       setShow(false);
     };
 
     const triggerTypeRow = React.cloneElement(triggerContent as ReactElement, {
       onClick: handleShow,
-      className: "modal-form-trigger",
+      className: "ModalForm__trigger ModalForm__trigger--hover",
     });
-    // (
-    // <tbody onClick={handleShow} className="modal-form-trigger">
-    {
-      /* <div onClick={handleShow} className="trigger-container"> */
-    }
-    // {triggerContent}
-    {
-      /* </div> */
-    }
-    // </tbody>
-    // );
+
     const triggerTypeButton = (
       <Button variant="success" onClick={handleShow}>
         {triggerContent}
       </Button>
     );
     return (
-      <Fragment>
+      <div className="ModalForm">
         {triggerAs === "row" ? triggerTypeRow : triggerTypeButton}
 
         <Modal
@@ -97,7 +87,7 @@ export namespace ModalForm {
             </Button>
           </Modal.Footer>
         </Modal>
-      </Fragment>
+      </div>
     );
   }
 }
