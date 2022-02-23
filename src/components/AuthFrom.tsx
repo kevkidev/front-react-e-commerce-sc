@@ -7,12 +7,11 @@ export namespace AuthForm {
 
   export const PasswordContext = React.createContext({
     passwordContextValue: "",
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     setPasswordContextValue: (password: string) => {},
   });
 
   type Props = {
-    // eslint-disable-next-line no-unused-vars
     onSubmit: (email: string, password: string) => void;
     // formResponseState: [fromResponse: FormResponse, setFromResponse: Function];
     fromResponse: FormResponse;
@@ -59,6 +58,7 @@ export namespace AuthForm {
 
     const emailChecker: InputValidityChecker = {
       checker: (email) => {
+        if (!email) return false;
         const regexp = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}/;
         return regexp.test(email);
       },

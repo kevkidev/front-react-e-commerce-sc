@@ -17,10 +17,7 @@ function getInstance() {
 }
 
 export namespace Firebase {
-  // eslint-disable-next-line no-unused-vars
   export function createApp() {
-    // console.log("initApp");
-
     const app = initializeApp({
       apiKey: "AIzaSyCgJo0rhPdg_BcyBRIScaHeHLoOV_-S7e4",
       authDomain: "fir-react-5db69.firebaseapp.com",
@@ -53,7 +50,6 @@ export namespace Firebase {
   }
 
   export function checkAuth(executor: {
-    // eslint-disable-next-line no-unused-vars
     resolve: (user: User) => void;
     reject: () => void;
   }) {
@@ -74,7 +70,6 @@ export namespace Firebase {
     email: string,
     secret: string,
     executor: {
-      // eslint-disable-next-line no-unused-vars
       resolve: (userCredential: UserCredential) => void;
       reject: () => void;
     }
