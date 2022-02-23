@@ -1,7 +1,4 @@
-// import bcrypt from "bcryptjs";
 import React, { useState } from "react";
-// import React from "react";
-// import "./AuthPage.scss";
 import { Form, FormResponse } from "./Form";
 import FormInputGroup, { InputValidityChecker } from "./FormInputGroup";
 
@@ -39,8 +36,8 @@ export namespace AuthForm {
     };
 
     const passwordConfirmChecker: InputValidityChecker = {
-      checker: (_password) => {
-        return (_password && passwordContextValue === _password) as boolean;
+      checker: (password) => {
+        return (password && passwordContextValue === password) as boolean;
       },
       errorMessage:
         "Sorry. The confirmation password must be the same as password.",
@@ -69,16 +66,8 @@ export namespace AuthForm {
     };
 
     const handleSubmit = (form: FormData) => {
-      console.log("after");
       const email = form.get("email") as string;
       const password = form.get("password") as string;
-
-      // TODO crypter
-      // const salt = bcrypt.genSaltSync(10);
-      // const hashedPassword = bcrypt.hashSync(password, salt);
-
-      // onSubmit(email, hashedPassword);
-
       onSubmit(email, password);
     };
 
