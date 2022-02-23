@@ -5,7 +5,7 @@ import { Firebase } from "../services/Firebase";
 export namespace Auth {
   export const IsLoggedContext = React.createContext({
     logged: false,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     setLogged: (value: boolean) => {},
   });
 
@@ -21,7 +21,7 @@ export namespace Auth {
 
     useEffect(() => {
       const executor = {
-        // eslint-disable-next-line no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         resolve: (user: User) => setLogged(true),
         reject: () => setLogged(false),
       };

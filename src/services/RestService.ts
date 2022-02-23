@@ -49,9 +49,9 @@ export namespace RestService {
     }
 
     export function update(
-      // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       value: Model.Product,
-      // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       handleProductUpdate?: Function
     ): void {
       setTimeout(() => {}, MOCK_SERVICE_TIMEOUT);

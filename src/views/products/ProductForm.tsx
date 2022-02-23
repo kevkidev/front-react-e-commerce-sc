@@ -10,7 +10,6 @@ import { Model } from "../../models";
 import { RestService } from "../../services/RestService";
 
 export namespace ProductForm {
-  // eslint-disable-next-line no-unused-vars
   export const FORM_ID = "product-form";
 
   const defaultValue = {
@@ -26,7 +25,6 @@ export namespace ProductForm {
     description: "",
   };
 
-  // eslint-disable-next-line no-unused-vars
   export type OnSaveFunction = (value: Model.Product) => void;
 
   type Props = {
