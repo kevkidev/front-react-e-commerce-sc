@@ -85,7 +85,7 @@ export default function AuthPage() {
   //           LocalData.setAccessToken(obj.data.accessToken);
   //           LocalData.setRefreshToken(obj.data.refreshToken);
   //           LocalData.setUser(obj.data.user);
-  //           console.log("Logged :)");
+  //
   //           navigate(RoutesPath.ACCOUNT);
   //         }
 

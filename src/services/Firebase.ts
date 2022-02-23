@@ -91,13 +91,6 @@ export namespace Firebase {
   }
 
   export namespace Database {
-    export function test() {
-      // Get a reference to the database service
-      getInstance().then((app) => {
-        console.log(getDatabase(app));
-      });
-    }
-
     export function createProduct(product: Model.Product) {
       getInstance().then((app) => {
         const db = getDatabase(app);
