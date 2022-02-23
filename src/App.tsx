@@ -28,8 +28,7 @@ function App() {
   //   })
   //     .then((response) => response.json())
   //     .then((data) => {
-  //       console.log(data);
-  //       // console.log(photos);
+
   //     })
   //     .catch((error) => {
   //       console.error(error);
@@ -38,7 +37,7 @@ function App() {
 
   // login
   // useEffect(() => {
-  //   console.log("login");
+
   //   fetch(process.env.REACT_APP_SERVER_AUTH + "/login", {
   //     method: "POST",
   //     body: JSON.stringify({
@@ -54,7 +53,7 @@ function App() {
   //     .then((data) => {
   //       document.cookie = `accessToken=${data.accessToken}`;
   //       document.cookie = `refreshToken=${data.refreshToken}`;
-  //       console.log(data);
+
   //     })
   //     .catch((error) => {
   //       console.error(error);
