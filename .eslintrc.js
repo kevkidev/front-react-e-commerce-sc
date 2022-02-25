@@ -16,7 +16,6 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
-    "prettier/react",
     "plugin:import/recommended",
     "plugin:import/typescript",
   ],
@@ -34,12 +33,12 @@ module.exports = {
     "no-comments/disallowComments": "warn",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
-    "prettier/prettier": "error",
   },
   settings: {
     "import/resolver": {
       node: {
         paths: ["src"],
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".d.ts"],
       },
     },
   },
