@@ -1,8 +1,8 @@
-import bcrypt from "bcryptjs";
-import React, { useEffect, useState } from "react";
 // import "./AuthPage.scss";
-import { Form, FormResponse } from "./Form";
-import FormInputGroup from "./FormInputGroup";
+import bcrypt from "bcryptjs";
+import { Form, FormResponse } from "components/Form";
+import FormInputGroup from "components/FormInputGroup";
+import React, { useEffect, useState } from "react";
 
 export default function ResetPasswordPage() {
   const [formResponse, setFormResponse] = useState<FormResponse>({
