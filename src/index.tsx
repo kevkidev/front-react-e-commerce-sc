@@ -2,12 +2,12 @@ import App from "containers/App";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { RoutesPath } from "router/routes";
 import ResetPasswordPage from "./components/ResetPasswordPage";
 import AccountPage from "./containers/AccountPage";
 import AuthPage from "./containers/AuthPage";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import { RoutesPath } from "./routes";
 
 ReactDOM.render(
   <React.StrictMode>

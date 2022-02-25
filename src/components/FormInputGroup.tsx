@@ -1,5 +1,5 @@
-import AuthForm from "@components/AuthFrom";
-import "@components/FormInputGroup.scss";
+import AuthForm from "components/AuthFrom";
+import "components/FormInputGroup.scss";
 import React, { useContext, useState } from "react";
 
 export const DEFAULT_VALID_FEEDBACK = "Nice. It looks good :)";
