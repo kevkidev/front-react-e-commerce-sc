@@ -1,6 +1,6 @@
+import { Firebase } from "services/Firebase";
 import { User } from "firebase/auth";
 import React, { useEffect, useState } from "react";
-import { Firebase } from "../services/Firebase";
 
 export namespace Auth {
   export const IsLoggedContext = React.createContext({
