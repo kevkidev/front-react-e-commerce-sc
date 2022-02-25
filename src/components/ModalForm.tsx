@@ -1,70 +1,59 @@
-import React, { ReactElement, useState } from "react";
+import "components/ModalForm.scss";
+import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import "./ModalForm.scss";
 
 export namespace ModalForm {
-  export const TRIGGER_TYPE_ROW = "row";
-  export const TRIGGER_TYPE_TEXT = "text";
-  export type TriggerContentType =
-    | typeof TRIGGER_TYPE_ROW
-    | typeof TRIGGER_TYPE_TEXT;
-
   type Props = {
-    formId: string;
+    // formId: string;
     children: React.ReactNode;
-    triggerContent: React.ReactNode;
-    actionTitle?: string;
-    closeTitle?: string;
+    confirmButtonTitle?: string;
+    closeButtonTitle?: string;
     title: string;
-    onShow?: () => void;
-    onClose?: () => void;
-    triggerAs: TriggerContentType;
+    hidden: boolean;
+    onConfirm: () => void;
+    onClose: () => void;
   };
 
   export function Component({
-    formId,
+    // formId,
     children,
-    triggerContent,
-    actionTitle = "Confirm",
-    closeTitle = "Cancel",
+    confirmButtonTitle = "Confirm",
+    closeButtonTitle = "Cancel",
     title,
-    onShow,
+    onConfirm,
     onClose,
-    triggerAs,
+    hidden,
   }: Props) {
-    const [show, setShow] = useState(false);
     const [submitButtonDisplay, setSubmitButtonDisplay] = useState<
       "block" | "none"
     >("block");
 
-    const handleShow = () => {
-      onShow && onShow();
-      setShow(true);
-      setSubmitButtonDisplay("block");
-    };
+    useEffect(() => {
+      if (hidden) setSubmitButtonDisplay("block");
+    }, [hidden]);
 
-    const handleClose = () => {
-      onClose && onClose();
-      setShow(false);
-    };
+    // const triggerTypeRow = React.cloneElement(triggerContent as ReactElement, {
+    //   onClick: handleShow,
+    //   className: "ModalForm__trigger ModalForm__trigger--hover",
+    // });
 
-    const triggerTypeRow = React.cloneElement(triggerContent as ReactElement, {
-      onClick: handleShow,
-      className: "ModalForm__trigger ModalForm__trigger--hover",
-    });
+    // const triggerTypeButton = (
+    //   <Button variant="success" onClick={handleShow}>
+    //     {triggerContent}
+    //   </Button>
+    // );
 
-    const triggerTypeButton = (
-      <Button variant="success" onClick={handleShow}>
-        {triggerContent}
-      </Button>
-    );
+    // const handleConfirm = () => {
+    //   onConfirm();
+    // };
+
     return (
       <div className="ModalForm">
-        {triggerAs === "row" ? triggerTypeRow : triggerTypeButton}
+        {/* {triggerAs === "row" ? triggerTypeRow : triggerTypeButton} */}
 
         <Modal
-          show={show}
-          onHide={handleClose}
+          show={hidden}
+          onHide={onClose}
           backdrop="static"
           keyboard={false}
           centered
@@ -74,16 +63,15 @@ export namespace ModalForm {
           </Modal.Header>
           <Modal.Body>{children}</Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              {closeTitle}
+            <Button variant="secondary" onClick={onClose}>
+              {closeButtonTitle}
             </Button>
             <Button
               variant="primary"
-              type="submit"
-              form={formId}
               style={{ display: submitButtonDisplay }}
+              onClick={onConfirm}
             >
-              {actionTitle}
+              {confirmButtonTitle}
             </Button>
           </Modal.Footer>
         </Modal>

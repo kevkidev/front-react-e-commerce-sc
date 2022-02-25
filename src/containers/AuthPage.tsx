@@ -1,4 +1,3 @@
-import { RoutesPath } from "routes";
 import AuthFrom from "components/AuthFrom";
 import {
   createFormResponse,
@@ -7,11 +6,12 @@ import {
 } from "components/Form";
 import "containers/AuthPage.scss";
 import SignUpModal from "containers/SignUpModal";
-import { Firebase } from "services/Firebase";
 import { UserCredential } from "firebase/auth";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { RoutesPath } from "router/routes";
+import { Firebase } from "services/Firebase";
 
 // export type User = {
 //   uid: "string";

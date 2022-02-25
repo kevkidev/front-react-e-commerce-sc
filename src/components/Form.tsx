@@ -11,6 +11,7 @@ export const resetFormResponse = (): FormResponse => {
   return createFormResponse("", "danger", "none");
 };
 
+// TODO : creer un namespace
 export const createFormResponse = (
   message: string,
   level = "danger" as FormResponseLevel,
@@ -26,7 +27,7 @@ export const createFormResponse = (
 type Props = {
   id: string;
   children: React.ReactNode;
-  onSubmit: Function;
+  onSubmit?: (data: FormData) => void;
   formResponse?: FormResponse;
 };
 
@@ -68,7 +69,7 @@ export function Form({
       }
     }
 
-    onSubmit(formData);
+    onSubmit && onSubmit(formData);
 
     form.classList.add("was-validated");
   };

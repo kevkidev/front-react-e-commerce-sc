@@ -1,4 +1,5 @@
 {
+  "meta": {},
   "compilerOptions": {
     "baseUrl": "src",
     "target": "es5",
@@ -15,10 +16,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    // Don't automatically include anything.
-    // Only include `@types` packages that we need to import.
-    "types": []
+    "jsx": "react-jsx"
   },
   "include": ["src"],
   "exclude": ["**/node_modules", "**/.*/"],
