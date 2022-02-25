@@ -1,13 +1,13 @@
+import App from "containers/App";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import App from "./App";
 import ResetPasswordPage from "./components/ResetPasswordPage";
+import AccountPage from "./containers/AccountPage";
+import AuthPage from "./containers/AuthPage";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { RoutesPath } from "./routes";
-import AccountPage from "./views/AccountPage";
-import AuthPage from "./views/AuthPage";
 
 ReactDOM.render(
   <React.StrictMode>

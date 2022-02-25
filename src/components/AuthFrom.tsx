@@ -1,6 +1,8 @@
+import { Form, FormResponse } from "components/Form";
+import FormInputGroup, {
+  InputValidityChecker,
+} from "components/FormInputGroup";
 import React, { useState } from "react";
-import { Form, FormResponse } from "./Form";
-import FormInputGroup, { InputValidityChecker } from "./FormInputGroup";
 
 export namespace AuthForm {
   export const DEFAULT_AUTH_FORM_ID = "auth-form";

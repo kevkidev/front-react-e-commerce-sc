@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
-import AuthForm from "../components/AuthFrom";
+import AuthForm from "components/AuthFrom";
 import {
   createFormResponse,
   FormResponse,
   resetFormResponse,
-} from "../components/Form";
-import "./AuthPage.scss";
+} from "components/Form";
+import "containers/AuthPage.scss";
+import { useState } from "react";
+import { Button, Modal } from "react-bootstrap";
 
 export default function SignUpModal() {
   const [show, setShow] = useState(false);

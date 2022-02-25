@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import "./App.scss";
+import { useEffect, useState } from "react";
 
 interface IFriend {
   id: number;
