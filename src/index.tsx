@@ -1,36 +1,14 @@
-import App from "containers/App";
+import App from "main/App";
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { RoutesPath } from "router/routes";
-import ResetPasswordPage from "./components/ResetPasswordPage";
-import AccountPage from "./containers/AccountPage";
-import AuthPage from "./containers/AuthPage";
+import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path={RoutesPath.ROOT} element={<App />}>
-          <Route index element={<AuthPage />} />
-          <Route path={RoutesPath.LOGIN} element={<AuthPage />} />
-          <Route path={RoutesPath.ACCOUNT} element={<AccountPage />} />
-          <Route
-            path={RoutesPath.RESET_PASSWORD}
-            element={<ResetPasswordPage />}
-          />
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>There&apos;s nothing here!</p>
-              </main>
-            }
-          />
-        </Route>
-      </Routes>
+      <App />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
