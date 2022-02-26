@@ -8,7 +8,7 @@ import {
   UserCredential,
 } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
-import { Model } from "interfaces/models";
+import { Model } from "types/models";
 
 let app: Promise<FirebaseApp> | undefined = undefined;
 

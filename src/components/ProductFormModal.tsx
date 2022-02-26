@@ -1,6 +1,6 @@
 import { ModalForm } from "components/ModalForm";
 import { ProductForm } from "components/ProductForm";
-import { Model } from "interfaces/models";
+import { Model } from "types/models";
 import { useState } from "react";
 
 type Props = {

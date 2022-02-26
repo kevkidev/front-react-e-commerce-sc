@@ -1,4 +1,4 @@
-import { Model } from "interfaces/models";
+import { Model } from "types/models";
 import { products } from "services/products.json";
 
 const MOCK_SERVICE_TIMEOUT = 3000;

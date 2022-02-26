@@ -1,5 +1,5 @@
 // import "./AccountPage.scss";
-import { Model } from "interfaces/models";
+import { Model } from "types/models";
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { Util } from "utils/Array";

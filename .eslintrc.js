@@ -1,4 +1,5 @@
 module.exports = {
+  // meta: { fixable: "code" },
   env: {
     browser: true,
     node: true,
@@ -27,10 +28,16 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["react", "@typescript-eslint", "no-comments", "prettier", "import"],
+  plugins: [
+    "react",
+    "@typescript-eslint",
+    // "no-comments",
+    "prettier",
+    "import",
+  ],
   rules: {
     "no-console": "warn",
-    "no-comments/disallowComments": "warn",
+    // "no-comments/disallowComments": "warn",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
   },
