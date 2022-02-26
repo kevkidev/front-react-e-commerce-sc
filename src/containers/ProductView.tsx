@@ -2,7 +2,7 @@
 import { Auth } from "components/AuthContainer";
 import ProductFormModal from "components/ProductFormModal";
 import { ProductList } from "components/ProductList";
-import { Model } from "interfaces/models";
+import { Model } from "types/models";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";

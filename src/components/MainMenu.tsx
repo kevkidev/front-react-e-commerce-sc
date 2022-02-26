@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { RoutesPath } from "router/routes";
 import LocalData from "services/LocalData";
 
-interface Input {
+interface Props {
   rootPath?: string;
   logged?: boolean;
   user?: unknown;
@@ -64,12 +64,12 @@ interface Input {
 // }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function MainMenu({ rootPath, logged, user }: Input) {
+export function MainMenu({ rootPath, logged, user }: Props) {
   return (
     <nav>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href={RoutesPath.ROOT}>Demo</Navbar.Brand>
+          <Navbar.Brand href={RoutesPath.HOME}>Demo</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
