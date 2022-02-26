@@ -4,7 +4,7 @@ import { Form } from "components/Form";
 import FormInputGroup, {
   DEFAULT_VALID_FEEDBACK,
 } from "components/FormInputGroup";
-import { Model } from "interfaces/models";
+import { Model } from "types/models";
 import * as _ from "lodash";
 import { useEffect, useState } from "react";
 import { Form as BForm } from "react-bootstrap";
