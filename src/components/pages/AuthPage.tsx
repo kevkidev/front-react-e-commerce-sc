@@ -4,14 +4,13 @@ import {
   FormResponse,
   resetFormResponse,
 } from "components/Form";
-import "containers/AuthPage.scss";
 import SignUpModal from "containers/SignUpModal";
 import { UserCredential } from "firebase/auth";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { RoutesPath } from "router/routes";
 import { Firebase } from "services/Firebase";
+import "./AuthPage.scss";
 
 // export type User = {
 //   uid: "string";
@@ -39,7 +38,7 @@ export default function AuthPage() {
     const signInExecutor = {
       resolve: (userCredential: UserCredential) => {
         if (userCredential.user.emailVerified) {
-          navigate(RoutesPath.ACCOUNT);
+          navigate("");
           setFormResponse(resetFormResponse());
         } else {
           setFormResponse(
@@ -86,7 +85,7 @@ export default function AuthPage() {
   //           LocalData.setRefreshToken(obj.data.refreshToken);
   //           LocalData.setUser(obj.data.user);
   //
-  //           navigate(RoutesPath.ACCOUNT);
+  //           navigate(RoutesTree.ACCOUNT);
   //         }
 
   //         setFormResponse(formMessage);

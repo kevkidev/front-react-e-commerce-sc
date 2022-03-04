@@ -1,7 +1,7 @@
 // import "./AccountPage.scss";
-import { Model } from "types/models";
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
+import { Model } from "types/models";
 import { Util } from "utils/Array";
 
 export namespace ProductList {
@@ -48,9 +48,9 @@ export namespace ProductList {
   }
 }
 
-/* <Link to={RoutesPath.PRODUCT + "/" + p.uid}>{p.name}</Link> */
+/* <Link to={RoutesTree.PRODUCT + "/" + p.uid}>{p.name}</Link> */
 
-/* <a to={RoutesPath.PRODUCT + "/" + p.uid}>{p.name}</Link> */
+/* <a to={RoutesTree.PRODUCT + "/" + p.uid}>{p.name}</Link> */
 
 /* <ProductBuilderModal
                     triggerTitle={p.name}

@@ -1,3 +1,4 @@
+import { Routes } from "main/Routes";
 import { Nav } from "react-bootstrap";
 
 export function AccountMenu() {
@@ -7,10 +8,12 @@ export function AccountMenu() {
       onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
     >
       <Nav.Item>
-        <Nav.Link href="/home">Account</Nav.Link>
+        <Nav.Link href={Routes.tree.account.root}>Account</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="link-1">Catalogs</Nav.Link>
+        <Nav.Link eventKey="link-1" href={Routes.tree.account.root}>
+          Catalogs
+        </Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link eventKey="link-2">Offers</Nav.Link>

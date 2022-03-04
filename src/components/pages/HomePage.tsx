@@ -1,11 +1,11 @@
-import { Menu } from "components/Menu/Menu";
+import { HomeMenu } from "components/Menu/HomeMenu";
 import { Page } from "components/Page";
 
 export function HomePage() {
-  const menu = <Menu></Menu>;
   return (
-    <Page.Component menu={menu}>
+    <Page.Component menu={<HomeMenu />}>
       <h1>Home</h1>
+      <p>This is the home page</p>
     </Page.Component>
   );
 }
