@@ -1,4 +1,4 @@
-import { AccountView } from "components/Account/AccountView";
+import { AccountView } from "views/AccountView";
 import { AccountMenu } from "components/Menu/AccountMenu";
 import { Page } from "components/Page";
 

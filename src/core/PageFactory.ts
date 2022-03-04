@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
+import React from "react";
+
 export interface Page1 {
   name: string;
 }
@@ -37,6 +39,17 @@ export const PageFactory = (
       if (!type) throw Error("Cannot create Page of undefined");
       return () => type.create(page);
     },
+  };
+};
+
+
+type Page = { create: (pageName: string) => React.ReactNode };
+
+export function PageFactory2(  type: "HomePage"):Page  => {
+    create: (label: string): React.ReactNode => {
+return       React.createElement(label);
+    }
+    
   };
 };
 
