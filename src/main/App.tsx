@@ -1,29 +1,30 @@
-import ResetPasswordPage from "components/ResetPasswordPage";
-import AccountPage from "containers/AccountPage";
-import AuthPage from "containers/AuthPage";
-import { HomePage } from "containers/HomePage";
-import { NotFoundPage } from "containers/NotFoundPage";
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { RoutesPath } from "router/routes";
+import { useRoutes } from "react-router-dom";
+import { Router } from "./Router";
 
 export default function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={RoutesPath.HOME} element={HomePage}>
-          <Route path={RoutesPath.LOGIN} element={<AuthPage />} />
-          <Route path={RoutesPath.ACCOUNT} element={<AccountPage />} />
-          <Route
-            path={RoutesPath.RESET_PASSWORD}
-            element={<ResetPasswordPage />}
-          />
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+  const routes = useRoutes(Router.get());
+  return <div>{routes}</div>;
 }
+
+// <BrowserRouter>
+{
+  /* {routes} */
+}
+{
+  /* //   <Routes>
+  //     <Route path={RoutesTree.HOME} element={<HomePage />}>
+  //       <Route path={RoutesTree.LOGIN} element={<AuthPage />} />
+  //       <Route path={RoutesTree.ACCOUNT} element={<AccountPage />} />
+  //       <Route
+  //         path={RoutesTree.RESET_PASSWORD}
+  //         element={<ResetPasswordPage />}
+  //       />
+  //       <Route path="*" element={<NotFoundPage />} />
+  //     </Route>
+  //   </Routes> */
+}
+// </BrowserRouter>
+
 // import { Auth } from "components/AuthContainer";
 // import { MainMenu } from "components/MainMenu";
 // import { Model } from "interfaces/models";

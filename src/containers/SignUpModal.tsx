@@ -4,7 +4,6 @@ import {
   FormResponse,
   resetFormResponse,
 } from "components/Form";
-import "containers/AuthPage.scss";
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 

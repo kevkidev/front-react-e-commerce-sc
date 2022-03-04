@@ -1,6 +1,5 @@
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { RoutesPath } from "router/routes";
 import LocalData from "services/LocalData";
 
 interface Props {
@@ -18,7 +17,7 @@ interface Props {
 //     <nav>
 //       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
 //         <Container>
-//           <Navbar.Brand href={RoutesPath.ROOT}>Demo</Navbar.Brand>
+//           <Navbar.Brand href={RoutesTree.ROOT}>Demo</Navbar.Brand>
 //           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 //           <Navbar.Collapse id="responsive-navbar-nav">
 //             <Nav className="me-auto">
@@ -49,7 +48,7 @@ interface Props {
 //                   Sign Out
 //                 </span>
 //               ) : (
-//                 <Link to={RoutesPath.LOGIN}>Sign In</Link>
+//                 <Link to={RoutesTree.LOGIN}>Sign In</Link>
 //               )}
 //               {/* </Nav.Link> */}
 //               <Nav.Link eventKey={2} href="#">
@@ -69,7 +68,7 @@ export function MainMenu({ rootPath, logged, user }: Props) {
     <nav>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href={RoutesPath.HOME}>Demo</Navbar.Brand>
+          <Navbar.Brand href={""}>Demo</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
@@ -100,7 +99,7 @@ export function MainMenu({ rootPath, logged, user }: Props) {
                   Sign Out
                 </span>
               ) : (
-                <Link to={RoutesPath.LOGIN}>Sign In</Link>
+                <Link to={""}>Sign In</Link>
               )}
               {/* </Nav.Link> */}
               <Nav.Link eventKey={2} href="#">

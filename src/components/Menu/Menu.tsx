@@ -7,7 +7,7 @@ export function Menu() {
       <h1>Menu</h1>
       {/* <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href={RoutesPath.HOME}>Demo</Navbar.Brand>
+          <Navbar.Brand href={RoutesTree.HOME}>Demo</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
@@ -36,7 +36,7 @@ export function Menu() {
                 Sign Out
               </span>
 
-              <Link to={RoutesPath.LOGIN}>Sign In</Link>
+              <Link to={RoutesTree.LOGIN}>Sign In</Link>
 
               <Nav.Link eventKey={2} href="#">
                 #{LocalData.getUser() && <Link to="account">Account</Link>}
