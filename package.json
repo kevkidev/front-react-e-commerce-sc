@@ -36,7 +36,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "graph": "madge --extensions js,ts,tsx --image graph.svg src/"
+    "graph": "madge --extensions js,ts,tsx --image dependencies-graph.svg src/"
   },
   "eslintConfig": {
     "extends": [
