@@ -1,29 +1,35 @@
-import { Routes } from "main/Routes";
 import { Nav } from "react-bootstrap";
+import { RouteTemplate } from "types/RouteTemplate";
 
-export function AccountMenu() {
+type Props = {
+  routePath: RouteTemplate.Account;
+};
+
+export function AccountMenu({ routePath }: Props) {
   return (
     <Nav
       activeKey="/home"
       onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
     >
       <Nav.Item>
-        <Nav.Link href={Routes.tree.account.root}>Account</Nav.Link>
+        <Nav.Link href={routePath.path}>Account</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="link-1" href={Routes.tree.account.root}>
-          Catalogs
+        <Nav.Link eventKey="link-1" href={routePath.children.profile.path}>
+          Profiles
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="link-2">Offers</Nav.Link>
+        <Nav.Link eventKey="link-2" href={routePath.children.security.path}>
+          Security
+        </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="link-2">Orders</Nav.Link>
+        <Nav.Link eventKey="link-2" href={routePath.children.settings.path}>
+          Settings
+        </Nav.Link>
       </Nav.Item>
-      <Nav.Item>
-        <Nav.Link eventKey="link-2">Security</Nav.Link>
-      </Nav.Item>
+
       {/* <Nav.Item>
           <Nav.Link eventKey="disabled" disabled>
             Disabled

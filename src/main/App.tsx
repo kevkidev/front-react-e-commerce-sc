@@ -1,61 +1,19 @@
+import React, { Suspense, useEffect } from "react";
 import { useRoutes } from "react-router-dom";
-import { Router } from "./Router";
+import { RoutesConfig } from "./RoutesConfig";
 
 export default function App() {
-  const routes = useRoutes(Router.get());
-  return <div>{routes}</div>;
+  const routes = useRoutes(Object.values(RoutesConfig.defaultConfig));
+
+  useEffect(() => {
+    console.log(routes);
+  });
+  return (
+    <Suspense fallback={<div>Chargement...</div>}>
+      <div>{routes}</div>
+    </Suspense>
+  );
 }
-
-// <BrowserRouter>
-{
-  /* {routes} */
-}
-{
-  /* //   <Routes>
-  //     <Route path={RoutesTree.HOME} element={<HomePage />}>
-  //       <Route path={RoutesTree.LOGIN} element={<AuthPage />} />
-  //       <Route path={RoutesTree.ACCOUNT} element={<AccountPage />} />
-  //       <Route
-  //         path={RoutesTree.RESET_PASSWORD}
-  //         element={<ResetPasswordPage />}
-  //       />
-  //       <Route path="*" element={<NotFoundPage />} />
-  //     </Route>
-  //   </Routes> */
-}
-// </BrowserRouter>
-
-// import { Auth } from "components/AuthContainer";
-// import { MainMenu } from "components/MainMenu";
-// import { Model } from "interfaces/models";
-// import React, { useEffect } from "react";
-// import { Outlet } from "react-router-dom";
-// import { Firebase } from "services/Firebase";
-// import LocalData from "services/LocalData";
-// import { products } from "services/products.json";
-
-// export default function App() {
-//   // clear local data
-//   useEffect(() => {
-//     LocalData.clearAll();
-//     products.forEach((p: Model.Product) => {
-//       Firebase.Database.createProduct(p);
-//     });
-//   }, []);
-
-//   return (
-//     <Auth.Container>
-//       <div className="app">
-//         <MainMenu />
-//         <Outlet />
-//         <hr />
-//       </div>
-//     </Auth.Container>
-//   );
-// }
-
-// const pageFactory = PageFactory(PageTypes);
-// pageFactory.create();
 
 // get profiles list
 // useEffect(() => {
@@ -125,12 +83,5 @@ export default function App() {
 //   "divers",
 // ];
 
-// const APage = (): APpage => {
-//   return;
-// };
 // const AppContext = React.createContext({});
-
 // const logged = useContext(Auth.IsLoggedContext).logged;
-
-// creation des instances
-// c'e

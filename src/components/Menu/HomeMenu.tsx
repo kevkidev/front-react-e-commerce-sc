@@ -1,50 +1,31 @@
-import { Routes } from "main/Routes";
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { SellDropdownMenu } from "components/Menu/DropdownMenu/SellDropdownMenu";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { RouteTemplate } from "types/RouteTemplate";
+import { AccountDropdownMenu } from "./DropdownMenu/AccountDropdownMenu";
 
-export function HomeMenu() {
+type Props = {
+  routePath: RouteTemplate.Home;
+};
+
+export function HomeMenu({ routePath }: Props) {
   return (
     <nav>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href={""}>
-            <Link to={Routes.tree.home.root}>Home</Link>
+            <Link to={routePath.path}>Home</Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href={Routes.tree.home.root}>
-                <Link to={Routes.tree.messages.root}>Messages</Link>
+              <Nav.Link href={routePath.children.messages.path}>
+                Messages
               </Nav.Link>
-              <NavDropdown title="Sell" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">
-                  <Link to={Routes.tree.sell.branch.catalogs}>Catalogs</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.1">
-                  <Link to={Routes.tree.sell.branch.products}>Products</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  <Link to={Routes.tree.sell.branch.offers}>Offers</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  <Link to={Routes.tree.sell.branch.orders}>Orders</Link>
-                </NavDropdown.Item>
-              </NavDropdown>
+              <SellDropdownMenu routePath={routePath.children.sell} />
             </Nav>
             <Nav>
-              <NavDropdown title="<user-name>" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">
-                  <Link to={Routes.tree.account.branch.profile}>Profile</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.1">
-                  <Link to={Routes.tree.account.branch.settings}>Settings</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  <Link to={Routes.tree.account.branch.security}>Security</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#logout">Log Out</NavDropdown.Item>
-              </NavDropdown>
+              <AccountDropdownMenu routePath={routePath.children.account} />
             </Nav>
           </Navbar.Collapse>
         </Container>
