@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 export namespace Page {
   export interface Props {
-    menu: React.ReactNode;
+    menu?: React.ReactNode;
     children: React.ReactNode;
   }
 
@@ -11,7 +11,7 @@ export namespace Page {
     return (
       <>
         {/* <Router menu={menu}>{children}</Router> */}
-        {menu}
+        {menu && menu}
         <Outlet />
         {children}
       </>

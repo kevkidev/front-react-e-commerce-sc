@@ -2,6 +2,10 @@ import { RouteTemplate } from "types/RouteTemplate";
 import { Routing } from "types/type.d";
 
 export namespace RoutePath {
+  export const Home = {
+    path: Routing.RoutesNames.HOME as Routing.RouteName,
+  };
+
   export const Messages = {
     path: Routing.RoutesNames.MESSAGES as Routing.RouteName,
   };
@@ -39,9 +43,10 @@ export namespace RoutePath {
     },
   };
 
-  export const Home = {
+  export const Root = {
     path: `/${process.env.REACT_APP_APP_NAME}/`,
     children: {
+      home: Home,
       messages: Messages,
       sell: Sell,
       account: Account,
@@ -51,5 +56,7 @@ export namespace RoutePath {
     },
   };
 
-  export const Root: RouteTemplate.Root = { home: Home };
+  export const All: RouteTemplate.All = {
+    root: Root,
+  };
 }

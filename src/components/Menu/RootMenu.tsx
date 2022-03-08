@@ -1,21 +1,18 @@
 import { SellDropdownMenu } from "components/Menu/DropdownMenu/SellDropdownMenu";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { RouteTemplate } from "types/RouteTemplate";
 import { AccountDropdownMenu } from "./DropdownMenu/AccountDropdownMenu";
 
 type Props = {
-  routePath: RouteTemplate.Home;
+  routePath: RouteTemplate.Root;
 };
 
-export function HomeMenu({ routePath }: Props) {
+export function RootMenu({ routePath }: Props) {
   return (
     <nav>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href={""}>
-            <Link to={routePath.path}>Home</Link>
-          </Navbar.Brand>
+          <Navbar.Brand href={routePath.path}>Home</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">

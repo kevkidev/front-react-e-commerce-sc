@@ -1,5 +1,5 @@
 import { AccountMenu } from "components/Menu/AccountMenu";
-import { Page } from "components/Page";
+import { Page } from "components/pages/Page";
 import { RoutePath } from "main/RoutePath";
 import { AccountView } from "views/AccountView";
 

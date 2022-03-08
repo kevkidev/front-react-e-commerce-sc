@@ -56,7 +56,14 @@ export namespace RouteTemplate {
   export interface Home {
     path: string;
     element?: React.ReactNode;
+    index?: boolean;
+  }
+
+  export interface Root {
+    path: string;
+    // element?: React.ReactNode;
     children: {
+      home: Home;
       messages: Messages;
       sell: Sell;
       account: Account;
@@ -66,8 +73,7 @@ export namespace RouteTemplate {
       };
     };
   }
-
-  export interface Root {
-    home: Home;
+  export interface All {
+    root: Root;
   }
 }

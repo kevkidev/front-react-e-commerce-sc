@@ -37,19 +37,22 @@
 // Routes
 export namespace Routing {
   export namespace RoutesNames {
-    export const MESSAGES = `messages/`;
-    export const SELL = `sell/`;
-    export const CATALOGS = `catalogs/`;
-    export const PRODUCTS = `products/`;
-    export const OFFERS = `offers/`;
-    export const ORDERS = `orders/`;
-    export const ACCOUNT = `account/`;
-    export const PROFILE = `profile/`;
-    export const SECURITY = `security/`;
-    export const SETTINGS = `settings/`;
+    export const ROOT = `/${process.env.REACT_APP_APP_NAME}/`;
+    export const HOME = `home`;
+    export const MESSAGES = `messages`;
+    export const SELL = `sell`;
+    export const CATALOGS = `catalogs`;
+    export const PRODUCTS = `products`;
+    export const OFFERS = `offers`;
+    export const ORDERS = `orders`;
+    export const ACCOUNT = `account`;
+    export const PROFILE = `profile`;
+    export const SECURITY = `security`;
+    export const SETTINGS = `settings`;
     export const ANY = `*`;
   }
   export type RouteName =
+    | typeof RoutesNames.HOME
     | typeof RoutesNames.MESSAGES
     | typeof RoutesNames.SELL
     | typeof RoutesNames.CATALOGS
@@ -62,12 +65,12 @@ export namespace Routing {
     | typeof RoutesNames.SETTINGS
     | typeof RoutesNames.ANY;
 
-  export type Route = {
-    path: RouteName;
-    element?: React.ReactNode;
-    children?: NestedRoute;
-  };
-  export type NestedRoute = Route;
+  // export type Route = {
+  //   path: RouteName;
+  //   element?: React.ReactNode;
+  //   children?: NestedRoute;
+  // };
+  // export type NestedRoute = Route;
 
   //   export type RoutePath = {
   //     element: RouteName;
