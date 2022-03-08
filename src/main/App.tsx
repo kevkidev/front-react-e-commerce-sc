@@ -1,17 +1,13 @@
-import React, { Suspense, useEffect } from "react";
-import { useRoutes } from "react-router-dom";
-import { RoutesConfig } from "./RoutesConfig";
+import { RootMenu } from "components/Menu/RootMenu";
+import { Outlet } from "react-router-dom";
+import { RoutePath } from "./RoutePath";
 
 export default function App() {
-  const routes = useRoutes(Object.values(RoutesConfig.defaultConfig));
-
-  useEffect(() => {
-    console.log(routes);
-  });
   return (
-    <Suspense fallback={<div>Chargement...</div>}>
-      <div>{routes}</div>
-    </Suspense>
+    <>
+      <RootMenu routePath={RoutePath} />
+      <Outlet />
+    </>
   );
 }
 

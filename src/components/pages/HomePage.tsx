@@ -1,15 +1,7 @@
-import { HomeMenu } from "components/Menu/HomeMenu";
-import { Page } from "components/Page";
-import { RouteTemplate } from "types/RouteTemplate";
+import { Page } from "components/pages/Page";
 
-type Props = {
-  routePath: RouteTemplate.Home;
-};
-export default function HomePage({ routePath }: Props) {
-  return (
-    <Page.Component menu={<HomeMenu routePath={routePath} />}>
-      <h1>Home</h1>
-      <p>This is the home page</p>
-    </Page.Component>
-  );
-}
+export const HomePage = () => (
+  <Page>
+    <h1>Home</h1>
+  </Page>
+);
