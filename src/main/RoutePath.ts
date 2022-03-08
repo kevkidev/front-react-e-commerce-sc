@@ -1,55 +1,29 @@
-import { RouteTemplate } from "types/RouteTemplate";
-import { Routing } from "types/type.d";
+import { IRoutePath } from "types/types";
 
-export namespace RoutePath {
-  export const Messages = {
-    path: Routing.RoutesNames.MESSAGES as Routing.RouteName,
-  };
+const ROOT = `/${process.env.REACT_APP_APP_NAME}/`;
+const MESSAGES = `${ROOT}messages/`;
+const SELL = `sell/`;
+const SELL_CATALOGS = `${ROOT}${SELL}catalogs/`;
+const SELL_PRODUCTS = `${ROOT}${SELL}products/`;
+const SELL_OFFERS = `${ROOT}${SELL}offers/`;
+const SELL_ORDERS = `${ROOT}${SELL}orders/`;
+const ACCOUNT = `account/`;
+const ACCOUNT_PROFILE = `${ROOT}${ACCOUNT}profile/`;
+const ACCOUNT_SECURITY = `${ROOT}${ACCOUNT}security/`;
+const ACCOUNT_SETTINGS = `${ROOT}${ACCOUNT}settings/`;
+const ANY = `*`;
 
-  export const Sell = {
-    path: Routing.RoutesNames.SELL as Routing.RouteName,
-    children: {
-      catalogs: {
-        path: Routing.RoutesNames.CATALOGS as Routing.RouteName,
-      },
-      products: {
-        path: Routing.RoutesNames.PRODUCTS as Routing.RouteName,
-      },
-      offers: {
-        path: Routing.RoutesNames.OFFERS as Routing.RouteName,
-      },
-      orders: {
-        path: Routing.RoutesNames.ORDERS as Routing.RouteName,
-      },
-    },
-  };
-
-  export const Account = {
-    path: Routing.RoutesNames.ACCOUNT as Routing.RouteName,
-    children: {
-      profile: {
-        path: Routing.RoutesNames.PROFILE as Routing.RouteName,
-      },
-      security: {
-        path: Routing.RoutesNames.SECURITY as Routing.RouteName,
-      },
-      settings: {
-        path: Routing.RoutesNames.SETTINGS as Routing.RouteName,
-      },
-    },
-  };
-
-  export const Home = {
-    path: `/${process.env.REACT_APP_APP_NAME}/`,
-    children: {
-      messages: Messages,
-      sell: Sell,
-      account: Account,
-      any: {
-        path: Routing.RoutesNames.ANY as Routing.RouteName,
-      },
-    },
-  };
-
-  export const Root: RouteTemplate.Root = { home: Home };
-}
+export const RoutePath: IRoutePath = {
+  root: ROOT,
+  messages: MESSAGES,
+  sell: SELL,
+  sellCatalogs: SELL_CATALOGS,
+  sellProducts: SELL_PRODUCTS,
+  sellOffers: SELL_OFFERS,
+  sellOrders: SELL_ORDERS,
+  account: ACCOUNT,
+  accountProfile: ACCOUNT_PROFILE,
+  accountSecurity: ACCOUNT_SECURITY,
+  accountSettings: ACCOUNT_SETTINGS,
+  any: ANY,
+};
