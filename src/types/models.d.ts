@@ -33,6 +33,7 @@ export namespace Model {
 
   export interface Catalog {
     uid: string;
+    lable: string;
     owner: Account;
     products: Product;
   }
