@@ -4,7 +4,7 @@ import { Form, FormResponse } from "components/Form";
 import FormInputGroup from "components/FormInputGroup";
 import React, { useEffect, useState } from "react";
 
-export default function ResetPasswordPage() {
+export default function ResetPasswordForm() {
   const [formResponse, setFormResponse] = useState<FormResponse>({
     message: "",
     level: "danger",
@@ -58,54 +58,47 @@ export default function ResetPasswordPage() {
   useEffect(() => {});
 
   return (
-    <div className="auth-page">
-      <header>
-        <h1>Fake Demo Social Network</h1>
-        <p>Account management.</p>
-      </header>
+    <main>
+      <section className="connection">
+        <h2>Create your password</h2>
+        <p className="info-text">
+          <i className="bi bi-info-circle-fill"></i> This form is not plugged to
+          a serveur such use the &quot;Use API login&quot;.
+        </p>
+        <Form
+          id="connection-form"
+          onSubmit={handleSubmit}
+          formResponse={formResponse}
+        >
+          <FormInputGroup
+            id="connection-email"
+            label="Email"
+            name="email"
+            type="email"
+            placeholder="Your email please"
+            required={true}
+            regexp="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
+            // invalidFeedBack="Please check your email please."
+            value={userEmail}
+            disabled
+          />
+          <FormInputGroup
+            id="connection-password"
+            label="Password"
+            name="password"
+            type="password"
+            placeholder="Your password please"
+            required={true}
+            // invalidFeedBack="Please check your password"
+          />
 
-      <main>
-        <section className="connection">
-          <h2>Create your password</h2>
-          <p className="info-text">
-            <i className="bi bi-info-circle-fill"></i> This form is not plugged
-            to a serveur such use the &quot;Use API login&quot;.
-          </p>
-          <Form
-            id="connection-form"
-            onSubmit={handleSubmit}
-            formResponse={formResponse}
-          >
-            <FormInputGroup
-              id="connection-email"
-              label="Email"
-              name="email"
-              type="email"
-              placeholder="Your email please"
-              required={true}
-              regexp="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
-              // invalidFeedBack="Please check your email please."
-              value={userEmail}
-              disabled
-            />
-            <FormInputGroup
-              id="connection-password"
-              label="Password"
-              name="password"
-              type="password"
-              placeholder="Your password please"
-              required={true}
-              // invalidFeedBack="Please check your password"
-            />
-
-            <div className="button-group">
-              <button className="btn btn-primary" form="connection-form">
-                Enter
-              </button>
-            </div>
-          </Form>
-        </section>
-      </main>
-    </div>
+          <div className="button-group">
+            <button className="btn btn-primary" form="connection-form">
+              Enter
+            </button>
+          </div>
+        </Form>
+      </section>
+    </main>
   );
 }

@@ -1,6 +1,7 @@
 import { IRoutePath } from "types/types";
 
 const ROOT = `/${process.env.REACT_APP_APP_NAME}/`;
+const AUTH = `${ROOT}auth/`;
 const MESSAGES = `${ROOT}messages/`;
 const SELL = `sell/`;
 const SELL_CATALOGS = `${ROOT}${SELL}catalogs/`;
@@ -16,6 +17,7 @@ const ANY = `*`;
 export const RoutePath: IRoutePath = {
   root: ROOT,
   messages: MESSAGES,
+  auth: AUTH,
   sell: SELL,
   sellCatalogs: SELL_CATALOGS,
   sellProducts: SELL_PRODUCTS,
