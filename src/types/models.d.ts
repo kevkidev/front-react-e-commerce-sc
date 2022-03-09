@@ -33,9 +33,10 @@ export namespace Model {
 
   export interface Catalog {
     uid: string;
-    lable: string;
+    label: string;
     owner: Account;
-    products: Product;
+    products: Product[];
+    imageUrl: string;
   }
 
   export interface Comment {
