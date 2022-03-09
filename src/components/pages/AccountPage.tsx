@@ -1,4 +1,4 @@
-import { SubMenu } from "components/Menu/SubMenu";
+import { SubMenu } from "components/menus/SubMenu";
 import { Page } from "components/pages/Page";
 import { MenuConfig } from "main/MenuConfig";
 

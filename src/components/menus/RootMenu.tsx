@@ -20,6 +20,7 @@ export function RootMenu({ routePath }: Props) {
               <DropdownMenu title={"Sell"} items={MenuConfig.SellMenuItems} />
             </Nav>
             <Nav>
+              <Nav.Link href={routePath.auth}>Log In/Sign Up</Nav.Link>
               <DropdownMenu
                 title={"Account"}
                 items={MenuConfig.AccountMenuItems}
