@@ -7,10 +7,7 @@ type Props = {
 
 export function SubMenu({ items }: Props) {
   return (
-    <Nav
-      activeKey="/home"
-      onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
-    >
+    <Nav activeKey="/home">
       {items.map(({ path, title }, index) => (
         <Nav.Item key={index + Date.now().toString()}>
           <Nav.Link href={path}>{title}</Nav.Link>
