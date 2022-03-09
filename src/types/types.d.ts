@@ -1,5 +1,6 @@
 export interface IRoutePath {
   root: string;
+  auth: string;
   messages: string;
   sell: string;
   sellCatalogs: string;

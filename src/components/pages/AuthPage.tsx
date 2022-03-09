@@ -6,7 +6,7 @@ import {
 } from "components/Form";
 import SignUpModal from "containers/SignUpModal";
 import { UserCredential } from "firebase/auth";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { Firebase } from "services/Firebase";

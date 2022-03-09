@@ -1,9 +1,13 @@
+import App from "components/containers/App";
 import AccountPage from "components/pages/AccountPage";
+import AuthPage from "components/pages/AuthPage";
 import { HomePage } from "components/pages/HomePage";
 import { MessagesPage } from "components/pages/MessagesPage";
 import NotFoundPage from "components/pages/NotFoundPage";
 import SellPage from "components/pages/SellPage";
-import App from "main/App";
+import { CatalogsView } from "components/views/CatalogsView";
+import ProductView from "components/views/ProductView";
+import { ProfileView } from "components/views/ProfileView";
 import { RoutePath } from "main/RoutePath";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -19,13 +23,14 @@ ReactDOM.render(
           <Route index element={<HomePage />} />
           <Route path={RoutePath.messages} element={<MessagesPage />} />
           <Route element={<SellPage />}>
-            <Route path={RoutePath.sellCatalogs} element={<>Catalogs</>} />
+            <Route path={RoutePath.sellCatalogs} element={<CatalogsView />} />
             <Route path={RoutePath.sellOffers} element={<>Offers</>} />
             <Route path={RoutePath.sellOrders} element={<>Orders</>} />
-            <Route path={RoutePath.sellProducts} element={<>Products</>} />
+            <Route path={RoutePath.sellProducts} element={<ProductView />} />
           </Route>
+          <Route path={RoutePath.auth} element={<AuthPage />} />
           <Route element={<AccountPage />}>
-            <Route path={RoutePath.accountProfile} element={<>Profile</>} />
+            <Route path={RoutePath.accountProfile} element={<ProfileView />} />
             <Route path={RoutePath.accountSecurity} element={<>Security</>} />
             <Route path={RoutePath.accountSettings} element={<>Settings</>} />
           </Route>
