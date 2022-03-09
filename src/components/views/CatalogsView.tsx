@@ -3,7 +3,7 @@ export function CatalogsView() {
     <main>
       <h1>Catalogs</h1>
 
-      <p>...</p>
+      <p>...eee</p>
     </main>
   );
 }
