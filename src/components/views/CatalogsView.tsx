@@ -1,5 +1,5 @@
 import { CatalogList } from "components/lists/CatalogList";
-import { NewCatalogModal } from "components/modals/NewCatalogModal";
+import { MakeCatalogModal } from "components/modals/MakeCatalogModal";
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
@@ -25,7 +25,11 @@ export function CatalogsView() {
       >
         New Catalog
       </Button>
-      <NewCatalogModal shown={showModal} onHide={() => setShowModal(false)} />
+      <MakeCatalogModal
+        shown={showModal}
+        onHide={() => setShowModal(false)}
+        title="Create a Catalog"
+      />
       <hr />
       <CatalogList list={list} />
       <Outlet />

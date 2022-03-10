@@ -1,4 +1,4 @@
-import { NewCatalogModal } from "components/modals/NewCatalogModal";
+import { MakeCatalogModal } from "components/modals/MakeCatalogModal";
 import { RoutePath } from "main/RoutePath";
 import { useState } from "react";
 import { Button, ListGroup } from "react-bootstrap";
@@ -11,24 +11,28 @@ interface Props {
 
 export function CatalogList({ list }: Props) {
   const [showModal, setShowModal] = useState(false);
-
+  const [editing, setEditing] = useState<DTO.Catalog>(list[0]);
   return (
     <ListGroup as="ol" variant="flush">
-      {list.map(({ uid, title: label }, index) => (
+      {list.map((catalog, index) => (
         <ListGroup.Item
           key={`${index}-${Date.now()}`}
           as="li"
           action
           className="d-flex justify-content-between align-items-start"
         >
-          <Link className="ms-2 me-auto" to={`${RoutePath.sellCatalogs}${uid}`}>
-            {label}
+          <Link
+            className="ms-2 me-auto"
+            to={`${RoutePath.sellCatalogs}${catalog.uid}`}
+          >
+            {catalog.title}
           </Link>
           <div>
             <Button
               variant="primary"
               size="sm"
               onClick={() => {
+                setEditing(catalog);
                 setShowModal(true);
               }}
             >
@@ -37,7 +41,12 @@ export function CatalogList({ list }: Props) {
           </div>
         </ListGroup.Item>
       ))}
-      <NewCatalogModal shown={showModal} onHide={() => setShowModal(false)} />
+      <MakeCatalogModal
+        shown={showModal}
+        onHide={() => setShowModal(false)}
+        catalog={editing}
+        title="Modify a Catalog"
+      />
     </ListGroup>
   );
 }
