@@ -6,6 +6,7 @@ import { MessagesPage } from "components/pages/MessagesPage";
 import NotFoundPage from "components/pages/NotFoundPage";
 import SellPage from "components/pages/SellPage";
 import { CatalogsView } from "components/views/CatalogsView";
+import { CatalogView } from "components/views/CatalogView";
 import ProductView from "components/views/ProductView";
 import { ProfileView } from "components/views/ProfileView";
 import { RoutePath } from "main/RoutePath";
@@ -24,6 +25,8 @@ ReactDOM.render(
           <Route path={RoutePath.messages} element={<MessagesPage />} />
           <Route element={<SellPage />}>
             <Route path={RoutePath.sellCatalogs} element={<CatalogsView />} />
+            <Route path={RoutePath.sellCatalog} element={<CatalogView />} />
+            Models
             <Route path={RoutePath.sellOffers} element={<>Offers</>} />
             <Route path={RoutePath.sellOrders} element={<>Orders</>} />
             <Route path={RoutePath.sellProducts} element={<ProductView />} />
