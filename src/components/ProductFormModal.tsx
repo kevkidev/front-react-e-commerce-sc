@@ -1,10 +1,10 @@
 import { ModalForm } from "components/ModalForm";
 import { ProductForm } from "components/ProductForm";
-import { Model } from "types/models";
+import { Models } from "types/models";
 import { useState } from "react";
 
 type Props = {
-  product: Model.Product;
+  product: Models.Product;
   title: string;
   onSave: ProductForm.OnSaveFunction;
   onClose: () => void;
@@ -20,7 +20,7 @@ export default function ProductFormModal({
   onClose,
   resetForm,
 }: Props) {
-  const [updatedProduct, setUpdatedProduct] = useState<Model.Product>();
+  const [updatedProduct, setUpdatedProduct] = useState<Models.Product>();
 
   const handleConfirm = () => {
     updatedProduct && onSave(updatedProduct);

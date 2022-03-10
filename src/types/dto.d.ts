@@ -1,4 +1,4 @@
-export namespace Models {
+export namespace DTO {
   export interface Address {
     uid: string;
     city: string;
@@ -12,8 +12,8 @@ export namespace Models {
   export interface Account {
     uid: string; // get from firebase
     email: string; // get from firebase
-    invoiceAddress: Address;
-    deliveryAddress: Address;
+    invoiceAddressUid: string;
+    deliveryAddressUid: string;
   }
 
   export interface Category {
@@ -24,9 +24,9 @@ export namespace Models {
   export interface Product {
     uid: string;
     name: string;
-    category: Category;
+    categoryUid: string;
     imageUrl: string;
-    owner: Account;
+    ownerUid: string;
     quantity: number;
     description: string;
   }
@@ -34,39 +34,39 @@ export namespace Models {
   export interface Catalog {
     uid: string;
     title: string;
-    owner: Account;
-    products: Product[];
+    ownerUid: string;
+    productsUids: string[];
     imageUrl: string;
   }
 
   export interface Comment {
     uid: string;
-    author: Account;
+    authorUid: string;
     content: string;
   }
 
   export interface Offer {
     uid: string;
-    product: Product;
-    seller: Account;
+    productUid: string;
+    sellerUid: string;
     price: number;
-    comments: Comment[];
+    commentsUids: string[];
   }
 
-  type Subject = Catalog | Account | Offer;
+  // type Subject = Catalog | Account | Offer;
 
   export interface Tags {
     uid: string;
-    source: Account;
-    target: Account;
+    sourceUid: string; // Account
+    targetUid: string; // Account
     message: string;
-    subject: Subject;
+    subjectUid: string; //Subject
   }
 
   export interface Rating {
     value: 1 | 2 | 3 | 4 | 5;
-    source: Account;
-    target: Account | Offer;
+    sourceUid: string; //Account
+    targetUid: string; //Account | Offer
   }
 
   export interface Status {
@@ -76,7 +76,7 @@ export namespace Models {
 
   export interface Delivery {
     service: string;
-    address: Address;
+    addressUid: string; // Address
     trackingNumber: string;
     trackingUrl: string;
   }
@@ -84,12 +84,12 @@ export namespace Models {
   export interface Order {
     uid: string;
     date: Date;
-    status: Status;
-    customer: Account;
-    seller: Account;
-    offer: Offer;
+    statusUid: string; //Status
+    customerUid: string; //Account
+    sellerUid: string; //Account
+    offerUid: string; //Offer
     quantity: number;
-    delivery: Delivery;
+    deliveryUid: string; //Delivery
     invoiceLink: string;
   }
 }

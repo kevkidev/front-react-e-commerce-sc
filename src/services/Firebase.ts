@@ -8,7 +8,7 @@ import {
   UserCredential,
 } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
-import { Model } from "types/models";
+import { Models } from "types/models";
 
 let app: Promise<FirebaseApp> | undefined = undefined;
 
@@ -86,7 +86,7 @@ export namespace Firebase {
   }
 
   export namespace Database {
-    export function createProduct(product: Model.Product) {
+    export function createProduct(product: Models.Product) {
       getInstance().then((app) => {
         const db = getDatabase(app);
         const { name, quantity, description, category, imageUrl, owner } =

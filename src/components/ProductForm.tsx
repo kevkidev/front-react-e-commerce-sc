@@ -4,7 +4,7 @@ import { Form } from "components/Form";
 import FormInputGroup, {
   DEFAULT_VALID_FEEDBACK,
 } from "components/FormInputGroup";
-import { Model } from "types/models";
+import { Models } from "types/models";
 import * as _ from "lodash";
 import { useEffect, useState } from "react";
 import { Form as BForm } from "react-bootstrap";
@@ -12,12 +12,12 @@ import { RestService } from "services/RestService";
 // import { Form } from "./Form";
 
 export namespace ProductForm {
-  export type OnSaveFunction = (value: Model.Product) => void;
+  export type OnSaveFunction = (value: Models.Product) => void;
 
   type Props = {
-    product: Model.Product; // if exists => update product
+    product: Models.Product; // if exists => update product
     // onSave: OnSaveFunction;
-    onProductChange: (value: Model.Product) => void;
+    onProductChange: (value: Models.Product) => void;
     resetForm: boolean;
   };
 
@@ -27,7 +27,7 @@ export namespace ProductForm {
     const PRODUCT_QUANTITY = "product-quantity";
     const PRODUCT_DESCRIPTION = "product-description";
 
-    const [current, setCurrent] = useState<Model.Product>(product);
+    const [current, setCurrent] = useState<Models.Product>(product);
 
     useEffect(() => {
       console.log("zeze");
@@ -67,7 +67,7 @@ export namespace ProductForm {
           regexp="^[\w\W]{2,200}$"
           value={current.name}
           onInputChange={(value) => {
-            const newVersion = _.cloneDeep(current) as Model.Product;
+            const newVersion = _.cloneDeep(current) as Models.Product;
             newVersion.name = value;
             setCurrent(newVersion);
           }}
@@ -88,7 +88,7 @@ export namespace ProductForm {
             value={current.category.uid}
             onChange={(e) => {
               const uid = e.target.value;
-              const newVersion = _.cloneDeep(current) as Model.Product;
+              const newVersion = _.cloneDeep(current) as Models.Product;
               const foundCategory = RestService.getCategory(uid);
               if (!foundCategory) throw Error("Category not found.");
               newVersion.category = foundCategory;
@@ -119,7 +119,7 @@ export namespace ProductForm {
           //TODO invalidFeedBack={}
           //TODO validityChecker={}
           onInputChange={(value) => {
-            const newVersion = _.cloneDeep(current) as Model.Product;
+            const newVersion = _.cloneDeep(current) as Models.Product;
             newVersion.quantity = parseInt(value);
             setCurrent(newVersion);
           }}
@@ -137,7 +137,7 @@ export namespace ProductForm {
             required
             value={current.description}
             onChange={(e) => {
-              const newVersion = _.cloneDeep(current) as Model.Product;
+              const newVersion = _.cloneDeep(current) as Models.Product;
               newVersion.description = e.target.value;
               setCurrent(newVersion);
             }}
