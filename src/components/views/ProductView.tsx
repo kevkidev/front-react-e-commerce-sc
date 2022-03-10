@@ -2,15 +2,15 @@
 import { Auth } from "components/AuthContainer";
 import ProductFormModal from "components/ProductFormModal";
 import { ProductList } from "components/ProductList";
-import { Model } from "types/models";
+import { Models } from "types/models";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { RestService } from "services/RestService";
 
 export default function ProductView() {
-  const [products, setProducts] = useState<Model.Product[]>([]);
-  const [selectedProducts, setSelectedProducts] = useState<Model.Product>();
+  const [products, setProducts] = useState<Models.Product[]>([]);
+  const [selectedProducts, setSelectedProducts] = useState<Models.Product>();
   const [showForm, setShowForm] = useState(false);
   const [, setResetForm] = useState(false);
   // const [initialProduct] = useState<Model.Product>({
@@ -44,7 +44,7 @@ export default function ProductView() {
   //   });
   // };
 
-  const handleUpdate = (value: Model.Product) => {
+  const handleUpdate = (value: Models.Product) => {
     console.log("handleUpdate");
 
     const newList = _.cloneDeep(products);
@@ -57,7 +57,7 @@ export default function ProductView() {
     RestService.Product.update(value);
   };
 
-  const handleItemClick = (product: Model.Product) => {
+  const handleItemClick = (product: Models.Product) => {
     setSelectedProducts(product);
     setShowForm(true);
   };

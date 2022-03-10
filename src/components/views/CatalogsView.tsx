@@ -1,9 +1,18 @@
+import { CatalogList } from "components/lists/CatalogList";
 import { NewCatalogModal } from "components/modals/NewCatalogModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
+import { Outlet } from "react-router-dom";
+import { CatalogService } from "services/CatalogService";
+import { DTO } from "types/dto";
 
 export function CatalogsView() {
   const [showModal, setShowModal] = useState(false);
+  const [list, setList] = useState<DTO.Catalog[]>([]);
+
+  useEffect(() => {
+    setList(CatalogService.findNextCatalogs("accountUid"));
+  }, [setList]);
 
   return (
     <main>
@@ -17,7 +26,9 @@ export function CatalogsView() {
         New Catalog
       </Button>
       <NewCatalogModal shown={showModal} onHide={() => setShowModal(false)} />
-      <p>...</p>
+      <hr />
+      <CatalogList list={list} />
+      <Outlet />
     </main>
   );
 }

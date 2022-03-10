@@ -1,5 +1,5 @@
-import { Model } from "types/models";
 import { products } from "services/products.json";
+import { Models } from "types/models";
 
 const MOCK_SERVICE_TIMEOUT = 3000;
 
@@ -27,7 +27,7 @@ export namespace RestService {
     },
   };
 
-  export const categories: Model.Category[] = [
+  export const categories: Models.Category[] = [
     { name: "Toys", uid: "1-azeeert" },
     { name: "Books", uid: "2-azeeert" },
     { name: "Home & Kitchen", uid: "3-azeeert" },
@@ -37,12 +37,12 @@ export namespace RestService {
     { name: "electronics", uid: "8-azeeert" },
   ];
 
-  export function getCategory(uid: string): Model.Category | undefined {
+  export function getCategory(uid: string): Models.Category | undefined {
     return categories.find((c) => c.uid == uid);
   }
 
   export namespace Product {
-    export function add(value: Model.Product): void {
+    export function add(value: Models.Product): void {
       setTimeout(() => {
         getAll().then((list) => list.push(value));
       }, MOCK_SERVICE_TIMEOUT);
@@ -50,7 +50,7 @@ export namespace RestService {
 
     export function update(
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      value: Model.Product,
+      value: Models.Product,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       handleProductUpdate?: Function
     ): void {
@@ -61,7 +61,7 @@ export namespace RestService {
       // }
     }
 
-    export function getAll(): Promise<Model.Product[]> {
+    export function getAll(): Promise<Models.Product[]> {
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve(products);

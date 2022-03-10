@@ -1,18 +1,18 @@
 // import "./AccountPage.scss";
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import { Model } from "types/models";
+import { Models } from "types/models";
 import { Util } from "utils/Array";
 
 export namespace ProductList {
   export interface Props {
     // onSave: ProductForm.OnSaveFunction;
-    list: Model.Product[];
-    onClickItem: (product: Model.Product) => void;
+    list: Models.Product[];
+    onClickItem: (product: Models.Product) => void;
   }
 
   export function Component({ list, onClickItem }: Props) {
-    const [sortedList, setSortedList] = useState<Model.Product[]>([]);
+    const [sortedList, setSortedList] = useState<Models.Product[]>([]);
 
     useEffect(() => {
       setSortedList(Util.Array.sortByNameAsc(list));
