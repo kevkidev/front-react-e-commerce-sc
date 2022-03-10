@@ -1,3 +1,5 @@
+import { CatalogStatus } from "./types";
+
 export namespace DTO {
   export interface Address {
     uid: string;
@@ -37,6 +39,7 @@ export namespace DTO {
     ownerUid: string;
     productsUids: string[];
     imageUrl: string;
+    status: CatalogStatus;
   }
 
   export interface Comment {

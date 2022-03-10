@@ -26,6 +26,7 @@ export function CatalogsView() {
         New Catalog
       </Button>
       <MakeCatalogModal
+        action="create"
         shown={showModal}
         onHide={() => setShowModal(false)}
         title="Create a Catalog"

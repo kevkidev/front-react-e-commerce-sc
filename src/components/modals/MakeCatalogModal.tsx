@@ -2,6 +2,7 @@ import CatalogForm from "components/forms/CatalogForm";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { DTO } from "types/dto";
+import { FormAction } from "types/types";
 import { Modal } from "./Modal";
 
 type Props = {
@@ -9,13 +10,13 @@ type Props = {
   onHide: () => void;
   catalog?: DTO.Catalog;
   title: string;
+  action: FormAction;
 };
 
-export function MakeCatalogModal({ shown, onHide, catalog, title }: Props) {
+export function MakeCatalogModal(props: Props) {
+  const { shown, onHide, catalog, title, action } = props;
   const [resetForm, setResetForm] = useState(false);
-
   const FORM_ID = "new-catalog-form";
-
   const footer = (
     <>
       <Button variant="secondary" onClick={onHide}>
@@ -33,7 +34,8 @@ export function MakeCatalogModal({ shown, onHide, catalog, title }: Props) {
         Reset
       </Button>
       <Button variant="primary" type="submit" form={FORM_ID}>
-        Create
+        {action[0].toUpperCase()}
+        {action.slice(1)}
       </Button>
     </>
   );
@@ -50,6 +52,7 @@ export function MakeCatalogModal({ shown, onHide, catalog, title }: Props) {
         resetTrigger={resetForm}
         catalog={catalog}
         onSave={handleSave}
+        action={action}
       />
     </Modal>
   );
