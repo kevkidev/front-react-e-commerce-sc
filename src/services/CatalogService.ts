@@ -23,6 +23,7 @@ export namespace CatalogService {
         productsUids: ["1", "2"],
         imageUrl:
           "https://images.pexels.com/photos/6568687/pexels-photo-6568687.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        status: "alive",
       },
       {
         uid: "zeiroi-ioior",
@@ -31,6 +32,7 @@ export namespace CatalogService {
         productsUids: ["3", "4"],
         imageUrl:
           "https://images.pexels.com/photos/6568687/pexels-photo-6568687.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        status: "alive",
       },
     ];
   }
@@ -44,6 +46,7 @@ export namespace CatalogService {
       productsUids: ["1", "2"],
       imageUrl:
         "https://images.pexels.com/photos/6568687/pexels-photo-6568687.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      status: "alive",
     };
   }
 

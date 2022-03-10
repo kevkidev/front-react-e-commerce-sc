@@ -42,6 +42,7 @@ export function CatalogList({ list }: Props) {
         </ListGroup.Item>
       ))}
       <MakeCatalogModal
+        action="update"
         shown={showModal}
         onHide={() => setShowModal(false)}
         catalog={editing}

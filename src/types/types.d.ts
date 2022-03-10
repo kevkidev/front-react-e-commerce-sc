@@ -19,3 +19,7 @@ export type IMenuItem = {
   path: string;
   title: string;
 };
+
+export type FormAction = "create" | "update";
+
+export type CatalogStatus = "alive" | "disabled" | "archived";
