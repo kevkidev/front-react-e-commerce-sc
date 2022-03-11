@@ -15,7 +15,7 @@ import {
   PRODUCT_ID,
   PRODUCT_QUANTITY,
   schema,
-} from "./ProductFormConfig";
+} from "./productFormConfig";
 
 interface Props {
   formId: string;

@@ -17,25 +17,27 @@ export const MIN_PRODUCT_QUANTITY = 1;
 export const MAX_PRODUCT_DESCRIPTION = 200;
 
 export const defaultValue: DTO.Product = {
-  uid: "",
+  uid: uuidv4(),
   name: "",
   categoryUid: "none",
   imageUrl: "",
   ownerUid: "",
   quantity: 1,
   description: "",
-  status: "alive",
+  status: STATUS_ALIVE,
 };
 
 export const schema: SchemaOf<DTO.Product> = object({
-  uid: string().default(uuidv4()),
+  uid: string().default(defaultValue.uid),
   name: string()
     .trim()
     .matches(/^[\w\W]{3,200}$/, "Please enter a name of 3 to 200 characters.")
     .required()
-    .default(""),
-  categoryUid: string().uuid("Please select a category.").default("none"),
-  imageUrl: string().default(""),
+    .default(defaultValue.name),
+  categoryUid: string()
+    .uuid("Please select a category.")
+    .default(defaultValue.categoryUid),
+  imageUrl: string().default(defaultValue.imageUrl),
   quantity: number()
     .integer("It must be an integer.")
     .min(
@@ -47,7 +49,7 @@ export const schema: SchemaOf<DTO.Product> = object({
       `The maximum quantity of product is : ${MAX_PRODUCT_QUANTITY}.`
     )
     .required("Please enter the quantity.")
-    .default(1),
+    .default(defaultValue.quantity),
   ownerUid: string().default("ae23efa8-9b40-4604-a149-e9e9b5d464e0"),
   description: string()
     .trim()
@@ -56,10 +58,10 @@ export const schema: SchemaOf<DTO.Product> = object({
       `Maximum ${MAX_PRODUCT_DESCRIPTION} characters`
     )
     .required("Please enter a description.")
-    .default(""),
+    .default(defaultValue.description),
   status: mixed<ProductStatus>()
     .oneOf([STATUS_ALIVE, STATUS_DISABLED, STATUS_ARCHIVED])
-    .default(STATUS_ALIVE),
+    .default(defaultValue.status),
 }).required();
 
 export const availableStatus: { label: string; value: ProductStatus }[] = [
