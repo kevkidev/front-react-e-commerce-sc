@@ -1,4 +1,5 @@
 import { DTO } from "types/dto";
+import { STATUS_ALIVE } from "types/types.d";
 
 export namespace CatalogService {
   /**
@@ -66,6 +67,7 @@ export namespace CatalogService {
         imageUrl: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
         //   rating: { rate: 3.9, count: 120 },
         ownerUid: currentAccount.uid,
+        status: STATUS_ALIVE,
       },
       {
         uid: "2",
@@ -78,6 +80,7 @@ export namespace CatalogService {
           "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
         //   rating: { rate: 4.1, count: 259 },
         ownerUid: currentAccount.uid,
+        status: STATUS_ALIVE,
       },
     ];
   }

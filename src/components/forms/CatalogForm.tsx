@@ -30,7 +30,7 @@ const schema = object({
     .required(),
 }).required();
 
-type FormData = {
+type FormInputs = {
   title: string;
   status: string;
 };
@@ -45,15 +45,15 @@ export default function Catalogform(props: Props) {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormData>({
+  } = useForm<FormInputs>({
     resolver: yupResolver(schema),
   });
 
   useEffect(() => {
-    resetTrigger && reset();
+    reset({ title: value.title, status: value.status });
   }, [resetTrigger, reset]);
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: FormInputs) => {
     console.log(data);
     const newCatalog = _.cloneDeep(value);
     newCatalog.title = data.title;
@@ -74,7 +74,7 @@ export default function Catalogform(props: Props) {
           <div className="form-check" key={`${index}${Date.now()}`}>
             <input
               {...register("status")}
-              value={value}
+              defaultValue={value}
               className="form-check-input"
               type="radio"
               name="status"
