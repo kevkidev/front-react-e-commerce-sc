@@ -1,17 +1,17 @@
 // import "./AccountPage.scss";
 import { Auth } from "components/AuthContainer";
-import ProductFormModal from "components/ProductFormModal";
 import { ProductList } from "components/ProductList";
-import { Models } from "types/models";
-import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { RestService } from "services/RestService";
+import { Models } from "types/models";
 
 export default function ProductView() {
   const [products, setProducts] = useState<Models.Product[]>([]);
   const [selectedProducts, setSelectedProducts] = useState<Models.Product>();
+  selectedProducts;
   const [showForm, setShowForm] = useState(false);
+  showForm;
   const [, setResetForm] = useState(false);
   // const [initialProduct] = useState<Model.Product>({
   //   uid: "",
@@ -44,18 +44,18 @@ export default function ProductView() {
   //   });
   // };
 
-  const handleUpdate = (value: Models.Product) => {
-    console.log("handleUpdate");
+  // const handleUpdate = (value: Models.Product) => {
+  //   console.log("handleUpdate");
 
-    const newList = _.cloneDeep(products);
-    let index = newList.findIndex((prod) => value.uid == prod.uid);
-    if (index > -1) {
-      newList.splice(index, 1, value);
-    }
-    setProducts(newList);
+  //   const newList = _.cloneDeep(products);
+  //   let index = newList.findIndex((prod) => value.uid == prod.uid);
+  //   if (index > -1) {
+  //     newList.splice(index, 1, value);
+  //   }
+  //   setProducts(newList);
 
-    RestService.Product.update(value);
-  };
+  //   RestService.Product.update(value);
+  // };
 
   const handleItemClick = (product: Models.Product) => {
     setSelectedProducts(product);
@@ -88,7 +88,7 @@ export default function ProductView() {
         list={products}
         onClickItem={handleItemClick}
       />
-      {selectedProducts && (
+      {/* {selectedProducts && (
         <ProductFormModal
           product={selectedProducts}
           title="Update this product"
@@ -97,7 +97,7 @@ export default function ProductView() {
           hidden={showForm}
           resetForm={false}
         />
-      )}
+      )} */}
     </Auth.Container>
   );
 }
