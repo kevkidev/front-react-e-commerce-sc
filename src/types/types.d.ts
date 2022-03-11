@@ -20,6 +20,17 @@ export type IMenuItem = {
   title: string;
 };
 
-export type FormAction = "create" | "update";
+export const ACTION_CREATE = "create";
+export const ACTION_UPDATE = "update";
+export type FormAction = typeof ACTION_CREATE | typeof ACTION_UPDATE;
 
-export type CatalogStatus = "alive" | "disabled" | "archived";
+export const STATUS_ALIVE = "alive";
+export const STATUS_DISABLED = "disabled";
+export const STATUS_ARCHIVED = "archived";
+
+export type CatalogStatus =
+  | typeof STATUS_ALIVE
+  | typeof STATUS_DISABLED
+  | typeof STATUS_ARCHIVED;
+
+export type ProductStatus = CatalogStatus;
