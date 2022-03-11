@@ -1,4 +1,4 @@
-import { CatalogStatus } from "./types";
+import { CatalogStatus, ProductStatus } from "./types";
 
 export namespace DTO {
   export interface Address {
@@ -31,6 +31,7 @@ export namespace DTO {
     ownerUid: string;
     quantity: number;
     description: string;
+    status: ProductStatus;
   }
 
   export interface Catalog {
@@ -56,14 +57,12 @@ export namespace DTO {
     commentsUids: string[];
   }
 
-  // type Subject = Catalog | Account | Offer;
-
   export interface Tags {
     uid: string;
     sourceUid: string; // Account
     targetUid: string; // Account
     message: string;
-    subjectUid: string; //Subject
+    subjectUid: string; //Subject : Catalog | Account | Offer;
   }
 
   export interface Rating {
