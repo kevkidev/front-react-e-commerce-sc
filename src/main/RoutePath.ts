@@ -7,6 +7,7 @@ const SELL = `sell/`;
 const SELL_CATALOGS = `${ROOT}${SELL}catalogs/`;
 const SELL_CATALOG = `${ROOT}${SELL}catalogs/:uid`;
 const SELL_PRODUCTS = `${ROOT}${SELL}products/`;
+const SELL_PRODUCT = `${ROOT}${SELL}products/:uid`;
 const SELL_OFFERS = `${ROOT}${SELL}offers/`;
 const SELL_ORDERS = `${ROOT}${SELL}orders/`;
 const ACCOUNT = `account/`;
@@ -23,6 +24,7 @@ export const RoutePath: IRoutePath = {
   sellCatalogs: SELL_CATALOGS,
   sellCatalog: SELL_CATALOG,
   sellProducts: SELL_PRODUCTS,
+  sellProduct: SELL_PRODUCT,
   sellOffers: SELL_OFFERS,
   sellOrders: SELL_ORDERS,
   account: ACCOUNT,

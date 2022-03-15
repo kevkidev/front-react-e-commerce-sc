@@ -5,7 +5,7 @@ export namespace ProductService {
     return [];
   }
 
-  export function findByUid(productUid: string): DTO.Product {
+  export function findByUid(productUid: string): DTO.Product | undefined {
     // @TODO
     return {
       uid: productUid,
@@ -13,7 +13,7 @@ export namespace ProductService {
       quantity: 1599,
       description:
         "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
-      categoryUid: "cat-test",
+      categoryUid: "7d02d358-298b-43b5-b0c5-7ba29696e2b9",
       imageUrl: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
       //   rating: { rate: 2.1, count: 430 },
       ownerUid: currentAccount.uid,
