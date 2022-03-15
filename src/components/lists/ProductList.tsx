@@ -1,16 +1,18 @@
+import { MakeProductModal } from "components/modals/MakeProductModal";
 import { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { DTO } from "types/dto";
+import { ACTION_UPDATE } from "types/types.d";
 import { Util } from "utils/Array";
 
 interface Props {
   list: DTO.Product[];
-  onClickItem: (product: DTO.Product) => void;
 }
 
-export function ProductList({ list, onClickItem }: Props) {
+export function ProductList({ list }: Props) {
   const [sortedList, setSortedList] = useState<DTO.Product[]>([]);
-  const [, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [editing, setEditing] = useState<DTO.Product>(list[0]);
 
   useEffect(() => {
     setSortedList(Util.Array.sortByNameAsc(list));
@@ -21,7 +23,6 @@ export function ProductList({ list, onClickItem }: Props) {
       <Table bordered hover>
         <thead>
           <tr>
-            <th>#</th>
             <th>Name</th>
             <th>Quantity</th>
             <th>Actions</th>
@@ -29,17 +30,17 @@ export function ProductList({ list, onClickItem }: Props) {
         </thead>
         <tbody>
           {sortedList &&
-            sortedList.map((p, i) => (
-              <tr key={p.uid} onClick={() => onClickItem(p)}>
-                <td>{i}</td>
-                <td>{p.name}</td>
-                <td>{p.quantity}</td>
+            sortedList.map((product) => (
+              <tr key={product.uid}>
+                <td>{product.name}</td>
+                <td>{product.quantity}</td>
                 <td>
                   <Button
                     variant="primary"
                     size="sm"
                     onClick={() => {
-                      setShowModal(false);
+                      setShowModal(true);
+                      setEditing(product);
                     }}
                   >
                     Edit
@@ -49,6 +50,13 @@ export function ProductList({ list, onClickItem }: Props) {
             ))}
         </tbody>
       </Table>
+      <MakeProductModal
+        action={ACTION_UPDATE}
+        shown={showModal}
+        onHide={() => setShowModal(false)}
+        title="Modify"
+        product={editing}
+      />
     </>
   );
 }

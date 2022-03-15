@@ -8,6 +8,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import { mixed, number, object, SchemaOf, string } from "yup";
 
+export const IMAGE_ID = "product-image";
 export const PRODUCT_ID = "product-name";
 export const CATEGORY_ID = "product-category";
 export const PRODUCT_QUANTITY = "product-quantity";
