@@ -29,8 +29,8 @@ export default function CatalogForm(props: Props) {
   });
 
   useEffect(() => {
-    reset({ title: value.title, status: value.status });
-  }, [resetTrigger, reset]);
+    reset(value);
+  }, [resetTrigger, reset, value]);
 
   const onSubmit = (data: DTO.Catalog) => {
     console.log(data);
@@ -66,10 +66,41 @@ export default function CatalogForm(props: Props) {
     </>
   );
 
+  const IMAGE_ID = "catalog-image";
+  const TITLE_ID = "catalog-title";
   return (
     <form id={formId} onSubmit={handleSubmit(onSubmit)}>
-      <input {...register("title")} defaultValue={value.title} />
-      <div className="text-danger mt-2">{errors.title?.message}</div>
+      {/* catalog title */}
+      <div className="form-item">
+        <label htmlFor={IMAGE_ID} className="form-label">
+          Image URL
+        </label>
+
+        <input
+          {...register("title")}
+          id={IMAGE_ID}
+          className="form-control"
+          defaultValue={value.title}
+          placeholder="What is his title ?"
+        />
+        <div className="text-danger mt-2">{errors.title?.message}</div>
+      </div>
+
+      {/* catalog image url */}
+      <div className="form-item">
+        <label htmlFor={TITLE_ID} className="form-label">
+          Image URL
+        </label>
+        <input
+          {...register("imageUrl")}
+          id={TITLE_ID}
+          className="form-control"
+          defaultValue={value.imageUrl}
+          placeholder="What is his image url ?"
+        />
+        <div className="text-danger mt-2">{errors.imageUrl?.message}</div>
+      </div>
+
       {action === "update" && renderStatus}
     </form>
   );
