@@ -68,17 +68,18 @@ export default function CatalogForm(props: Props) {
 
   const IMAGE_ID = "catalog-image";
   const TITLE_ID = "catalog-title";
+
   return (
     <form id={formId} onSubmit={handleSubmit(onSubmit)}>
       {/* catalog title */}
       <div className="form-item">
-        <label htmlFor={IMAGE_ID} className="form-label">
-          Image URL
+        <label htmlFor={TITLE_ID} className="form-label">
+          Title
         </label>
 
         <input
           {...register("title")}
-          id={IMAGE_ID}
+          id={TITLE_ID}
           className="form-control"
           defaultValue={value.title}
           placeholder="What is his title ?"
@@ -88,12 +89,12 @@ export default function CatalogForm(props: Props) {
 
       {/* catalog image url */}
       <div className="form-item">
-        <label htmlFor={TITLE_ID} className="form-label">
+        <label htmlFor={IMAGE_ID} className="form-label">
           Image URL
         </label>
         <input
           {...register("imageUrl")}
-          id={TITLE_ID}
+          id={IMAGE_ID}
           className="form-control"
           defaultValue={value.imageUrl}
           placeholder="What is his image url ?"

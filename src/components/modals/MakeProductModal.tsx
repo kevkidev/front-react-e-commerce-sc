@@ -1,9 +1,8 @@
 import ProductForm from "components/forms/ProductForm";
 import { useState } from "react";
-import { Button } from "react-bootstrap";
 import { DTO } from "types/dto";
 import { FormAction } from "types/types";
-import { Modal } from "./Modal";
+import { MakeModalForm } from "./MakeModalForm";
 
 type Props = {
   shown: boolean;
@@ -16,38 +15,23 @@ type Props = {
 export function MakeProductModal(props: Props) {
   const { shown, onHide, product, title, action } = props;
   const [resetForm, setResetForm] = useState(false);
-  const FORM_ID = "new-product-form";
-  const footer = (
-    <>
-      <Button variant="secondary" onClick={onHide}>
-        Cancel
-      </Button>
-      <Button
-        variant="secondary"
-        onMouseDown={() => {
-          setResetForm(false);
-        }}
-        onMouseUp={() => {
-          setResetForm(true);
-        }}
-      >
-        Reset
-      </Button>
-      <Button variant="primary" type="submit" form={FORM_ID}>
-        {action[0].toUpperCase()}
-        {action.slice(1)}
-      </Button>
-    </>
-  );
 
   const handleSave = (data: DTO.Product) => {
     console.log(JSON.stringify(data));
-
     onHide();
   };
 
+  const FORM_ID = "new-product-form";
+
   return (
-    <Modal title={title} footer={footer} shown={shown} onHide={onHide}>
+    <MakeModalForm
+      title={title}
+      shown={shown}
+      onHide={onHide}
+      onReset={setResetForm}
+      action={action}
+      formId={FORM_ID}
+    >
       <ProductForm
         formId={FORM_ID}
         resetTrigger={resetForm}
@@ -55,6 +39,6 @@ export function MakeProductModal(props: Props) {
         onSave={handleSave}
         action={action}
       />
-    </Modal>
+    </MakeModalForm>
   );
 }
