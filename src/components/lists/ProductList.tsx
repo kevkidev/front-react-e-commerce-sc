@@ -1,4 +1,4 @@
-import { MakeProductModal } from "components/modals/MakeProductModal";
+import { MakeModalFormProduct } from "components/modals/MakeModalFormProduct";
 import { RoutePath } from "main/RoutePath";
 import { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
@@ -59,7 +59,8 @@ export function ProductList({ list }: Props) {
             ))}
         </tbody>
       </Table>
-      <MakeProductModal
+
+      <MakeModalFormProduct
         action={ACTION_UPDATE}
         shown={showModal}
         onHide={() => setShowModal(false)}

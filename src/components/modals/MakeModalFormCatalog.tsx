@@ -1,4 +1,4 @@
-import ProductForm from "components/forms/ProductForm";
+import CatalogForm from "components/forms/CatalogForm";
 import { useState } from "react";
 import { DTO } from "types/dto";
 import { FormAction } from "types/types";
@@ -7,35 +7,35 @@ import { MakeModalForm } from "./MakeModalForm";
 type Props = {
   shown: boolean;
   onHide: () => void;
-  product?: DTO.Product;
+  catalog?: DTO.Catalog;
   title: string;
   action: FormAction;
 };
 
-export function MakeProductModal(props: Props) {
-  const { shown, onHide, product, title, action } = props;
+export function MakeModalFormCatalog(props: Props) {
+  const { shown, onHide, catalog, title, action } = props;
   const [resetForm, setResetForm] = useState(false);
 
-  const handleSave = (data: DTO.Product) => {
-    console.log(JSON.stringify(data));
+  const handleSave = (data: DTO.Catalog) => {
+    console.log("udate :" + data);
     onHide();
   };
 
-  const FORM_ID = "new-product-form";
+  const FORM_ID = "new-catalog-form";
 
   return (
     <MakeModalForm
       title={title}
       shown={shown}
       onHide={onHide}
-      onReset={setResetForm}
       action={action}
       formId={FORM_ID}
+      onReset={setResetForm}
     >
-      <ProductForm
+      <CatalogForm
         formId={FORM_ID}
         resetTrigger={resetForm}
-        value={product}
+        catalog={catalog}
         onSave={handleSave}
         action={action}
       />
