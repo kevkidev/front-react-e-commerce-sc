@@ -1,4 +1,4 @@
-import { MakeCatalogModal } from "components/modals/MakeCatalogModal";
+import { MakeModalFormCatalog } from "components/modals/MakeModalFormCatalog";
 import { RoutePath } from "main/RoutePath";
 import { useState } from "react";
 import { Button, ListGroup } from "react-bootstrap";
@@ -41,7 +41,8 @@ export function CatalogList({ list }: Props) {
           </div>
         </ListGroup.Item>
       ))}
-      <MakeCatalogModal
+
+      <MakeModalFormCatalog
         action="update"
         shown={showModal}
         onHide={() => setShowModal(false)}

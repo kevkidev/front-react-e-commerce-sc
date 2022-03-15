@@ -1,5 +1,5 @@
 import { ProductList } from "components/lists/ProductList";
-import { MakeProductModal } from "components/modals/MakeProductModal";
+import { MakeModalFormProduct } from "components/modals/MakeModalFormProduct";
 import { useEffect, useState } from "react";
 import { Button, Figure } from "react-bootstrap";
 import { useParams } from "react-router-dom";
@@ -37,7 +37,8 @@ export function CatalogView() {
         Add a product
       </Button>
       <ProductList list={productList} />
-      <MakeProductModal
+
+      <MakeModalFormProduct
         action="create"
         shown={showModal}
         onHide={() => setShowModal(false)}

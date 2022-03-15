@@ -1,5 +1,5 @@
 // import "./AccountPage.scss";
-import { MakeProductModal } from "components/modals/MakeProductModal";
+import { MakeModalFormProduct } from "components/modals/MakeModalFormProduct";
 import React, { useEffect, useState } from "react";
 import { Badge, Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useParams } from "react-router-dom";
@@ -55,7 +55,7 @@ export default function ProductView() {
         </Card.Body>
       </Card>
 
-      <MakeProductModal
+      <MakeModalFormProduct
         action={ACTION_UPDATE}
         shown={showModal}
         onHide={() => setShowModal(false)}
