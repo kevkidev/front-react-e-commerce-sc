@@ -38,7 +38,9 @@ export const schema: SchemaOf<DTO.Product> = object({
   categoryUid: string()
     .uuid("Please select a category.")
     .default(defaultValue.categoryUid),
-  imageUrl: string().default(defaultValue.imageUrl),
+  imageUrl: string()
+    .required("Please enter an image URL.")
+    .default(defaultValue.imageUrl),
   quantity: number()
     .integer("It must be an integer.")
     .min(

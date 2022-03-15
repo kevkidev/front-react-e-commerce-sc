@@ -19,7 +19,9 @@ export const defaultValue: DTO.Catalog = {
 
 export const schema: SchemaOf<DTO.Catalog> = object({
   uid: string().default(defaultValue.uid),
-  imageUrl: string().default(defaultValue.imageUrl),
+  imageUrl: string()
+    .required("Please enter an image URL.")
+    .default(defaultValue.imageUrl),
   ownerUid: string().default("ae23efa8-9b40-4604-a149-e9e9b5d464e0"),
   productsUids: array().default(defaultValue.productsUids),
   title: string()
