@@ -6,6 +6,7 @@ export interface IRoutePath {
   sellCatalogs: string;
   sellCatalog: string;
   sellProducts: string;
+  sellProduct: string;
   sellOffers: string;
   sellOrders: string;
   account: string;
