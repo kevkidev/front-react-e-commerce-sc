@@ -15,11 +15,8 @@ export function CatalogView() {
   useEffect(() => {
     uid && setCatalog(CatalogService.findCatalog(uid));
     uid && setProductList(CatalogService.findNextProducts(uid));
-  }, [uid, CatalogService]);
+  }, [uid]);
 
-  const handleClick = (product: DTO.Product) => {
-    console.log(product);
-  };
   return (
     <main>
       <Figure>
@@ -39,7 +36,7 @@ export function CatalogView() {
       >
         Add a product
       </Button>
-      <ProductList list={productList} onClickItem={handleClick} />
+      <ProductList list={productList} />
       <MakeProductModal
         action="create"
         shown={showModal}
