@@ -1,6 +1,8 @@
 import { MakeProductModal } from "components/modals/MakeProductModal";
+import { RoutePath } from "main/RoutePath";
 import { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { DTO } from "types/dto";
 import { ACTION_UPDATE } from "types/types.d";
 import { Util } from "utils/Array";
@@ -32,7 +34,14 @@ export function ProductList({ list }: Props) {
           {sortedList &&
             sortedList.map((product) => (
               <tr key={product.uid}>
-                <td>{product.name}</td>
+                <td>
+                  <Link
+                    className="ms-2 me-auto"
+                    to={`${RoutePath.sellProducts}${product.uid}`}
+                  >
+                    {product.name}
+                  </Link>
+                </td>
                 <td>{product.quantity}</td>
                 <td>
                   <Button

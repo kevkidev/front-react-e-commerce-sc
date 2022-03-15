@@ -1,103 +1,67 @@
 // import "./AccountPage.scss";
-import { Auth } from "components/AuthContainer";
-import { ProductList } from "components/ProductList";
+import { MakeProductModal } from "components/modals/MakeProductModal";
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Badge, Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { ProductService } from "services/ProductService";
 import { RestService } from "services/RestService";
-import { Models } from "types/models";
+import { DTO } from "types/dto";
+import { ACTION_UPDATE } from "types/types.d";
 
 export default function ProductView() {
-  const [products, setProducts] = useState<Models.Product[]>([]);
-  const [selectedProducts, setSelectedProducts] = useState<Models.Product>();
-  selectedProducts;
-  const [showForm, setShowForm] = useState(false);
-  showForm;
-  const [, setResetForm] = useState(false);
-  // const [initialProduct] = useState<Model.Product>({
-  //   uid: "",
-  //   category: {
-  //     name: "unknow",
-  //     uid: "unknow",
-  //   },
-  //   imageUrl: "",
-  //   name: "",
-  //   owner: RestService.currentAccount,
-  //   quantity: 1,
-  //   description: "",
-  // });
+  const [value, setValue] = useState<DTO.Product>();
+  const [category, setCategory] = useState<DTO.Category>();
+  const { uid } = useParams();
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    RestService.Product.getAll().then((list) => setProducts(list));
-  }, []);
-
-  // const handleCreate = (value: Model.Product) => {
-  //   const product = _.cloneDeep(value);
-  //   product.uid = `product-${Date.now()}`;
-
-  //   const newList = _.cloneDeep(products);
-  //   newList.push(product);
-  //   setProducts(newList);
-
-  //   RestService.Product.add(value, () => {
-  //     // createFormResponse("The product as been added with success.")
-  //     // TODO : afficher un toast avec message
-  //   });
-  // };
-
-  // const handleUpdate = (value: Models.Product) => {
-  //   console.log("handleUpdate");
-
-  //   const newList = _.cloneDeep(products);
-  //   let index = newList.findIndex((prod) => value.uid == prod.uid);
-  //   if (index > -1) {
-  //     newList.splice(index, 1, value);
-  //   }
-  //   setProducts(newList);
-
-  //   RestService.Product.update(value);
-  // };
-
-  const handleItemClick = (product: Models.Product) => {
-    setSelectedProducts(product);
-    setShowForm(true);
-  };
+    const product = uid ? ProductService.findByUid(uid) : null;
+    if (!product) throw Error("Product not found");
+    setValue(product);
+    const category =
+      product.categoryUid && RestService.getCategory(product.categoryUid);
+    if (!category) throw Error("Category not found");
+    category && setCategory(category);
+  }, [uid]);
 
   return (
-    <Auth.Container>
-      <h1>My Products</h1>
-      <Button
-        variant="success"
-        onClick={() => {
-          setShowForm(true);
-          setResetForm(true);
-        }}
-      >
-        New Product
-      </Button>
-      {/* <ProductFormModal
-        title="Create a product"
-        onSave={handleCreate}
-        onClose={() => setShowForm(false)}
-        hidden={showForm}
-        product={initialProduct}
-        resetForm={resetForm}
-      /> */}
-      <hr />
-      <ProductList.Component
-        // onSave={handleUpdate}
-        list={products}
-        onClickItem={handleItemClick}
-      />
-      {/* {selectedProducts && (
-        <ProductFormModal
-          product={selectedProducts}
-          title="Update this product"
-          onSave={handleUpdate}
-          onClose={() => setShowForm(false)}
-          hidden={showForm}
-          resetForm={false}
+    <main>
+      <Card style={{ width: "18rem" }}>
+        <Card.Img
+          variant="top"
+          src={value?.imageUrl}
+          alt="the catalog's image"
         />
-      )} */}
-    </Auth.Container>
+        <Card.Body>
+          <Card.Title>{value?.name}</Card.Title>
+          <Card.Subtitle className="mb-2 text-muted">
+            {category?.name}
+          </Card.Subtitle>
+          <Card.Text>{value?.description}</Card.Text>
+        </Card.Body>
+        <ListGroup className="list-group-flush">
+          <ListGroupItem>
+            Quanity : <Badge bg="success">{value?.quantity}</Badge>
+          </ListGroupItem>
+        </ListGroup>
+        <Card.Body>
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() => setShowModal(true)}
+          >
+            Modify
+          </Button>
+        </Card.Body>
+      </Card>
+
+      <MakeProductModal
+        action={ACTION_UPDATE}
+        shown={showModal}
+        onHide={() => setShowModal(false)}
+        title="Modify"
+        product={value}
+      />
+    </main>
   );
 }

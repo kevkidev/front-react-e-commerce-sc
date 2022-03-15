@@ -26,10 +26,9 @@ ReactDOM.render(
           <Route element={<SellPage />}>
             <Route path={RoutePath.sellCatalogs} element={<CatalogsView />} />
             <Route path={RoutePath.sellCatalog} element={<CatalogView />} />
-            Models
             <Route path={RoutePath.sellOffers} element={<>Offers</>} />
             <Route path={RoutePath.sellOrders} element={<>Orders</>} />
-            <Route path={RoutePath.sellProducts} element={<ProductView />} />
+            <Route path={RoutePath.sellProduct} element={<ProductView />} />
           </Route>
           <Route path={RoutePath.auth} element={<AuthPage />} />
           <Route element={<AccountPage />}>
