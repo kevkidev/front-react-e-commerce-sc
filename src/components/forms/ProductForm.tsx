@@ -9,6 +9,7 @@ import {
   availableStatus,
   CATEGORY_ID,
   defaultValue,
+  IMAGE_ID,
   MAX_PRODUCT_QUANTITY,
   MIN_PRODUCT_QUANTITY,
   PRODUCT_DESCRIPTION,
@@ -38,8 +39,8 @@ export default function ProductForm(props: Props) {
   });
 
   useEffect(() => {
-    resetTrigger && reset(defaultValue);
-  }, [resetTrigger, reset]);
+    resetTrigger && reset(current);
+  }, [resetTrigger, reset, current]);
 
   const onSubmit = (data: DTO.Product) => {
     console.log(JSON.stringify(data));
@@ -73,6 +74,21 @@ export default function ProductForm(props: Props) {
 
   return (
     <form id={formId} onSubmit={handleSubmit(onSubmit)}>
+      {/* product image url */}
+      <div className="form-item">
+        <label htmlFor={IMAGE_ID} className="form-label">
+          Image URL
+        </label>
+        <input
+          {...register("imageUrl")}
+          id={IMAGE_ID}
+          className="form-control"
+          defaultValue={current.imageUrl}
+          placeholder="What is his image ?"
+        />
+        <div className="text-danger mt-2">{errors.imageUrl?.message}</div>
+      </div>
+
       {/* product name */}
       <div className="form-item">
         <label htmlFor={PRODUCT_ID} className="form-label">
@@ -102,9 +118,9 @@ export default function ProductForm(props: Props) {
           defaultValue={current.categoryUid}
         >
           <option value="none">Please select a category</option>
-          {RestService.categories.map((c, i) => (
-            <option key={i + c.uid} value={c.uid}>
-              {c.name}
+          {RestService.categories.map((category, index) => (
+            <option key={index + category.uid} value={category.uid}>
+              {category.name}
             </option>
           ))}
         </select>

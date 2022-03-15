@@ -63,7 +63,7 @@ export namespace CatalogService {
         quantity: 109,
         description:
           "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-        categoryUid: "7-azeeert",
+        categoryUid: "bae4545d-fb92-42c6-ace9-5df36ade0c2d",
         imageUrl: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
         //   rating: { rate: 3.9, count: 120 },
         ownerUid: currentAccount.uid,
@@ -75,7 +75,7 @@ export namespace CatalogService {
         quantity: 223,
         description:
           "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
-        categoryUid: "7-azeeert",
+        categoryUid: "7d02d358-298b-43b5-b0c5-7ba29696e2b9",
         imageUrl:
           "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
         //   rating: { rate: 4.1, count: 259 },
