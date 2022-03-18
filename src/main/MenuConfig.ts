@@ -17,13 +17,6 @@ export namespace MenuConfig {
     },
   ];
 
-  export const AccountMenuOthersItems: IMenuItem[] = [
-    {
-      path: RoutePath.auth,
-      title: "Log Out",
-    },
-  ];
-
   export const SellMenuItems: IMenuItem[] = [
     {
       path: RoutePath.sellCatalogs,

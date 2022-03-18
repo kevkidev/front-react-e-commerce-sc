@@ -82,3 +82,12 @@ export interface FetchResponse {
   json: Promise;
   status: number;
 }
+
+export interface CloudApp<A, D> {
+  app: A;
+  db: D;
+}
+
+export interface AppUser {
+  email: string | undefined;
+}
