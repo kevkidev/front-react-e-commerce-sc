@@ -37,7 +37,7 @@ export function AuthFormSignUp({ onFormSent }: Props) {
       },
     };
 
-    fetch(process.env.REACT_APP_SERVER_AUTH + "/signUp", fetchInit)
+    fetch(process.env.REACT_APP_AUTH_SERVICE_URI + "/signUp", fetchInit)
       .then((response) => {
         return { json: response.json(), status: response.status };
       })
