@@ -25,7 +25,7 @@ export default function ResetPasswordForm() {
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync("password", salt);
 
-    fetch(process.env.REACT_APP_SERVER_AUTH + "/reset-password", {
+    fetch(process.env.REACT_APP_AUTH_SERVICE_URI + "/reset-password", {
       method: "POST",
       body: JSON.stringify({
         email: userEmail,

@@ -1,6 +1,6 @@
 import { IRoutePath } from "types/types";
 
-const ROOT = `/${process.env.REACT_APP_APP_NAME}/`;
+const ROOT = `/${process.env.REACT_APP_NAME}/`;
 const AUTH = `${ROOT}auth/`;
 const MESSAGES = `${ROOT}messages/`;
 const SELL = `sell/`;

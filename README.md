@@ -44,3 +44,9 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Configure the .env file
+
+1. Copy the variables from the src/.env-template the local src/.env
+2. Set the variables
+3. restart the node server (`npm start`)
