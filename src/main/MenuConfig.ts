@@ -30,10 +30,6 @@ export namespace MenuConfig {
       title: "Catalogs",
     },
     {
-      path: RoutePath.sellProducts,
-      title: "Products",
-    },
-    {
       path: RoutePath.sellOffers,
       title: "Offers",
     },

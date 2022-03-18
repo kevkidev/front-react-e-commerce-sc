@@ -1,31 +1,54 @@
-import { FormAction } from "types/types.d";
+import { useEffect, useState } from "react";
 import { Modal } from "./Modal";
 import { ModalFooterForm } from "./ModalFooterForm";
 
 type Props = {
   shown: boolean;
   onHide: () => void;
-  onReset: Function;
+  onReset?: Function;
   title: string;
-  action: FormAction;
+  actionTitle: string;
   formId: string;
   children: React.ReactNode;
+  formSent?: boolean;
 };
 
 export function MakeModalForm(props: Props) {
-  const { children, shown, onHide, onReset, title, action, formId } = props;
+  const {
+    children,
+    shown,
+    onHide,
+    onReset,
+    title,
+    formId,
+    actionTitle,
+    formSent,
+  } = props;
+
+  const [hideSubmitButton, setHideSubmitButton] = useState(formSent);
+
+  useEffect(() => {
+    formSent && setHideSubmitButton(true);
+  }, [formSent]);
+
+  const handleHide = () => {
+    // to reset de submit button display after close
+    setHideSubmitButton(false);
+    onHide();
+  };
 
   const footer = (
     <ModalFooterForm
-      action={action}
+      actionTitle={actionTitle}
       formId={formId}
-      onHide={onHide}
+      onHide={handleHide}
       onReset={onReset}
+      hideSubmitButton={hideSubmitButton}
     />
   );
 
   return (
-    <Modal title={title} footer={footer} shown={shown} onHide={onHide}>
+    <Modal title={title} footer={footer} shown={shown} onHide={handleHide}>
       {children}
     </Modal>
   );

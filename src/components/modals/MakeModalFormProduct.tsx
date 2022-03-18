@@ -29,7 +29,7 @@ export function MakeModalFormProduct(props: Props) {
       shown={shown}
       onHide={onHide}
       onReset={setResetForm}
-      action={action}
+      actionTitle={action}
       formId={FORM_ID}
     >
       <ProductForm

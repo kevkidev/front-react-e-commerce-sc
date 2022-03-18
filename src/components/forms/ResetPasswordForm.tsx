@@ -1,11 +1,12 @@
 // import "./AuthPage.scss";
 import bcrypt from "bcryptjs";
-import { Form, FormResponse } from "components/Form";
-import FormInputGroup from "components/FormInputGroup";
 import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import { FormResponse } from "types/types.d";
 
+//@todo : migrate to react form hook + integrate
 export default function ResetPasswordForm() {
-  const [formResponse, setFormResponse] = useState<FormResponse>({
+  const [, setFormResponse] = useState<FormResponse>({
     message: "",
     level: "danger",
     display: "none",
@@ -16,8 +17,8 @@ export default function ResetPasswordForm() {
     return email ? email : "";
   });
 
-  const handleSubmit = (form: FormData) => {
-    const email = form.get("email");
+  const handleSubmit = () => {
+    const email = "email";
 
     if (!email) throw "Oops! Email is not defined!";
 
@@ -59,46 +60,7 @@ export default function ResetPasswordForm() {
 
   return (
     <main>
-      <section className="connection">
-        <h2>Create your password</h2>
-        <p className="info-text">
-          <i className="bi bi-info-circle-fill"></i> This form is not plugged to
-          a serveur such use the &quot;Use API login&quot;.
-        </p>
-        <Form
-          id="connection-form"
-          onSubmit={handleSubmit}
-          formResponse={formResponse}
-        >
-          <FormInputGroup
-            id="connection-email"
-            label="Email"
-            name="email"
-            type="email"
-            placeholder="Your email please"
-            required={true}
-            regexp="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
-            // invalidFeedBack="Please check your email please."
-            value={userEmail}
-            disabled
-          />
-          <FormInputGroup
-            id="connection-password"
-            label="Password"
-            name="password"
-            type="password"
-            placeholder="Your password please"
-            required={true}
-            // invalidFeedBack="Please check your password"
-          />
-
-          <div className="button-group">
-            <button className="btn btn-primary" form="connection-form">
-              Enter
-            </button>
-          </div>
-        </Form>
-      </section>
+      <Button onClick={handleSubmit}>test</Button>
     </main>
   );
 }

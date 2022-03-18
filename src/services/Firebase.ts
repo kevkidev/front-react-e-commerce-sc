@@ -5,7 +5,6 @@ import {
   signInWithEmailAndPassword,
   signOut,
   User,
-  UserCredential,
 } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
 import { Models } from "types/models";
@@ -66,21 +65,29 @@ export namespace Firebase {
     });
   }
 
-  export function signIn(
-    email: string,
-    secret: string,
+  interface ParamsSignIn {
+    email: string;
+    password: string;
     executor: {
-      resolve: (userCredential: UserCredential) => void;
-      reject: () => void;
-    }
-  ) {
+      onSuccess: () => void;
+      onEmailNotVerified: () => void;
+      onFail: () => void;
+    };
+  }
+  export function signIn({ email, password, executor }: ParamsSignIn) {
     getInstance().then(() => {
-      signInWithEmailAndPassword(getAuth(), email, secret)
+      signInWithEmailAndPassword(getAuth(), email, password)
         .then((userCredential) => {
-          executor.resolve(userCredential);
+          if (userCredential.user.emailVerified) return userCredential;
+          executor.onEmailNotVerified();
+          return;
+        })
+        .then((userCredential) => {
+          if (!userCredential) return;
+          executor.onSuccess();
         })
         .catch(() => {
-          executor.reject();
+          executor.onFail();
         });
     });
   }

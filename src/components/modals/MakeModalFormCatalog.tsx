@@ -28,7 +28,7 @@ export function MakeModalFormCatalog(props: Props) {
       title={title}
       shown={shown}
       onHide={onHide}
-      action={action}
+      actionTitle={action}
       formId={FORM_ID}
       onReset={setResetForm}
     >
