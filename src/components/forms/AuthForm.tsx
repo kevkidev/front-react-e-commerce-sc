@@ -20,7 +20,7 @@ interface Props {
   asSignUp?: boolean;
 }
 
-export function AuthForm2(props: Props) {
+export function AuthForm(props: Props) {
   const { onSend, formResponse, asSignUp, hasSubmitButton } = props;
   const [formId] = useState(
     asSignUp ? AUTH_FORM_ID_SIGN_UP : AUTH_FORM_ID_SIGN_IN
