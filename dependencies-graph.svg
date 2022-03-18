@@ -129,11 +129,11 @@
 <path fill="none" stroke="#757575" d="M1364.76,-1115.48C1527.83,-1129.33 1958.18,-1158.3 2080,-1090.66 2142.19,-1056.13 2176.98,-972.99 2190.43,-933.79"/>
 <polygon fill="#757575" stroke="#757575" points="2193.79,-934.78 2193.6,-924.18 2187.15,-932.58 2193.79,-934.78"/>
 </g>
-<!-- components/forms/AuthForm2.tsx -->
+<!-- components/forms/AuthForm.tsx -->
 <g id="node8" class="node">
-<title>components/forms/AuthForm2.tsx</title>
-<path fill="none" stroke="#c6c5fe" d="M1708.83,-968.16C1708.83,-968.16 1503.17,-968.16 1503.17,-968.16 1499.33,-968.16 1495.5,-964.33 1495.5,-960.49 1495.5,-960.49 1495.5,-952.83 1495.5,-952.83 1495.5,-948.99 1499.33,-945.16 1503.17,-945.16 1503.17,-945.16 1708.83,-945.16 1708.83,-945.16 1712.67,-945.16 1716.5,-948.99 1716.5,-952.83 1716.5,-952.83 1716.5,-960.49 1716.5,-960.49 1716.5,-964.33 1712.67,-968.16 1708.83,-968.16"/>
-<text text-anchor="middle" x="1606" y="-952.96" font-family="Arial" font-size="14.00" fill="#c6c5fe">components/forms/AuthForm2.tsx</text>
+<title>components/forms/AuthForm.tsx</title>
+<path fill="none" stroke="#c6c5fe" d="M1705.33,-968.16C1705.33,-968.16 1506.67,-968.16 1506.67,-968.16 1502.83,-968.16 1499,-964.33 1499,-960.49 1499,-960.49 1499,-952.83 1499,-952.83 1499,-948.99 1502.83,-945.16 1506.67,-945.16 1506.67,-945.16 1705.33,-945.16 1705.33,-945.16 1709.17,-945.16 1713,-948.99 1713,-952.83 1713,-952.83 1713,-960.49 1713,-960.49 1713,-964.33 1709.17,-968.16 1705.33,-968.16"/>
+<text text-anchor="middle" x="1606" y="-952.96" font-family="Arial" font-size="14.00" fill="#c6c5fe">components/forms/AuthForm.tsx</text>
 </g>
 <!-- components/forms/AuthFormConfig.tsx -->
 <g id="node9" class="node">
@@ -141,11 +141,11 @@
 <path fill="none" stroke="#c6c5fe" d="M2047.83,-964.16C2047.83,-964.16 1810.17,-964.16 1810.17,-964.16 1806.33,-964.16 1802.5,-960.33 1802.5,-956.49 1802.5,-956.49 1802.5,-948.83 1802.5,-948.83 1802.5,-944.99 1806.33,-941.16 1810.17,-941.16 1810.17,-941.16 2047.83,-941.16 2047.83,-941.16 2051.67,-941.16 2055.5,-944.99 2055.5,-948.83 2055.5,-948.83 2055.5,-956.49 2055.5,-956.49 2055.5,-960.33 2051.67,-964.16 2047.83,-964.16"/>
 <text text-anchor="middle" x="1929" y="-948.96" font-family="Arial" font-size="14.00" fill="#c6c5fe">components/forms/AuthFormConfig.tsx</text>
 </g>
-<!-- components/forms/AuthForm2.tsx&#45;&gt;components/forms/AuthFormConfig.tsx -->
+<!-- components/forms/AuthForm.tsx&#45;&gt;components/forms/AuthFormConfig.tsx -->
 <g id="edge5" class="edge">
-<title>components/forms/AuthForm2.tsx&#45;&gt;components/forms/AuthFormConfig.tsx</title>
-<path fill="none" stroke="#757575" d="M1716.57,-955.29C1740.94,-954.99 1767.06,-954.66 1792.34,-954.35"/>
-<polygon fill="#757575" stroke="#757575" points="1792.4,-957.85 1802.36,-954.22 1792.31,-950.85 1792.4,-957.85"/>
+<title>components/forms/AuthForm.tsx&#45;&gt;components/forms/AuthFormConfig.tsx</title>
+<path fill="none" stroke="#757575" d="M1713.44,-955.33C1738.69,-955.02 1765.95,-954.68 1792.3,-954.35"/>
+<polygon fill="#757575" stroke="#757575" points="1792.4,-957.85 1802.35,-954.22 1792.31,-950.85 1792.4,-957.85"/>
 </g>
 <!-- components/forms/FormResponseMessage.tsx -->
 <g id="node10" class="node">
@@ -153,15 +153,15 @@
 <path fill="none" stroke="#c6c5fe" d="M2072.33,-1082.16C2072.33,-1082.16 1785.67,-1082.16 1785.67,-1082.16 1781.83,-1082.16 1778,-1078.33 1778,-1074.49 1778,-1074.49 1778,-1066.83 1778,-1066.83 1778,-1062.99 1781.83,-1059.16 1785.67,-1059.16 1785.67,-1059.16 2072.33,-1059.16 2072.33,-1059.16 2076.17,-1059.16 2080,-1062.99 2080,-1066.83 2080,-1066.83 2080,-1074.49 2080,-1074.49 2080,-1078.33 2076.17,-1082.16 2072.33,-1082.16"/>
 <text text-anchor="middle" x="1929" y="-1066.96" font-family="Arial" font-size="14.00" fill="#c6c5fe">components/forms/FormResponseMessage.tsx</text>
 </g>
-<!-- components/forms/AuthForm2.tsx&#45;&gt;components/forms/FormResponseMessage.tsx -->
+<!-- components/forms/AuthForm.tsx&#45;&gt;components/forms/FormResponseMessage.tsx -->
 <g id="edge6" class="edge">
-<title>components/forms/AuthForm2.tsx&#45;&gt;components/forms/FormResponseMessage.tsx</title>
+<title>components/forms/AuthForm.tsx&#45;&gt;components/forms/FormResponseMessage.tsx</title>
 <path fill="none" stroke="#757575" d="M1639.55,-968.22C1698.07,-989 1820.99,-1032.65 1885.85,-1055.69"/>
 <polygon fill="#757575" stroke="#757575" points="1884.77,-1059.02 1895.37,-1059.07 1887.12,-1052.43 1884.77,-1059.02"/>
 </g>
-<!-- components/forms/AuthForm2.tsx&#45;&gt;types/types.d.ts -->
+<!-- components/forms/AuthForm.tsx&#45;&gt;types/types.d.ts -->
 <g id="edge7" class="edge">
-<title>components/forms/AuthForm2.tsx&#45;&gt;types/types.d.ts</title>
+<title>components/forms/AuthForm.tsx&#45;&gt;types/types.d.ts</title>
 <path fill="none" stroke="#757575" d="M1663.32,-968.16C1752.98,-984.35 1933.04,-1008.14 2080,-972.66 2114.09,-964.43 2149.39,-944.47 2172.18,-929.83"/>
 <polygon fill="#757575" stroke="#757575" points="2174.13,-932.73 2180.56,-924.31 2170.28,-926.88 2174.13,-932.73"/>
 </g>
@@ -189,11 +189,11 @@
 <path fill="none" stroke="#757575" d="M1100.38,-928.89C1111.6,-933.42 1122.07,-939.53 1131,-947.66 1177.23,-989.75 1121.37,-1040.91 1167,-1083.66 1182.95,-1098.6 1204.86,-1106.11 1226.26,-1109.62"/>
 <polygon fill="#757575" stroke="#757575" points="1225.99,-1113.11 1236.37,-1110.99 1226.94,-1106.18 1225.99,-1113.11"/>
 </g>
-<!-- components/forms/AuthFormSignIn.tsx&#45;&gt;components/forms/AuthForm2.tsx -->
+<!-- components/forms/AuthFormSignIn.tsx&#45;&gt;components/forms/AuthForm.tsx -->
 <g id="edge9" class="edge">
-<title>components/forms/AuthFormSignIn.tsx&#45;&gt;components/forms/AuthForm2.tsx</title>
-<path fill="none" stroke="#757575" d="M1100.22,-928.88C1122.47,-930.15 1145.42,-931.45 1167,-932.66 1274.63,-938.69 1397.14,-945.39 1485.17,-950.17"/>
-<polygon fill="#757575" stroke="#757575" points="1485.02,-953.67 1495.19,-950.72 1485.4,-946.68 1485.02,-953.67"/>
+<title>components/forms/AuthFormSignIn.tsx&#45;&gt;components/forms/AuthForm.tsx</title>
+<path fill="none" stroke="#757575" d="M1100.22,-928.88C1122.47,-930.15 1145.42,-931.45 1167,-932.66 1276.09,-938.77 1400.47,-945.57 1488.75,-950.37"/>
+<polygon fill="#757575" stroke="#757575" points="1488.61,-953.87 1498.79,-950.91 1488.99,-946.88 1488.61,-953.87"/>
 </g>
 <!-- components/forms/AuthFormSignIn.tsx&#45;&gt;components/forms/FormResponseMessage.tsx -->
 <g id="edge10" class="edge">
@@ -243,9 +243,9 @@
 <path fill="none" stroke="#c6c5fe" d="M1421.83,-1008.16C1421.83,-1008.16 1179.17,-1008.16 1179.17,-1008.16 1175.33,-1008.16 1171.5,-1004.33 1171.5,-1000.49 1171.5,-1000.49 1171.5,-992.83 1171.5,-992.83 1171.5,-988.99 1175.33,-985.16 1179.17,-985.16 1179.17,-985.16 1421.83,-985.16 1421.83,-985.16 1425.67,-985.16 1429.5,-988.99 1429.5,-992.83 1429.5,-992.83 1429.5,-1000.49 1429.5,-1000.49 1429.5,-1004.33 1425.67,-1008.16 1421.83,-1008.16"/>
 <text text-anchor="middle" x="1300.5" y="-992.96" font-family="Arial" font-size="14.00" fill="#c6c5fe">components/forms/AuthFormSignUp.tsx</text>
 </g>
-<!-- components/forms/AuthFormSignUp.tsx&#45;&gt;components/forms/AuthForm2.tsx -->
+<!-- components/forms/AuthFormSignUp.tsx&#45;&gt;components/forms/AuthForm.tsx -->
 <g id="edge14" class="edge">
-<title>components/forms/AuthFormSignUp.tsx&#45;&gt;components/forms/AuthForm2.tsx</title>
+<title>components/forms/AuthFormSignUp.tsx&#45;&gt;components/forms/AuthForm.tsx</title>
 <path fill="none" stroke="#757575" d="M1388.88,-985.14C1426.01,-980.25 1469.46,-974.52 1507.62,-969.49"/>
 <polygon fill="#757575" stroke="#757575" points="1508.26,-972.94 1517.71,-968.16 1507.34,-966 1508.26,-972.94"/>
 </g>

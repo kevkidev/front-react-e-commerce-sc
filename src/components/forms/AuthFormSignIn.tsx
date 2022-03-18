@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthService } from "services/AuthService";
 import { Auth, FormResponse } from "types/types.d";
-import { AuthForm2 } from "./AuthForm2";
+import { AuthForm } from "./AuthForm";
 import { FormResponseMessageUtil } from "./FormResponseMessage";
 
 export function AuthFormSignIn() {
@@ -45,7 +45,7 @@ export function AuthFormSignIn() {
 
   return (
     <>
-      <AuthForm2
+      <AuthForm
         onSend={handleSubmit}
         formResponse={formResponse}
         hasSubmitButton

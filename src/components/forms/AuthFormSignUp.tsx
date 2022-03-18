@@ -9,7 +9,7 @@ import {
   HTTP_STATUS_CLASS_SUCCESS,
   JsonResponseSignUp,
 } from "types/types.d";
-import { AuthForm2 } from "./AuthForm2";
+import { AuthForm } from "./AuthForm";
 import { FormResponseMessageUtil } from "./FormResponseMessage";
 
 interface Props {
@@ -75,7 +75,7 @@ export function AuthFormSignUp({ onFormSent }: Props) {
 
   return (
     <>
-      <AuthForm2 onSend={handleSubmit} formResponse={formResponse} asSignUp />
+      <AuthForm onSend={handleSubmit} formResponse={formResponse} asSignUp />
     </>
   );
 }
