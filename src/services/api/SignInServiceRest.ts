@@ -24,7 +24,7 @@ export namespace SignInServiceRest {
       },
     };
 
-    fetch(process.env.REACT_APP_SERVER_AUTH + "/login", fetchInit)
+    fetch(process.env.REACT_APP_AUTH_SERVICE_URI + "/login", fetchInit)
       .then((response) => {
         return { json: response.json(), status: response.status };
       })
