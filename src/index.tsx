@@ -9,6 +9,7 @@ import { CatalogsView } from "components/views/CatalogsView";
 import { CatalogView } from "components/views/CatalogView";
 import ProductView from "components/views/ProductView";
 import { ProfileView } from "components/views/ProfileView";
+import { CloudContext } from "main/contexts";
 import { RoutePath } from "main/RoutePath";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -18,28 +19,33 @@ import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path={RoutePath.root} element={<App />}>
-          <Route index element={<HomePage />} />
-          <Route path={RoutePath.messages} element={<MessagesPage />} />
-          <Route element={<SellPage />}>
-            <Route path={RoutePath.sellCatalogs} element={<CatalogsView />} />
-            <Route path={RoutePath.sellCatalog} element={<CatalogView />} />
-            <Route path={RoutePath.sellOffers} element={<>Offers</>} />
-            <Route path={RoutePath.sellOrders} element={<>Orders</>} />
-            <Route path={RoutePath.sellProduct} element={<ProductView />} />
+    <CloudContext.Provider value={undefined}>
+      <BrowserRouter>
+        <Routes>
+          <Route path={RoutePath.root} element={<App />}>
+            <Route index element={<HomePage />} />
+            <Route path={RoutePath.messages} element={<MessagesPage />} />
+            <Route element={<SellPage />}>
+              <Route path={RoutePath.sellCatalogs} element={<CatalogsView />} />
+              <Route path={RoutePath.sellCatalog} element={<CatalogView />} />
+              <Route path={RoutePath.sellOffers} element={<>Offers</>} />
+              <Route path={RoutePath.sellOrders} element={<>Orders</>} />
+              <Route path={RoutePath.sellProduct} element={<ProductView />} />
+            </Route>
+            <Route path={RoutePath.auth} element={<AuthPage />} />
+            <Route element={<AccountPage />}>
+              <Route
+                path={RoutePath.accountProfile}
+                element={<ProfileView />}
+              />
+              <Route path={RoutePath.accountSecurity} element={<>Security</>} />
+              <Route path={RoutePath.accountSettings} element={<>Settings</>} />
+            </Route>
+            <Route path={RoutePath.any} element={<NotFoundPage />} />
           </Route>
-          <Route path={RoutePath.auth} element={<AuthPage />} />
-          <Route element={<AccountPage />}>
-            <Route path={RoutePath.accountProfile} element={<ProfileView />} />
-            <Route path={RoutePath.accountSecurity} element={<>Security</>} />
-            <Route path={RoutePath.accountSettings} element={<>Settings</>} />
-          </Route>
-          <Route path={RoutePath.any} element={<NotFoundPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </CloudContext.Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
