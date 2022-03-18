@@ -23,9 +23,9 @@ export namespace LocalData {
     window.localStorage.setItem("refreshToken", token);
   }
 
-  // export function setUser(user: User) {
-  //   window.localStorage.setItem("user", JSON.stringify(user));
-  // }
+  export function setUser(user: any) {
+    window.localStorage.setItem("user", JSON.stringify(user));
+  }
 
   export function getUser() {
     // const user = window.localStorage.getItem("user");

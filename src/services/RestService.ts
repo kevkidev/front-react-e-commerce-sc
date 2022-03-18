@@ -1,5 +1,13 @@
 import { products } from "services/products.json";
-import { Models } from "types/models";
+import { Models } from "types/models.d";
+import {
+  HttpStatusCodeClass,
+  HTTP_STATUS_CLASS_ERROR_CLIENT,
+  HTTP_STATUS_CLASS_ERROR_SERVER,
+  HTTP_STATUS_CLASS_INFO,
+  HTTP_STATUS_CLASS_REDIRECT,
+  HTTP_STATUS_CLASS_SUCCESS,
+} from "types/types.d";
 
 const MOCK_SERVICE_TIMEOUT = 3000;
 
@@ -68,5 +76,31 @@ export namespace RestService {
         }, MOCK_SERVICE_TIMEOUT);
       });
     }
+  }
+
+  export function getStatusClass(
+    statusCode: number
+  ): HttpStatusCodeClass | undefined {
+    // Informational responses (100–199)
+    if (statusCode >= 100 && statusCode < 200) return HTTP_STATUS_CLASS_INFO;
+    // Successful responses (200–299)
+    if (statusCode >= 200 && statusCode < 300) return HTTP_STATUS_CLASS_SUCCESS;
+    // Redirection messages (300–399)
+    if (statusCode >= 300 && statusCode < 400)
+      return HTTP_STATUS_CLASS_REDIRECT;
+    // Client error responses (400–499)
+    if (statusCode >= 400 && statusCode < 500)
+      return HTTP_STATUS_CLASS_ERROR_CLIENT;
+    // Server error responses (500–599)
+    if (statusCode >= 500 && statusCode < 600)
+      return HTTP_STATUS_CLASS_ERROR_SERVER;
+  }
+
+  const MESSAGE_CONNECTION_ERROR =
+    "We are sorrhing wong. Check your internet connection. Otherwise contact our support team please.";
+
+  export function handleCatch(error: any, onFail: (message: string) => void) {
+    onFail(MESSAGE_CONNECTION_ERROR);
+    console.error(error);
   }
 }
