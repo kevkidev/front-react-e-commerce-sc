@@ -1,7 +1,8 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import _ from "lodash";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { AuthService } from "services/AuthService";
+import { CatalogService } from "services/CatalogService";
 import { DTO } from "types/dto";
 import { FormAction } from "types/types";
 import { availableStatus, defaultValue, schema } from "./catalogFormConfig";
@@ -11,14 +12,14 @@ interface Props {
   resetTrigger: boolean;
   catalog?: DTO.Catalog;
   action: FormAction;
-  onSave: (value: DTO.Catalog) => void;
+  onSave: () => void;
 }
 
 export default function CatalogForm(props: Props) {
   const { formId, resetTrigger, catalog, onSave, action } = props;
-  const [value, setValue] = useState<DTO.Catalog>(
-    catalog ? catalog : defaultValue
-  );
+
+  const [value] = useState<DTO.Catalog>(catalog ? catalog : defaultValue);
+
   const {
     register,
     handleSubmit,
@@ -33,11 +34,13 @@ export default function CatalogForm(props: Props) {
   }, [resetTrigger, reset, value]);
 
   const onSubmit = (data: DTO.Catalog) => {
-    console.log(data);
-    const newCatalog = _.cloneDeep(value);
-    newCatalog.title = data.title;
-    setValue(newCatalog);
-    onSave(newCatalog);
+    const newCatalog = { ...data };
+    const user = AuthService.getLoggedUser();
+    if (user) {
+      newCatalog.ownerUid = user.uid;
+      CatalogService.create(newCatalog);
+    }
+    onSave();
   };
 
   const renderStatus = (

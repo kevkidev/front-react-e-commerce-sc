@@ -13,11 +13,16 @@ export function MakeModalFormSignUp(props: Props) {
   const { shown, onHide, title } = props;
   const [formSent, setFormSent] = useState(false);
 
+  const handleHide = () => {
+    setFormSent(false);
+    onHide();
+  };
+
   return (
     <MakeModalForm
       title={title}
       shown={shown}
-      onHide={onHide}
+      onHide={handleHide}
       actionTitle={"Sign Up"}
       formId={AUTH_FORM_ID_SIGN_UP}
       formSent={formSent}
