@@ -1,3 +1,4 @@
+import { useModalDisplay } from "components/hooks/ModalHook";
 import { MakeModalFormCatalog } from "components/modals/MakeModalFormCatalog";
 import { RoutePath } from "main/RoutePath";
 import { useState } from "react";
@@ -10,7 +11,7 @@ interface Props {
 }
 
 export function CatalogList({ list }: Props) {
-  const [showModal, setShowModal] = useState(false);
+  const { showModal, setShowModal } = useModalDisplay();
   const [editing, setEditing] = useState<DTO.Catalog>(list[0]);
   return (
     <ListGroup as="ol" variant="flush">
