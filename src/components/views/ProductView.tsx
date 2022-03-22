@@ -1,4 +1,5 @@
 // import "./AccountPage.scss";
+import { useModalDisplay } from "components/hooks/ModalHook";
 import { MakeModalFormProduct } from "components/modals/MakeModalFormProduct";
 import React, { useEffect, useState } from "react";
 import { Badge, Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
@@ -12,7 +13,7 @@ export default function ProductView() {
   const [value, setValue] = useState<DTO.Product>();
   const [category, setCategory] = useState<DTO.Category>();
   const { uid } = useParams();
-  const [showModal, setShowModal] = useState(false);
+  const { showModal, setShowModal } = useModalDisplay();
 
   useEffect(() => {
     const product = uid ? ProductService.findByUid(uid) : null;

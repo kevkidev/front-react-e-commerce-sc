@@ -1,3 +1,4 @@
+import { useModalDisplay } from "components/hooks/ModalHook";
 import { ProductList } from "components/lists/ProductList";
 import { MakeModalFormProduct } from "components/modals/MakeModalFormProduct";
 import { useEffect, useState } from "react";
@@ -10,7 +11,7 @@ export function CatalogView() {
   const [catalog, setCatalog] = useState<DTO.Catalog>();
   const { uid } = useParams();
   const [productList, setProductList] = useState<DTO.Product[]>([]);
-  const [showModal, setShowModal] = useState(false);
+  const { showModal, setShowModal } = useModalDisplay();
 
   useEffect(() => {
     uid && setCatalog(CatalogService.findCatalog(uid));
