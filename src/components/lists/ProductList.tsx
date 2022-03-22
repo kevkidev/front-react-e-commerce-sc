@@ -1,3 +1,4 @@
+import { useModalDisplay } from "components/hooks/ModalHook";
 import { MakeModalFormProduct } from "components/modals/MakeModalFormProduct";
 import { RoutePath } from "main/RoutePath";
 import { useEffect, useState } from "react";
@@ -13,7 +14,7 @@ interface Props {
 
 export function ProductList({ list }: Props) {
   const [sortedList, setSortedList] = useState<DTO.Product[]>([]);
-  const [showModal, setShowModal] = useState(false);
+  const { showModal, setShowModal } = useModalDisplay();
   const [editing, setEditing] = useState<DTO.Product>(list[0]);
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import { AuthFormSignIn } from "components/forms/AuthFormSignIn";
+import { useModalDisplay } from "components/hooks/ModalHook";
 import { MakeModalFormSignUp } from "components/modals/MakeModalFormSignUp";
-import { useState } from "react";
 import { Button } from "react-bootstrap";
 import "./AuthPage.scss";
 
@@ -17,12 +17,6 @@ export type User = {
 // });
 
 export default function AuthPage() {
-  // hooks
-  // @todo : use this hook everywhere
-  function useModalDisplay() {
-    const [showModal, setShowModal] = useState(false);
-    return { showModal, setShowModal };
-  }
   const { showModal, setShowModal } = useModalDisplay();
 
   return (
