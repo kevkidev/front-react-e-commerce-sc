@@ -1,7 +1,7 @@
 import { RoutePath } from "main/RoutePath";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CloudService } from "services/cloud/CloudService";
+import { AuthService } from "services/AuthService";
 import { AppUser } from "types/types.d";
 
 /**
@@ -18,7 +18,7 @@ export namespace AuthHook {
     const navigate = useNavigate();
 
     useEffect(() => {
-      CloudService.get().subscribeToAuthState({
+      AuthService.subscribeToAuthState({
         onLogged: (user: AppUser) => {
           setLogged(user);
         },

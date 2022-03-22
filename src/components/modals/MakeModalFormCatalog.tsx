@@ -16,11 +16,6 @@ export function MakeModalFormCatalog(props: Props) {
   const { shown, onHide, catalog, title, action } = props;
   const [resetForm, setResetForm] = useState(false);
 
-  const handleSave = (data: DTO.Catalog) => {
-    console.log("udate :" + data);
-    onHide();
-  };
-
   const FORM_ID = "new-catalog-form";
 
   return (
@@ -36,7 +31,7 @@ export function MakeModalFormCatalog(props: Props) {
         formId={FORM_ID}
         resetTrigger={resetForm}
         catalog={catalog}
-        onSave={handleSave}
+        onSave={onHide}
         action={action}
       />
     </MakeModalForm>

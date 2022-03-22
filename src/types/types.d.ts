@@ -73,21 +73,22 @@ export type HttpStatusCodeClass =
   | typeof HTTP_STATUS_CLASS_ERROR_CLIENT
   | typeof HTTP_STATUS_CLASS_ERROR_SERVER;
 
-export interface JsonResponseSignUp {
-  message: string;
-  code: string;
-}
-
-export interface FetchResponse {
-  json: Promise;
-  status: number;
-}
-
-export interface CloudApp<A, D> {
-  app: A;
-  db: D;
-}
-
 export interface AppUser {
-  email: string | undefined;
+  uid: string;
+  email: string;
+}
+
+export interface JsonResponseSuccess {
+  message: string;
+  data: any;
+}
+
+export interface JsonResponseFail {
+  code: string;
+  message: string;
+}
+
+export interface JsonResponse {
+  success: JsonResponseSuccess;
+  fail: JsonResponseFail;
 }
