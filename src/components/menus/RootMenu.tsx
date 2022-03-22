@@ -3,7 +3,7 @@ import { MenuConfig } from "main/MenuConfig";
 import { RoutePath } from "main/RoutePath";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { CloudService } from "services/cloud/CloudService";
+import { AuthService } from "services/AuthService";
 import { IRoutePath } from "types/types.d";
 import { DropdownMenu } from "./DropdownMenu";
 type Props = {
@@ -15,7 +15,7 @@ export function RootMenu({ routePath }: Props) {
   const logged = AuthHook.useLoggedEffect();
 
   const handleLoggout = () =>
-    CloudService.get().logout(() => navigate(RoutePath.auth));
+    AuthService.logout(() => navigate(RoutePath.auth));
 
   return (
     <nav>

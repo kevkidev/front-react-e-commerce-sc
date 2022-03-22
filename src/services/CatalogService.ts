@@ -1,7 +1,14 @@
 import { DTO } from "types/dto";
 import { STATUS_ALIVE } from "types/types.d";
+import { CloudService } from "./cloud/CloudService";
 
 export namespace CatalogService {
+  export function create(value: DTO.Catalog) {
+    CloudService.getCatalogService().create(value);
+  }
+
+  // @todo migrate all next functions into CatalogFirebaseService
+
   /**
    * @param accountUid
    * @param pageSize the number of elements to get (default: 10)

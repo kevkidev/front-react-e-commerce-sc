@@ -97,7 +97,7 @@ export namespace RestService {
   }
 
   const MESSAGE_CONNECTION_ERROR =
-    "We are sorrhing wong. Check your internet connection. Otherwise contact our support team please.";
+    "We are sorry something wong. Check your internet connection. Otherwise contact our support team please.";
 
   export function handleCatch(error: any, onFail: (message: string) => void) {
     onFail(MESSAGE_CONNECTION_ERROR);
