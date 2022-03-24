@@ -21,7 +21,7 @@ export function RootMenu({ routePath }: Props) {
     <nav>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href={routePath.root}>Home</Navbar.Brand>
+          <Navbar.Brand href={routePath.root}>ReCom</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
