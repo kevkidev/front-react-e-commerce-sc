@@ -1,22 +1,38 @@
 import { useModalDisplay } from "components/hooks/ModalHook";
 import { CatalogList } from "components/lists/CatalogList";
+import { Pagination } from "components/lists/Pagination";
 import { MakeModalFormCatalog } from "components/modals/MakeModalFormCatalog";
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 import { CatalogService } from "services/CatalogService";
 import { DTO } from "types/dto";
+import { ListResultLimits } from "types/types.d";
 
+const PAGE_SIZE = 3;
 export function CatalogsView() {
   const { showModal, setShowModal } = useModalDisplay();
   const [list, setList] = useState<DTO.Catalog[]>([]);
-
+  const [limits, setLimits] = useState<ListResultLimits>();
   useEffect(() => {
-    setList(CatalogService.findNextCatalogs("accountUid"));
-  }, [setList]);
+    CatalogService.fetchCatalogs({ onFetch, maxItems: PAGE_SIZE });
+  }, []);
+
+  const onFetch = (list: DTO.Catalog[], limits: ListResultLimits) => {
+    setList(list);
+    setLimits(limits);
+  };
+
+  const handlePagination = (listResultLimits: ListResultLimits) => {
+    CatalogService.fetchCatalogs({
+      onFetch,
+      listResultLimits,
+      maxItems: PAGE_SIZE,
+    });
+  };
 
   return (
-    <main>
+    <main className="container">
       <h1>Catalogs</h1>
       <Button
         variant="success"
@@ -34,6 +50,7 @@ export function CatalogsView() {
       />
       <hr />
       <CatalogList list={list} />
+      {limits && <Pagination limits={limits} ogGetData={handlePagination} />}
       <Outlet />
     </main>
   );

@@ -16,7 +16,7 @@ export function MakeModalFormCatalog(props: Props) {
   const { shown, onHide, catalog, title, action } = props;
   const [resetForm, setResetForm] = useState(false);
 
-  const FORM_ID = "new-catalog-form";
+  const FORM_ID = "form-catalog";
 
   return (
     <MakeModalForm
