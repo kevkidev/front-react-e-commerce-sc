@@ -16,8 +16,6 @@ export namespace CatalogService {
     CloudService.getCatalogService().modify(catalog);
   }
 
-  // @todo migrate all next functions into CatalogFirebaseService
-
   export function fetchCatalogs(args: FetchInput<DTO.Catalog>) {
     const { onFetch, listResultLimits, maxItems } = args;
     const user = CloudService.getAuthService().getLoggedUser();
@@ -36,7 +34,6 @@ export namespace CatalogService {
   }
 
   export function findCatalog(catalogUid: string): DTO.Catalog {
-    // @TODO
     return {
       uid: catalogUid,
       title: "ZE e,op opo",
