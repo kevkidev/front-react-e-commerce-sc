@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { AuthService } from "services/AuthService";
 import { CatalogService } from "services/CatalogService";
 import { DTO } from "types/dto";
-import { FormAction } from "types/types";
+import { ACTION_CREATE, ACTION_UPDATE, FormAction } from "types/types.d";
 import { availableStatus, defaultValue, schema } from "./catalogFormConfig";
 
 interface Props {
@@ -34,11 +34,12 @@ export default function CatalogForm(props: Props) {
   }, [resetTrigger, reset, value]);
 
   const onSubmit = (data: DTO.Catalog) => {
-    const newCatalog = { ...data };
+    const catalog = { ...data };
     const user = AuthService.getLoggedUser();
     if (user) {
-      newCatalog.ownerUid = user.uid;
-      CatalogService.create(newCatalog);
+      catalog.ownerUid = user.uid;
+      if (action === ACTION_CREATE) CatalogService.create(catalog);
+      if (action === ACTION_UPDATE) CatalogService.update(catalog);
     }
     onSave();
   };

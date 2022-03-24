@@ -92,3 +92,18 @@ export interface JsonResponse {
   success: JsonResponseSuccess;
   fail: JsonResponseFail;
 }
+
+export interface ListResultLimits {
+  firstKey?: string;
+  lastKey?: string;
+}
+
+interface FetchInput<T> {
+  onFetch: (list: T[], pagination: ListResultLimits) => void;
+  maxItems: number;
+  listResultLimits?: ListResultLimits;
+}
+
+interface DynamicProperty {
+  [key: string]: any;
+}
