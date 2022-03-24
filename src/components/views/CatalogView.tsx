@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Button, Figure } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { CatalogService } from "services/CatalogService";
+import { ProductService } from "services/ProductService";
 import { DTO } from "types/dto";
 
 export function CatalogView() {
@@ -15,7 +16,7 @@ export function CatalogView() {
 
   useEffect(() => {
     uid && setCatalog(CatalogService.findCatalog(uid));
-    uid && setProductList(CatalogService.findNextProducts(uid));
+    uid && setProductList(ProductService.findNextProducts(uid));
   }, [uid]);
 
   return (

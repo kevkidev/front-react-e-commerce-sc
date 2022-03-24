@@ -5,11 +5,10 @@ import {
   STATUS_ARCHIVED,
   STATUS_DISABLED,
 } from "types/types.d";
-import { v4 as uuidv4 } from "uuid";
 import { array, mixed, object, SchemaOf, string } from "yup";
 
 export const defaultValue: DTO.Catalog = {
-  uid: uuidv4(),
+  uid: "",
   imageUrl: "",
   ownerUid: "",
   productsUids: [],
@@ -22,7 +21,7 @@ export const schema: SchemaOf<DTO.Catalog> = object({
   imageUrl: string()
     .required("Please enter an image URL.")
     .default(defaultValue.imageUrl),
-  ownerUid: string().default("ae23efa8-9b40-4604-a149-e9e9b5d464e0"),
+  ownerUid: string().default(defaultValue.uid),
   productsUids: array().default(defaultValue.productsUids),
   title: string()
     .trim()
