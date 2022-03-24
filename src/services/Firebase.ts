@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getDatabase, ref, set, update } from "firebase/database";
 
 export namespace Firebase {
   export const DB_NODE_ACCOUNTS = "accounts";
@@ -15,5 +16,15 @@ export namespace Firebase {
       messagingSenderId: "1052058791238",
       appId: "1:1052058791238:web:9559b7832e8934c5c5c947",
     });
+  }
+
+  export function create<T>(value: T, path: string, onCreated?: () => void) {
+    const db = getDatabase();
+    db && set(ref(db, path), value).then(() => onCreated && onCreated());
+  }
+
+  export function modify(value: object, path: string, onUpdated?: () => void) {
+    const db = getDatabase();
+    db && update(ref(db, path), value).then(() => onUpdated && onUpdated());
   }
 }
