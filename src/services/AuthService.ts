@@ -70,8 +70,14 @@ export namespace AuthService {
     CloudService.getAuthService().logout(onLogout);
   }
 
-  export function getLoggedUser(): AppUser | undefined {
-    return CloudService.getAuthService().getLoggedUser();
+  export function getLoggedUser(): AppUser {
+    const user = CloudService.getAuthService().getLoggedUser();
+    if (!user) throw Error("Error: No user logged.");
+    return user;
+  }
+
+  export function setOwner<T extends { ownerUid: string }>(input: T) {
+    input.ownerUid = getLoggedUser()?.uid;
   }
 
   export function subscribeToAuthState(callback: {

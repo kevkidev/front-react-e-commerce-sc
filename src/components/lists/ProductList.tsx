@@ -1,25 +1,19 @@
 import { useModalDisplay } from "components/hooks/ModalHook";
 import { MakeModalFormProduct } from "components/modals/MakeModalFormProduct";
 import { RoutePath } from "main/RoutePath";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { DTO } from "types/dto";
 import { ACTION_UPDATE } from "types/types.d";
-import { Util } from "utils/Array";
 
 interface Props {
   list: DTO.Product[];
 }
 
 export function ProductList({ list }: Props) {
-  const [sortedList, setSortedList] = useState<DTO.Product[]>([]);
   const { showModal, setShowModal } = useModalDisplay();
   const [editing, setEditing] = useState<DTO.Product>(list[0]);
-
-  useEffect(() => {
-    setSortedList(Util.Array.sortByNameAsc(list));
-  }, [list]);
 
   return (
     <>
@@ -32,8 +26,8 @@ export function ProductList({ list }: Props) {
           </tr>
         </thead>
         <tbody>
-          {sortedList &&
-            sortedList.map((product) => (
+          {list &&
+            list.map((product) => (
               <tr key={product.uid}>
                 <td>
                   <Link

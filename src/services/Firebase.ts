@@ -1,9 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, update } from "firebase/database";
+import { getDatabase, onValue, ref, set, update } from "firebase/database";
 
 export namespace Firebase {
   export const DB_NODE_ACCOUNTS = "accounts";
   export const DB_NODE_CATALOGS = "catalogs";
+  export const DB_NODE_PRODUCTS = "products";
 
   export function initialize() {
     initializeApp({
@@ -26,5 +27,14 @@ export namespace Firebase {
   export function modify(value: object, path: string, onUpdated?: () => void) {
     const db = getDatabase();
     db && update(ref(db, path), value).then(() => onUpdated && onUpdated());
+  }
+
+  export function read<T>(path: string, onExists: (value: T) => void) {
+    const db = getDatabase();
+    const query = ref(db, path);
+    onValue(query, (snapshot: any) => {
+      const found: T = snapshot.val();
+      onExists(found);
+    });
   }
 }

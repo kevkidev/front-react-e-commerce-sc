@@ -1,12 +1,15 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect, useState } from "react";
+import { CatalogContext } from "components/contexts";
+import { useContext, useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { ProductService } from "services/ProductService";
 import { RestService } from "services/RestService";
 import { DTO } from "types/dto";
-import { FormAction } from "types/types";
+import { ACTION_CREATE, ACTION_UPDATE, FormAction } from "types/types.d";
 import {
   availableStatus,
+  buildSchema,
   CATEGORY_ID,
   defaultValue,
   IMAGE_ID,
@@ -15,7 +18,6 @@ import {
   PRODUCT_DESCRIPTION,
   PRODUCT_ID,
   PRODUCT_QUANTITY,
-  schema,
 } from "./productFormConfig";
 
 interface Props {
@@ -23,7 +25,7 @@ interface Props {
   resetTrigger: boolean;
   value?: DTO.Product;
   action: FormAction;
-  onSave: (value: DTO.Product) => void;
+  onSave: () => void;
 }
 
 export default function ProductForm(props: Props) {
@@ -35,16 +37,29 @@ export default function ProductForm(props: Props) {
     formState: { errors },
     reset,
   } = useForm<DTO.Product>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(
+      ACTION_UPDATE ? buildSchema(current) : buildSchema(defaultValue)
+    ),
   });
 
   useEffect(() => {
     resetTrigger && reset(current);
   }, [resetTrigger, reset, current]);
 
+  const catalog = useContext(CatalogContext);
+
   const onSubmit = (data: DTO.Product) => {
-    console.log(JSON.stringify(data));
-    onSave(data);
+    if (!catalog) {
+      throw Error("No catalog reference uid found for this product.");
+    }
+
+    if (action === ACTION_CREATE) {
+      ProductService.create({ ...data, catalogUid: catalog.uid });
+    }
+    if (action === ACTION_UPDATE) {
+      ProductService.update({ ...data });
+    }
+    onSave();
   };
 
   const renderStatus = (

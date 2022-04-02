@@ -16,12 +16,11 @@ export function MakeModalFormProduct(props: Props) {
   const { shown, onHide, product, title, action } = props;
   const [resetForm, setResetForm] = useState(false);
 
-  const handleSave = (data: DTO.Product) => {
-    console.log(JSON.stringify(data));
+  const handleSave = () => {
     onHide();
   };
 
-  const FORM_ID = "new-product-form";
+  const FORM_ID = "product-form";
 
   return (
     <MakeModalForm
