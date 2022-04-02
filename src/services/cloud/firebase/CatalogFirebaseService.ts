@@ -60,4 +60,13 @@ export namespace CatalogFirebaseService {
       onExists(Object.values(snapshot.val()), limits);
     });
   }
+
+  export function read(
+    ownerUid: string,
+    catalogUid: string,
+    onExists: (value: DTO.Catalog) => void
+  ) {
+    const PATH = `${ownerUid}/${Firebase.DB_NODE_CATALOGS}/${catalogUid}`;
+    Firebase.read<DTO.Catalog>(PATH, onExists);
+  }
 }

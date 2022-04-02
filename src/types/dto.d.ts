@@ -32,6 +32,7 @@ export namespace DTO {
     quantity: number;
     description: string;
     status: ProductStatus;
+    catalogUid: string;
   }
 
   export interface Catalog {

@@ -1,18 +1,68 @@
-import { getDatabase, ref, set } from "firebase/database";
-import { Models } from "types/models";
+import {
+  endBefore,
+  equalTo,
+  getDatabase,
+  limitToFirst,
+  onValue,
+  orderByChild,
+  query,
+  QueryConstraint,
+  ref,
+  startAfter,
+} from "firebase/database";
+import { Firebase } from "services/Firebase";
+import { DTO } from "types/dto";
+import { ListResultLimits } from "types/types";
 
 export namespace ProductFirebaseService {
-  export function createProduct(product: Models.Product) {
-    const { name, quantity, description, category, imageUrl, owner } = product;
+  export function create(value: DTO.Product) {
+    const path = `${value.ownerUid}/${Firebase.DB_NODE_PRODUCTS}/${value.uid}`;
+    Firebase.create(value, path, () => {
+      console.log(`Database: create product: ${value.uid}`);
+    });
+  }
+
+  export function modify(value: DTO.Product) {
+    const path = `${value.ownerUid}/${Firebase.DB_NODE_PRODUCTS}/${value.uid}`;
+    Firebase.modify(value, path, () => {
+      console.log(`Database: update product: ${value.uid}`);
+    });
+  }
+
+  interface IReadFromCatalog {
+    ownerUid: string;
+    catalogUid: string;
+    maxItems: number;
+    listResultLimits?: ListResultLimits;
+    onExists: (value: DTO.Product[], limits: ListResultLimits) => void;
+  }
+  export function readFromCatalog(args: IReadFromCatalog) {
+    const { ownerUid, catalogUid, maxItems, onExists, listResultLimits } = args;
+    catalogUid;
     const db = getDatabase();
-    db &&
-      set(ref(db, "accounts/" + owner.uid + "/products/" + product.uid), {
-        name,
-        quantity,
-        description,
-        category: category.uid,
-        imageUrl,
-        owner: owner.uid,
-      }).then(() => console.log("Database: new product ok"));
+    const PATH = `${ownerUid}/${Firebase.DB_NODE_PRODUCTS}`;
+    const constraints: QueryConstraint[] = [
+      orderByChild("catalogUid"),
+      equalTo(catalogUid),
+      limitToFirst(maxItems),
+    ];
+    if (listResultLimits) {
+      const { firstKey, lastKey } = listResultLimits;
+      if (firstKey) constraints.push(endBefore(firstKey));
+      if (lastKey) constraints.push(startAfter(lastKey));
+    }
+
+    const dbQuery = query(ref(db, PATH), ...constraints);
+    onValue(dbQuery, (snapshot: any) => {
+      if (!snapshot.val()) return;
+
+      const keys = Object.keys(snapshot.val());
+      const limits = {
+        firstKey: keys[0],
+        lastKey: keys[keys.length - 1],
+      };
+
+      onExists(Object.values(snapshot.val()), limits);
+    });
   }
 }
