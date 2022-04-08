@@ -11,7 +11,7 @@ import { ProductService } from "services/ProductService";
 import { DTO } from "types/dto";
 import { ACTION_CREATE, ListResultLimits } from "types/types.d";
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 4;
 
 export function CatalogView() {
   const [catalog, setCatalog] = useState<DTO.Catalog>();
@@ -51,7 +51,7 @@ export function CatalogView() {
   };
 
   return (
-    <main>
+    <main className="container">
       <Figure>
         <Figure.Image
           width={171}

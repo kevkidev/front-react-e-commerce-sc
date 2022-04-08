@@ -1,10 +1,9 @@
 import {
   endBefore,
-  equalTo,
   getDatabase,
   limitToFirst,
   onValue,
-  orderByChild,
+  orderByKey,
   query,
   QueryConstraint,
   ref,
@@ -16,14 +15,14 @@ import { ListResultLimits } from "types/types";
 
 export namespace ProductFirebaseService {
   export function create(value: DTO.Product) {
-    const path = `${value.ownerUid}/${Firebase.DB_NODE_PRODUCTS}/${value.uid}`;
+    const path = `${value.ownerUid}/${value.catalogUid}/${Firebase.DB_NODE_PRODUCTS}/${value.uid}`;
     Firebase.create(value, path, () => {
       console.log(`Database: create product: ${value.uid}`);
     });
   }
 
   export function modify(value: DTO.Product) {
-    const path = `${value.ownerUid}/${Firebase.DB_NODE_PRODUCTS}/${value.uid}`;
+    const path = `${value.ownerUid}/${value.catalogUid}/${Firebase.DB_NODE_PRODUCTS}/${value.uid}`;
     Firebase.modify(value, path, () => {
       console.log(`Database: update product: ${value.uid}`);
     });
@@ -38,18 +37,23 @@ export namespace ProductFirebaseService {
   }
   export function readFromCatalog(args: IReadFromCatalog) {
     const { ownerUid, catalogUid, maxItems, onExists, listResultLimits } = args;
-    catalogUid;
+
     const db = getDatabase();
-    const PATH = `${ownerUid}/${Firebase.DB_NODE_PRODUCTS}`;
+    const PATH = `${ownerUid}/${catalogUid}/${Firebase.DB_NODE_PRODUCTS}/`;
     const constraints: QueryConstraint[] = [
-      orderByChild("catalogUid"),
-      equalTo(catalogUid),
+      orderByKey(),
       limitToFirst(maxItems),
     ];
+
     if (listResultLimits) {
       const { firstKey, lastKey } = listResultLimits;
-      if (firstKey) constraints.push(endBefore(firstKey));
-      if (lastKey) constraints.push(startAfter(lastKey));
+
+      if (firstKey) {
+        constraints.push(endBefore(firstKey));
+      }
+      if (lastKey) {
+        constraints.push(startAfter(lastKey));
+      }
     }
 
     const dbQuery = query(ref(db, PATH), ...constraints);
