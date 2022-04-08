@@ -1,0 +1,12 @@
+.ProductView {
+  img {
+    max-height: 285.9px;
+  }
+
+  .ProductView__description {
+    line-height: 1.5rem;
+    height: 6rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
