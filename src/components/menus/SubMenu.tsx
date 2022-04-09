@@ -7,18 +7,12 @@ type Props = {
 
 export function SubMenu({ items }: Props) {
   return (
-    <Nav activeKey="/home">
+    <Nav activeKey="/home" className="container">
       {items.map(({ path, title }, index) => (
         <Nav.Item key={index + Date.now().toString()}>
           <Nav.Link href={path}>{title}</Nav.Link>
         </Nav.Item>
       ))}
-
-      {/* <Nav.Item>
-          <Nav.Link eventKey="disabled" disabled>
-            Disabled
-          </Nav.Link>
-        </Nav.Item> */}
     </Nav>
   );
 }
