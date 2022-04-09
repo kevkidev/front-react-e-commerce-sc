@@ -1,7 +1,6 @@
 {
-  "name": "front-react-social-network",
+  "name": "recom",
   "version": "0.1.0",
-  "homepage": "https://kevkidev.github.io/front-react-social-network",
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^1.9.0",
