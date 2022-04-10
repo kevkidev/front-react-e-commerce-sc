@@ -43,6 +43,9 @@ export function RootMenu({ routePath }: Props) {
               {!logged && (
                 <Nav.Link href={routePath.auth}>Log In / Sign Up</Nav.Link>
               )}
+              <Nav.Link href="https://github.com/kevkidev/front-react-e-commerce">
+                &lt;GitHub source code /&gt;
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
