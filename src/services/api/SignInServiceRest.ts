@@ -34,9 +34,10 @@ export function SignInServiceRest({ email, password, callback }: ParamsSignIn) {
 
       callback.onFail("Oops, Something wrong!");
     })
-    .then(({ data }: RestDataSignIn) => {
-      if (!data) return;
+    .then((res: RestDataSignIn) => {
+      if (!res || !res.data) return;
 
+      const { data } = res;
       LocalData.setAccessToken(data.accessToken);
       LocalData.setRefreshToken(data.refreshToken);
       callback.onSuccess(data.user as AppUser);
