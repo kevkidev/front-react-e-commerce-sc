@@ -1,0 +1,23 @@
+.ProductList {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(60px, 1fr));
+  justify-items: center;
+
+  @media (max-width: 1400px) {
+    font-size: 0.9em;
+    grid-template-columns: repeat(3, minmax(60px, 1fr));
+  }
+
+  @media (max-width: 990px) {
+    grid-template-columns: repeat(2, minmax(60px, 1fr));
+  }
+
+  @media (max-width: 770px) {
+    grid-template-columns: minmax(60px, 1fr);
+  }
+
+  .ProductList__item {
+    margin-bottom: 20px;
+  }
+}

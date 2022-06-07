@@ -44,3 +44,16 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Configure the .env file
+
+1. Copy the variables from the src/.env-template the local src/.env
+2. Set the variables
+3. restart the node server (`npm start`)
+
+## Deploy github page
+
+- First Step: install shx for cross platform commands as follow `npm install shx --save-dev`
+- Second Step: Go to your package.json in the scripts block replace `"build": "react-scripts build"` with `"build": "react-scripts build && shx cp build/index.html build/404.html"`
+- push on master
+- `npm run deploy`
