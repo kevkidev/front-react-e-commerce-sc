@@ -48,8 +48,12 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## Configure the .env file
 
 1. Copy the variables from the src/.env-template the local src/.env
-2. Set the variables
-3. restart the node server (`npm start`)
+2. Set this variables on your local .env file
+
+`REACT_APP_NAME="front-react-e-commerce"`
+`REACT_APP_AUTH_SERVICE_URI=""`
+
+4. restart the node server (`npm start`)
 
 ## Deploy github page
 
@@ -57,3 +61,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Second Step: Go to your package.json in the scripts block replace `"build": "react-scripts build"` with `"build": "react-scripts build && shx cp build/index.html build/404.html"`
 - push on master
 - `npm run deploy`
+
